@@ -1,4 +1,4 @@
-package com.example.kadena_key_derivation
+package com.example.kadena_keys
 
 import io.flutter.embedding.android.FlutterActivity
 

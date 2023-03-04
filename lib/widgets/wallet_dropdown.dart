@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kadena_key_derivation/utils/wallets.dart';
+import 'package:kadena_keys/utils/wallets.dart';
 
 class WalletDropdown extends StatelessWidget {
   final WalletData selectedWallet;

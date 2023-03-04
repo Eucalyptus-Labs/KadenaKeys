@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:kadena_key_derivation/utils/derive_key_util.dart';
-import 'package:kadena_key_derivation/utils/string_constants.dart';
-import 'package:kadena_key_derivation/utils/style_constants.dart';
-import 'package:kadena_key_derivation/utils/wallets.dart';
-import 'package:kadena_key_derivation/widgets/wallet_dropdown.dart';
+import 'package:kadena_keys/utils/derive_key_util.dart';
+import 'package:kadena_keys/utils/string_constants.dart';
+import 'package:kadena_keys/utils/style_constants.dart';
+import 'package:kadena_keys/utils/wallets.dart';
+import 'package:kadena_keys/widgets/wallet_dropdown.dart';
 
 class KeyDerivationPage extends StatefulWidget {
   const KeyDerivationPage({super.key});

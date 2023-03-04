@@ -1,6 +1,6 @@
 {
-    "name": "kadena_key_derivation",
-    "short_name": "kadena_key_derivation",
+    "name": "kadena_keys",
+    "short_name": "kadena_keys",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

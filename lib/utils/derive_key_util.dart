@@ -4,7 +4,7 @@ import 'package:bip32/bip32.dart';
 import 'package:convert/convert.dart';
 import 'package:bip39/bip39.dart' as bip39;
 import 'package:ed25519_hd_key/ed25519_hd_key.dart';
-import 'package:kadena_key_derivation/utils/wallets.dart';
+import 'package:kadena_keys/utils/wallets.dart';
 
 class DeriveKeyUtil {
   static Future<String> derivePrivateKey({

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kadena_key_derivation/pages/key_derivation_page.dart';
-import 'package:kadena_key_derivation/utils/string_constants.dart';
+import 'package:kadena_keys/pages/key_derivation_page.dart';
+import 'package:kadena_keys/utils/string_constants.dart';
 
 void main() {
   runApp(const MyApp());
