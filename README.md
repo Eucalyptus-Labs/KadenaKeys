@@ -6,6 +6,8 @@ Used to derive the private key from a passphrase for multiple wallets in the Kad
 
 `flutter build web`
 
+The `build/web/` directory will contain the compiled web app.
+
 # To Test
 
 To run all unit tests:
