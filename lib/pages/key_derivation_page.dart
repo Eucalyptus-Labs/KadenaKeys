@@ -16,6 +16,7 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
   final TextEditingController _menmonicController = TextEditingController();
 
   WalletData selectedWallet = kadenaWalletData[KadenaWallet.koala]!;
+  bool generatingPrivateKey = false;
   String privateKey = '';
 
   void _onSelectedWalletChanged(WalletData? data) {
@@ -24,14 +25,20 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
     });
   }
 
-  void _generatePrivateKey() async {
-    final privKey = await DeriveKeyUtil.derivePrivateKey(
+  Future<void> _generatePrivateKey() async {
+    setState(() {
+      generatingPrivateKey = true;
+    });
+
+    final String value = await DeriveKeyUtil.derivePrivateKey(
       menmonic: _menmonicController.text,
       method: selectedWallet.derivationMethod,
       derivationPath: selectedWallet.derivationPath,
     );
+
     setState(() {
-      privateKey = privKey;
+      privateKey = value;
+      generatingPrivateKey = false;
     });
   }
 
@@ -71,12 +78,7 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
               height: StyleConstants.magic30,
             ),
             _buildSectionTitle(StringConstants.generateSeed),
-            OutlinedButton(
-              onPressed: _generatePrivateKey,
-              child: const Text(
-                StringConstants.generateSeed,
-              ),
-            ),
+            _buildGenerateSeedButton(),
             const SizedBox(
               height: StyleConstants.magic10,
             ),
@@ -148,5 +150,28 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
             fontSize: StyleConstants.magic20, fontWeight: FontWeight.bold),
       ),
     );
+  }
+
+  Widget _buildGenerateSeedButton() {
+    if (generatingPrivateKey) {
+      return const Center(
+        child: SizedBox(
+          width: StyleConstants.magic40,
+          height: StyleConstants.magic40,
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(
+              StyleConstants.colorPrimary,
+            ),
+          ),
+        ),
+      );
+    } else {
+      return OutlinedButton(
+        onPressed: _generatePrivateKey,
+        child: const Text(
+          StringConstants.generateSeed,
+        ),
+      );
+    }
   }
 }

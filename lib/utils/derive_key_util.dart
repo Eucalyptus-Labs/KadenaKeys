@@ -19,7 +19,7 @@ class DeriveKeyUtil {
           derivationPath: derivationPath,
         );
       case DerivationMethod.bip32:
-        return bip32DerivePrivateKey(
+        return await bip32DerivePrivateKey(
           menmonic: menmonic,
           derivationPath: derivationPath,
         );
@@ -70,7 +70,7 @@ class DeriveKeyUtil {
     required String derivationPath,
   }) async {
     final seedBytes = bip39.mnemonicToSeed(menmonic);
-    print(hex.encode(seedBytes.toList()));
+    // print(hex.encode(seedBytes.toList()));
 
     KeyData keyData = await ED25519_HD_KEY.derivePath(
       derivationPath,

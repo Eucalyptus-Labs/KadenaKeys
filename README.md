@@ -2,11 +2,19 @@
 
 Used to derive the private key from a passphrase for multiple wallets in the Kadena ecosystem.
 
+# To Build
+
+`flutter build web`
+
 # To Test
 
+To run all unit tests:
+`flutter test`
+
+## Specific Wallet Phrases and Expected Private Keys
 **Koala Wallet**
 Passphrase: plug utility enable phone tip scale left blind clown someone knife oval drink road want erase salt jewel move whisper picnic history avocado symbol
-Expected Private Key: 68935a8df9bd58690ed56c17146d2a302fb9e536d8a9197235ffe749a77cac182811ac8d198329fc752e8c69fdac0d5a27a81c9e7b1c1b98225a574bcdad8d9d
+Expected Private Key: 
 
 **X-Wallet**
 Passphrase: faint circle forget keep cotton solar brown snow clay left exist bird
