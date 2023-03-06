@@ -2,6 +2,13 @@
 
 Used to derive the private key from a passphrase for multiple wallets in the Kadena ecosystem.
 
+# To Run
+
+`flutter run`
+
+Then choose the platform you wish to run on by following the instructions in the terminal.
+Generally you will want to run it on Chrome.
+
 # To Build
 
 `flutter build web`
