@@ -1,5 +1,7 @@
+import 'package:fl_toast/fl_toast.dart';
 import 'package:flutter/material.dart';
-import 'package:kadena_keys/utils/derive_key_util.dart';
+import 'package:flutter/services.dart';
+import 'package:kadena_keys/models/key_derivation_result.dart';
 import 'package:kadena_keys/utils/string_constants.dart';
 import 'package:kadena_keys/utils/style_constants.dart';
 import 'package:kadena_keys/utils/wallets.dart';
@@ -17,7 +19,7 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
 
   WalletData selectedWallet = kadenaWalletData[KadenaWallet.koala]!;
   bool generatingPrivateKey = false;
-  String privateKey = '';
+  KeyDerivationResult? keys;
 
   void _onSelectedWalletChanged(WalletData? data) {
     setState(() {
@@ -30,14 +32,12 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
       generatingPrivateKey = true;
     });
 
-    final String value = await DeriveKeyUtil.derivePrivateKey(
-      menmonic: _menmonicController.text,
-      method: selectedWallet.derivationMethod,
-      derivationPath: selectedWallet.derivationPath,
+    final KeyDerivationResult value = await selectedWallet.deriver.deriveKeys(
+      mnemonic: _menmonicController.text,
     );
 
     setState(() {
-      privateKey = value;
+      keys = value;
       generatingPrivateKey = false;
     });
   }
@@ -60,7 +60,7 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
               height: StyleConstants.magic30,
             ),
             _buildSectionTitle(StringConstants.selectedWalletInfo),
-            _buildWalletSelectionRow(),
+            selectedWallet.infoWidget,
             const SizedBox(
               height: StyleConstants.magic30,
             ),
@@ -82,56 +82,9 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
             const SizedBox(
               height: StyleConstants.magic10,
             ),
-            Text(
-              privateKey,
-            ),
+            _buildKeyResultWidget(),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildWalletSelectionRow() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        const Padding(
-          padding: EdgeInsets.only(
-            right: StyleConstants.magic20,
-          ),
-          child: Text(
-            StringConstants.derivationMethod,
-            style: StyleConstants.bodyBold,
-          ),
-        ),
-        _centeredText(selectedWallet.derivationMethod.name.toUpperCase()),
-        const SizedBox(
-          width: StyleConstants.magic30,
-        ),
-        const Padding(
-          padding: EdgeInsets.only(
-            right: StyleConstants.magic20,
-          ),
-          child: Text(
-            StringConstants.derivationPath,
-            style: StyleConstants.bodyBold,
-          ),
-        ),
-        _centeredText(selectedWallet.derivationPath),
-      ],
-    );
-  }
-
-  Widget _centeredText(
-    String text, {
-    TextStyle? style,
-  }) {
-    return Center(
-      child: Text(
-        text,
-        textAlign: TextAlign.center,
-        style: style,
       ),
     );
   }
@@ -173,5 +126,54 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
         ),
       );
     }
+  }
+
+  Widget _buildKeyResultWidget() {
+    if (keys == null) {
+      return Container();
+    }
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        _buildSectionTitle(StringConstants.derivedKeysTitle),
+        _buildKeyRow(StringConstants.privateKey, keys!.privateKey),
+        _buildKeyRow(StringConstants.publicKey, keys!.publicKey),
+        _buildKeyRow(StringConstants.account, keys!.account),
+      ],
+    );
+  }
+
+  Widget _buildKeyRow(String title, String value) {
+    return Padding(
+      padding: const EdgeInsets.only(
+        bottom: StyleConstants.linear8,
+      ),
+      child: Row(
+        children: [
+          Text(title),
+          const SizedBox(
+            width: StyleConstants.magic10,
+          ),
+          Text(value),
+          const SizedBox(
+            width: StyleConstants.magic10,
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              await Clipboard.setData(ClipboardData(text: value));
+              await showPlatformToast(
+                child: const Text(StringConstants.copiedToClipboard),
+                context: context,
+              );
+            },
+            child: const Text(
+              StringConstants.copyToClipboard,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -1,3 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:kadena_keys/models/key_derivation_result.dart';
+import 'package:kadena_keys/utils/key_derivers/koala_wallet/derive_koala.dart';
+import 'package:kadena_keys/utils/key_derivers/i_key_deriver.dart';
+import 'package:kadena_keys/utils/key_derivers/koala_wallet/koala_widget.dart';
+
 enum KadenaWallet {
   koala,
   xWallet,
@@ -18,27 +24,25 @@ enum DerivationMethod {
 class WalletData {
   final KadenaWallet wallet;
   final String name;
-  final DerivationMethod derivationMethod;
-  final String derivationPath;
+  final IKeyDeriver deriver;
+  final Widget infoWidget;
   final int wordCount;
-  final bool include;
 
   const WalletData({
     required this.wallet,
     required this.name,
-    required this.derivationMethod,
-    required this.derivationPath,
+    required this.deriver,
+    required this.infoWidget,
     this.wordCount = 12,
-    this.include = true,
   });
 }
 
-const kadenaWalletData = {
+final kadenaWalletData = {
   KadenaWallet.koala: WalletData(
     wallet: KadenaWallet.koala,
     name: 'Koala',
-    derivationMethod: DerivationMethod.bip44,
-    derivationPath: "m/44'/626'/0'",
+    deriver: DeriveKoala(),
+    infoWidget: const KoalaWidget(),
   ),
   // KadenaWallet.xWallet: WalletData(
   //   wallet: KadenaWallet.xWallet,
