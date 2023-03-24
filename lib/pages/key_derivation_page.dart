@@ -19,7 +19,7 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
 
   WalletData selectedWallet = kadenaWalletData[KadenaWallet.koala]!;
   bool generatingPrivateKey = false;
-  KeyDerivationResult? keys;
+  List<KeyDerivationResult>? keys;
 
   void _onSelectedWalletChanged(WalletData? data) {
     setState(() {
@@ -32,7 +32,8 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
       generatingPrivateKey = true;
     });
 
-    final KeyDerivationResult value = await selectedWallet.deriver.deriveKeys(
+    final List<KeyDerivationResult> value =
+        await selectedWallet.deriver.deriveKeys(
       mnemonic: _menmonicController.text,
     );
 
@@ -138,9 +139,9 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         _buildSectionTitle(StringConstants.derivedKeysTitle),
-        _buildKeyRow(StringConstants.privateKey, keys!.privateKey),
-        _buildKeyRow(StringConstants.publicKey, keys!.publicKey),
-        _buildKeyRow(StringConstants.account, keys!.account),
+        _buildKeyRow(StringConstants.privateKey, keys![0].privateKey),
+        _buildKeyRow(StringConstants.publicKey, keys![0].publicKey),
+        _buildKeyRow(StringConstants.account, keys![0].account),
       ],
     );
   }
@@ -156,7 +157,12 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
           const SizedBox(
             width: StyleConstants.magic10,
           ),
-          Text(value),
+          Expanded(
+            child: Text(
+              value,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
           const SizedBox(
             width: StyleConstants.magic10,
           ),

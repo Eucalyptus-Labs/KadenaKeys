@@ -1,0 +1,18 @@
+{
+  "name": "kadena-crypto",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cardano-crypto.js": "https://github.com/kadena-io/cardano-crypto.js.git#jam@chainweaver-keygen"
+  },
+  "devDependencies": {
+    "webpack": "^5.76.3",
+    "webpack-cli": "^5.0.1"
+  }
+}

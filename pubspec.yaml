@@ -43,6 +43,7 @@ dependencies:
   hex: ^0.2.0
   fl_toast: ^3.1.0
   flutter_js: ^0.6.0
+  js: ^0.6.5
 
 dev_dependencies:
   flutter_test:

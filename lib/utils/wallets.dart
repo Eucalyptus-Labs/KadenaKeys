@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:kadena_keys/models/key_derivation_result.dart';
+import 'package:kadena_keys/utils/key_derivers/ecko_wallet/derive_ecko.dart';
+import 'package:kadena_keys/utils/key_derivers/ecko_wallet/ecko_widget.dart';
 import 'package:kadena_keys/utils/key_derivers/koala_wallet/derive_koala.dart';
 import 'package:kadena_keys/utils/key_derivers/i_key_deriver.dart';
 import 'package:kadena_keys/utils/key_derivers/koala_wallet/koala_widget.dart';
 
 enum KadenaWallet {
   koala,
-  xWallet,
+  eckoWallet,
   chainweaver,
   zelcore,
   linx,
@@ -44,12 +46,12 @@ final kadenaWalletData = {
     deriver: DeriveKoala(),
     infoWidget: const KoalaWidget(),
   ),
-  // KadenaWallet.xWallet: WalletData(
-  //   wallet: KadenaWallet.xWallet,
-  //   name: 'X-Wallet',
-  //   derivationMethod: DerivationMethod.bip32,
-  //   derivationPath: "m/44'",
-  // ),
+  KadenaWallet.eckoWallet: WalletData(
+    wallet: KadenaWallet.eckoWallet,
+    name: 'eckoWallet',
+    deriver: DeriveEcko(),
+    infoWidget: const EckoWidget(),
+  ),
   // KadenaWallet.chainweaver: WalletData(
   //   wallet: KadenaWallet.chainweaver,
   //   name: 'Chainweaver',

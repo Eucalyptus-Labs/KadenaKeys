@@ -27,9 +27,9 @@ To run all unit tests:
 **Expected Public Key:** 247c41591fedddc44a4b5bf44d80e38c400fa2d79e376e7ea29f1f957cda151b  
 **Expected Account:** k:247c41591fedddc44a4b5bf44d80e38c400fa2d79e376e7ea29f1f957cda151b  
 
-**X-Wallet**
+**eckoWallet**
 **Passphrase:** faint circle forget keep cotton solar brown snow clay left exist bird  
-**Expected Private Key:**  
+**Expected Private Key:** 88cc74fdaa0ebdf60ad75c28eddb288bf928da9cf78652f8d541b716c5e97c5af6c073dc5ce52d6a202009908049003f750733a4f16cc5e84896db6f5f3aaa4ad2adf52af5b0c969763a2d536692ba2727cc042615c0de8d07c08d1e90a5d901b18400b8da916c664e6a86941da251947fd9a4b3cc4bf3c010d4d2f95073958d  
 **Expected Public Key:** d2adf52af5b0c969763a2d536692ba2727cc042615c0de8d07c08d1e90a5d901  
 **Expected Account:** k:d2adf52af5b0c969763a2d536692ba2727cc042615c0de8d07c08d1e90a5d901  
 

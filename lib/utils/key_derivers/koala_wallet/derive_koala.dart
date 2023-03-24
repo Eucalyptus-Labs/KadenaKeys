@@ -7,8 +7,9 @@ import 'package:slip_0010_ed25519/slip_0010_ed25519.dart';
 
 class DeriveKoala extends IKeyDeriver {
   @override
-  Future<KeyDerivationResult> deriveKeys({
+  Future<List<KeyDerivationResult>> deriveKeys({
     required String mnemonic,
+    Map<String, dynamic>? info,
   }) async {
     final seedBytes = bip39.mnemonicToSeed(mnemonic.trim());
     // print(hex.encode(seedBytes.toList()));
@@ -20,10 +21,12 @@ class DeriveKoala extends IKeyDeriver {
     var privateKey = keyData.key;
     var publicKey = ED25519_HD_KEY.getPublicKey(keyData.key, false);
 
-    return KeyDerivationResult(
-      privateKey: hex.encode(privateKey),
-      publicKey: hex.encode(publicKey),
-      account: 'k:${hex.encode(publicKey)}',
-    );
+    return [
+      KeyDerivationResult(
+        privateKey: hex.encode(privateKey),
+        publicKey: hex.encode(publicKey),
+        account: 'k:${hex.encode(publicKey)}',
+      ),
+    ];
   }
 }
