@@ -5,26 +5,40 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:flutter/material.dart';
+import 'dart:typed_data';
+
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:kadena_keys/main.dart';
+import 'package:ed25519_edwards/ed25519_edwards.dart' as ed;
+// ignore: depend_on_referenced_packages
+import 'package:convert/convert.dart';
+import 'package:x25519/x25519.dart' as x;
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    final String privKeyStr =
+        '88cc74fdaa0ebdf60ad75c28eddb288bf928da9cf78652f8d541b716c5e97c5af6c073dc5ce52d6a202009908049003f750733a4f16cc5e84896db6f5f3aaa4ad2adf52af5b0c969763a2d536692ba2727cc042615c0de8d07c08d1e90a5d901b18400b8da916c664e6a86941da251947fd9a4b3cc4bf3c010d4d2f95073958d';
+    // final privKey = ed.PrivateKey(
+    //
+    // );
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // ed.
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // List<int> privKey = hex.decode(privKeyStr.substring(0, 64));
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // privKey[0] &= 248;
+    // privKey[31] &= 127;
+    // privKey[31] |= 64;
+
+    print(
+      hex.encode(
+        x.X25519(
+          hex.decode(
+            privKeyStr.substring(0, 64),
+          ),
+          x.basePoint,
+        ),
+      ),
+    );
   });
 }
