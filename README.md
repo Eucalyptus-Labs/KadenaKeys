@@ -11,6 +11,18 @@ Generally you will want to run it on Chrome.
 
 # To Build
 
+1. Install kadena crypto (cardano-crypto.js), requires nodejs 14
+
+`nvm install 14`
+`nvm use 14`
+`npm install`
+
+2. Build the webpack bundle, requires
+
+`npx webpack`
+
+3. Build the flutter app
+
 `flutter build web`
 
 The `build/web/` directory will contain the compiled web app.

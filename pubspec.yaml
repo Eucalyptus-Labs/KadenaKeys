@@ -39,11 +39,13 @@ dependencies:
   bip39: ^1.0.6
   bip32: ^2.0.0
   slip_0010_ed25519: ^3.1.0
-  dart_bip32_bip44: ^0.2.0
+  # dart_bip32_bip44: ^0.2.0
   hex: ^0.2.0
   fl_toast: ^3.1.0
   flutter_js: ^0.6.0
   js: ^0.6.5
+  ed25519_edwards: ^0.3.1
+  x25519: ^0.1.1
 
 dev_dependencies:
   flutter_test:
