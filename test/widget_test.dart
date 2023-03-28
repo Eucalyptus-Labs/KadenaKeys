@@ -18,6 +18,7 @@ void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     final String privKeyStr =
         '88cc74fdaa0ebdf60ad75c28eddb288bf928da9cf78652f8d541b716c5e97c5af6c073dc5ce52d6a202009908049003f750733a4f16cc5e84896db6f5f3aaa4ad2adf52af5b0c969763a2d536692ba2727cc042615c0de8d07c08d1e90a5d901b18400b8da916c664e6a86941da251947fd9a4b3cc4bf3c010d4d2f95073958d';
+    // print(privKeyStr.length);
     // final privKey = ed.PrivateKey(
     //
     // );
@@ -30,15 +31,20 @@ void main() {
     // privKey[31] &= 127;
     // privKey[31] |= 64;
 
-    print(
-      hex.encode(
+    print(ed.PrivateKeySize);
+
+    for (int i = 0; i < privKeyStr.length; i += 32) {
+      final value = hex.encode(
         x.X25519(
           hex.decode(
-            privKeyStr.substring(0, 64),
+            privKeyStr.substring(i, i + 64),
           ),
           x.basePoint,
         ),
-      ),
-    );
+      );
+      final value2 = ed.PrivateKey([]);
+      // value2.print(
+      //     'i: $i, value: $value, expected: d2adf52af5b0c969763a2d536692ba2727cc042615c0de8d07c08d1e90a5d901');
+    }
   });
 }
