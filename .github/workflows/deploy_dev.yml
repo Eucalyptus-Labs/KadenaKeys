@@ -1,0 +1,49 @@
+
+name: deploy-to-dev
+
+on:
+  push:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy to dev environment
+    runs-on: ubuntu-latest
+    env:
+      SERVER_USER: github
+      SERVER_ADDRESS: 172.104.155.144
+      SERVER_PORT: 6000
+      PROJECT_NAME: KadenaKeys
+      SERVICE_ENV: develop
+      SERVER_KEY_PATH: /home/runner/work/id_rsa
+    steps:
+      - name: Setup SSH key
+        env:
+          PRIVATE_KEY: ${{ secrets.SERVER_PRIVATE_KEY_DEV }}
+          KEY_PATH: ${{ env.SERVER_KEY_PATH }}
+        run: |
+          echo $PRIVATE_KEY | base64 -di > $KEY_PATH
+          chmod 400 $KEY_PATH
+      - name: Install node modules and restart
+        env:
+          SERVER: ${{ env.SERVER_ADDRESS }}
+          USER: ${{ env.SERVER_USER }}
+          KEY: ${{ env.SERVER_KEY_PATH }}
+          ENVIRONMENT: ${{ env.SERVICE_ENV }}
+        run: |
+          ssh -i $KEY -o StrictHostKeyChecking=no $USER@$SERVER "cd /var/www/KadenaKeys && ./restart.sh $ENVIRONMENT ${{ github.ref_name }}"
+      - name: Send failure notification
+        if: failure()
+        uses: dawidd6/action-send-mail@v3.6.1
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: Workflow '${{ github.workflow }}' of ${{ github.repository }} has ${{ job.status }}!
+          body: |
+            Job '${{ github.job }}' in the workflow '${{ github.workflow }}' of the repository ${{ github.repository }} has ${{ job.status }}.
+            Visit: https://github.com/Eucalyptus-Labs/eucalyptuslabs.com/actions
+          to: github@eucalyptuslabs.com
+          from: GitHub Actions <github@eucalyptuslabs.com>
