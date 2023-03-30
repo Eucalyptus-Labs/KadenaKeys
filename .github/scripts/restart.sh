@@ -21,6 +21,7 @@ git clone git@github.com:Eucalyptus-Labs/KadenaKeys.git $ts
 
 # install deps and build
 cd $ts
+source ~/.nvm/nvm.sh
 nvm use 14
 npm install
 npx webpack
@@ -28,7 +29,7 @@ flutter build web
 
 # re-link current
 cd ..
-ln -vsfn $ts /var/www/KadenaKeys/master/current
+ln -vsfn $ts $(pwd)/current
 
 # reload site
 service_name=$1.kadenakeys.io
