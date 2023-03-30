@@ -25,7 +25,7 @@ source ~/.nvm/nvm.sh
 nvm use 14
 npm install
 npx webpack
-flutter build web
+/snap/bin/flutter build web
 
 # re-link current
 cd ..
