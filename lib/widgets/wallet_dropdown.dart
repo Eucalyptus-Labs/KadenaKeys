@@ -13,15 +13,19 @@ class WalletDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButton<WalletData>(
-      value: selectedWallet,
-      items: kadenaWalletData.values.map((WalletData data) {
-        return DropdownMenuItem<WalletData>(
-          value: data,
-          child: Text(data.name),
-        );
-      }).toList(),
-      onChanged: onChanged,
+    return SizedBox(
+      width: 200.0,
+      height: 55.0,
+      child: DropdownButtonFormField<WalletData>(
+        value: selectedWallet,
+        items: kadenaWalletData.values.map((WalletData data) {
+          return DropdownMenuItem<WalletData>(
+            value: data,
+            child: Text(data.name),
+          );
+        }).toList(),
+        onChanged: onChanged,
+      ),
     );
   }
 }

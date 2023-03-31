@@ -45,3 +45,9 @@ To run all unit tests:
 **Expected Public Key:** d2adf52af5b0c969763a2d536692ba2727cc042615c0de8d07c08d1e90a5d901  
 **Expected Account:** k:d2adf52af5b0c969763a2d536692ba2727cc042615c0de8d07c08d1e90a5d901  
 
+**Chainweaver**  
+**Passphrase:** logic easily waste eager injury oval sentence wine bomb embrace gossip supreme  
+**Expected Private Key:** 78a7b0d297708efd3ef0fc2eed706459c910635e235684838f882530a00bd65b84a9a58d1bbbb1cbfdc67bcf28b84254e90da8873115ab952174c89f6d5b58593cae1ab99513cdbbe9c361f9629d35abcd5f535748fc76d45f72b4fcdaf7f4e48be60e97047b24ed182049294986fe35d256f52f13588a0db58a8f15f755fd24    
+**Expected Public Key:** d2adf52af5b0c969763a2d536692ba2727cc042615c0de8d07c08d1e90a5d901  
+**Expected Account:** k:d2adf52af5b0c969763a2d536692ba2727cc042615c0de8d07c08d1e90a5d901  
+
