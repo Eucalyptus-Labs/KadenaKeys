@@ -200,8 +200,34 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
                           );
                         },
                       )),
-                      DataCell(Text(accountData.publicKey)),
-                      DataCell(Text(accountData.account)),
+                      DataCell(InkWell(
+                        child: Text(accountData.publicKey),
+                        onTap: () async {
+                          await Clipboard.setData(
+                            ClipboardData(text: accountData.publicKey),
+                          );
+                          showPlatformToast(
+                            child: const Text(
+                              StringConstants.copiedToClipboard,
+                            ),
+                            context: context,
+                          );
+                        },
+                      )),
+                      DataCell(InkWell(
+                        child: Text(accountData.account),
+                        onTap: () async {
+                          await Clipboard.setData(
+                            ClipboardData(text: accountData.account),
+                          );
+                          showPlatformToast(
+                            child: const Text(
+                              StringConstants.copiedToClipboard,
+                            ),
+                            context: context,
+                          );
+                        },
+                      )),
                     ],
                   ),
                 )
