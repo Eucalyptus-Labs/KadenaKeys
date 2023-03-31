@@ -11,6 +11,11 @@ class StringConstants {
   static const String inputSeedPhrase = 'Input Mnemonic/Recovery/Seed Phrase';
   static const String seedPhrase = 'Mnemonic/Recovery/Seed Phrase';
   static const String generateSeed = 'Generate Key Pair and Account';
+  static const String generate = 'Generate';
+  static const String keyPairsAndAccounts = 'Key Pairs and Accounts';
+  static const String tapOnAnyPrivateKey =
+      'Tap on any cell to copy its contents to your clipboard';
+  static const String invalidInput = 'Invalid input';
 
   static const String privateKey = 'Private Key:';
   static const String publicKey = 'Public Key:';

@@ -5,6 +5,7 @@ import 'package:kadena_keys/models/key_derivation_result.dart';
 import 'package:kadena_keys/utils/string_constants.dart';
 import 'package:kadena_keys/utils/style_constants.dart';
 import 'package:kadena_keys/utils/wallets.dart';
+import 'package:kadena_keys/widgets/custom_button_widget.dart';
 import 'package:kadena_keys/widgets/wallet_dropdown.dart';
 
 class KeyDerivationPage extends StatefulWidget {
@@ -21,13 +22,32 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
   bool generatingPrivateKey = false;
   List<KeyDerivationResult>? keys;
 
+  String? _errorText = StringConstants.invalidInput;
+
   void _onSelectedWalletChanged(WalletData? data) {
     setState(() {
       selectedWallet = data!;
     });
+    _validateInput();
+  }
+
+  void _validateInput() {
+    setState(() {
+      if (selectedWallet.deriver.validateMnemonic(_menmonicController.text)) {
+        _errorText = null;
+      } else {
+        _errorText = StringConstants.invalidInput;
+      }
+    });
   }
 
   Future<void> _generatePrivateKey() async {
+    _validateInput();
+
+    if (_errorText != null) {
+      return;
+    }
+
     setState(() {
       generatingPrivateKey = true;
     });
@@ -67,19 +87,26 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
             ),
             _buildSectionTitle(StringConstants.inputSeedPhrase),
             TextField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: StringConstants.seedPhrase,
-              ),
               controller: _menmonicController,
+              decoration: InputDecoration(
+                labelText: StringConstants.seedPhrase,
+                errorText: _errorText,
+              ),
               keyboardType: TextInputType.multiline,
               maxLines: null,
+              onChanged: (value) => _validateInput(),
             ),
+            const SizedBox(
+              height: StyleConstants.magic10,
+            ),
+            _buildGenerateSeedButton(),
             const SizedBox(
               height: StyleConstants.magic30,
             ),
-            _buildSectionTitle(StringConstants.generateSeed),
-            _buildGenerateSeedButton(),
+            _buildSectionTitle(StringConstants.keyPairsAndAccounts),
+            const Text(
+              StringConstants.tapOnAnyPrivateKey,
+            ),
             const SizedBox(
               height: StyleConstants.magic10,
             ),
@@ -120,10 +147,13 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
         ),
       );
     } else {
-      return OutlinedButton(
-        onPressed: _generatePrivateKey,
+      return CustomButtonWidget(
+        type: _errorText == null
+            ? CustomButtonType.primary
+            : CustomButtonType.disabled,
+        onTap: _errorText == null ? _generatePrivateKey : null,
         child: const Text(
-          StringConstants.generateSeed,
+          StringConstants.generate,
         ),
       );
     }
@@ -131,18 +161,54 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
 
   Widget _buildKeyResultWidget() {
     if (keys == null) {
-      return Container();
+      return DataTable(
+        columns: const [
+          DataColumn(label: Text('Private key')),
+          DataColumn(label: Text('Public key')),
+          DataColumn(label: Text('Account')),
+        ],
+        rows: const [],
+      );
     }
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        _buildSectionTitle(StringConstants.derivedKeysTitle),
-        _buildKeyRow(StringConstants.privateKey, keys![0].privateKey),
-        _buildKeyRow(StringConstants.publicKey, keys![0].publicKey),
-        _buildKeyRow(StringConstants.account, keys![0].account),
-      ],
+    return Expanded(
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: DataTable(
+            columns: const [
+              DataColumn(label: Text('Private key')),
+              DataColumn(label: Text('Public key')),
+              DataColumn(label: Text('Account')),
+            ],
+            rows: keys!
+                .map(
+                  (accountData) => DataRow(
+                    cells: [
+                      DataCell(InkWell(
+                        child: Text(accountData.privateKey),
+                        onTap: () async {
+                          await Clipboard.setData(
+                            ClipboardData(text: accountData.privateKey),
+                          );
+                          showPlatformToast(
+                            child: const Text(
+                              StringConstants.copiedToClipboard,
+                            ),
+                            context: context,
+                          );
+                        },
+                      )),
+                      DataCell(Text(accountData.publicKey)),
+                      DataCell(Text(accountData.account)),
+                    ],
+                  ),
+                )
+                .toList(),
+          ),
+        ),
+      ),
     );
   }
 

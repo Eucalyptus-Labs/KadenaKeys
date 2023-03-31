@@ -28,14 +28,12 @@ class WalletData {
   final String name;
   final IKeyDeriver deriver;
   final Widget infoWidget;
-  final int wordCount;
 
   const WalletData({
     required this.wallet,
     required this.name,
     required this.deriver,
     required this.infoWidget,
-    this.wordCount = 12,
   });
 }
 
@@ -52,12 +50,12 @@ final kadenaWalletData = {
     deriver: DeriveEcko(),
     infoWidget: const EckoWidget(),
   ),
-  // KadenaWallet.chainweaver: WalletData(
-  //   wallet: KadenaWallet.chainweaver,
-  //   name: 'Chainweaver',
-  //   derivationMethod: DerivationMethod.bip44,
-  //   derivationPath: "m/44'",
-  // ),
+  KadenaWallet.chainweaver: WalletData(
+    wallet: KadenaWallet.chainweaver,
+    name: 'Chainweaver',
+    deriver: DeriveEcko(),
+    infoWidget: const EckoWidget(),
+  ),
   // KadenaWallet.zelcore: WalletData(
   //   wallet: KadenaWallet.zelcore,
   //   name: 'Zelcore',
