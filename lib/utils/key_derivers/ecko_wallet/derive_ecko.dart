@@ -31,7 +31,7 @@ class DeriveEcko extends IKeyDeriver {
         KeyDerivationResult(
           privateKey: hex.encode(privPubKey[0]).substring(
                 0,
-                192,
+                128,
               ),
           publicKey: hex.encode(privPubKey[1]),
           account: 'k:${hex.encode(privPubKey[1])}',

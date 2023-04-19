@@ -3,6 +3,7 @@ import 'package:kadena_keys/pages/key_derivation_page.dart';
 import 'package:kadena_keys/utils/string_constants.dart';
 
 void main() {
+  print('got here');
   runApp(const MyApp());
 }
 
