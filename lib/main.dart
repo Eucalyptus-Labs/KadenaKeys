@@ -6,7 +6,7 @@ import 'package:kadena_keys/pages/home/home_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-
+  print('got here');
   runApp(const MyApp());
 }
 
