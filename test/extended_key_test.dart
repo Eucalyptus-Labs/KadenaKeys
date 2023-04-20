@@ -25,6 +25,11 @@ void main() {
 
   final Uint8List extendedSk = Uint8List.fromList(
     hex.decode(
+      privKeyStr.substring(0, 128),
+    ),
+  );
+  final Uint8List extendedSkPk = Uint8List.fromList(
+    hex.decode(
       privKeyStr.substring(0, 192),
     ),
   );
@@ -33,7 +38,7 @@ void main() {
 
   const String message = 'hello';
 
-  testWidgets('Test extended signing key', (WidgetTester tester) async {
+  test('Test extended signing key', () {
     final sm = Uint8List(message.length + TweetNaCl.signatureLength);
     expect(
       TweetNaCl.crypto_sign(
@@ -42,7 +47,7 @@ void main() {
         Uint8List.fromList(message.codeUnits),
         0,
         message.length,
-        extendedSk,
+        extendedSkPk,
         extended: true,
       ),
       0,
@@ -68,7 +73,9 @@ void main() {
 
   group('Test extended signing key', () {
     test('extended', () {
-      ExtendedSigningKey signingKey = ExtendedSigningKey(secret: extendedSk);
+      ExtendedSigningKey signingKey = ExtendedSigningKey(
+        secret: extendedSk,
+      );
       final SignedMessage signed = signingKey.sign(
         Uint8List.fromList(
           message.codeUnits,

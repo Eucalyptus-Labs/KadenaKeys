@@ -41,13 +41,13 @@ To run all unit tests:
 
 **eckoWallet**
 **Passphrase:** faint circle forget keep cotton solar brown snow clay left exist bird  
-**Expected Private Key:** 88cc74fdaa0ebdf60ad75c28eddb288bf928da9cf78652f8d541b716c5e97c5af6c073dc5ce52d6a202009908049003f750733a4f16cc5e84896db6f5f3aaa4ad2adf52af5b0c969763a2d536692ba2727cc042615c0de8d07c08d1e90a5d901  
+**Expected Private Key:** 88cc74fdaa0ebdf60ad75c28eddb288bf928da9cf78652f8d541b716c5e97c5af6c073dc5ce52d6a202009908049003f750733a4f16cc5e84896db6f5f3aaa4a  
 **Expected Public Key:** d2adf52af5b0c969763a2d536692ba2727cc042615c0de8d07c08d1e90a5d901  
 **Expected Account:** k:d2adf52af5b0c969763a2d536692ba2727cc042615c0de8d07c08d1e90a5d901  
 
 **Chainweaver**  
 **Passphrase:** logic easily waste eager injury oval sentence wine bomb embrace gossip supreme  
-**Expected Private Key:** 78a7b0d297708efd3ef0fc2eed706459c910635e235684838f882530a00bd65b84a9a58d1bbbb1cbfdc67bcf28b84254e90da8873115ab952174c89f6d5b58593cae1ab99513cdbbe9c361f9629d35abcd5f535748fc76d45f72b4fcdaf7f4e4  
+**Expected Private Key:** 78a7b0d297708efd3ef0fc2eed706459c910635e235684838f882530a00bd65b84a9a58d1bbbb1cbfdc67bcf28b84254e90da8873115ab952174c89f6d5b5859  
 **Expected Public Key:** 3cae1ab99513cdbbe9c361f9629d35abcd5f535748fc76d45f72b4fcdaf7f4e4  
 **Expected Account:** k:3cae1ab99513cdbbe9c361f9629d35abcd5f535748fc76d45f72b4fcdaf7f4e4  
 
