@@ -65,53 +65,55 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(StyleConstants.magic16),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            _buildSectionTitle(StringConstants.selectWallet),
-            WalletDropdown(
-              selectedWallet: selectedWallet,
-              onChanged: _onSelectedWalletChanged,
-            ),
-            const SizedBox(
-              height: StyleConstants.magic30,
-            ),
-            _buildSectionTitle(StringConstants.selectedWalletInfo),
-            selectedWallet.infoWidget,
-            const SizedBox(
-              height: StyleConstants.magic30,
-            ),
-            _buildSectionTitle(StringConstants.inputSeedPhrase),
-            TextField(
-              controller: _menmonicController,
-              decoration: InputDecoration(
-                labelText: StringConstants.seedPhrase,
-                errorText: _errorText,
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(StyleConstants.magic16),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              _buildSectionTitle(StringConstants.selectWallet),
+              WalletDropdown(
+                selectedWallet: selectedWallet,
+                onChanged: _onSelectedWalletChanged,
               ),
-              keyboardType: TextInputType.multiline,
-              maxLines: null,
-              onChanged: (value) => _validateInput(),
-            ),
-            const SizedBox(
-              height: StyleConstants.magic10,
-            ),
-            _buildGenerateSeedButton(),
-            const SizedBox(
-              height: StyleConstants.magic30,
-            ),
-            _buildSectionTitle(StringConstants.keyPairsAndAccounts),
-            const Text(
-              StringConstants.tapOnAnyPrivateKey,
-            ),
-            const SizedBox(
-              height: StyleConstants.magic10,
-            ),
-            _buildKeyResultWidget(),
-          ],
+              const SizedBox(
+                height: StyleConstants.magic30,
+              ),
+              _buildSectionTitle(StringConstants.selectedWalletInfo),
+              selectedWallet.infoWidget,
+              const SizedBox(
+                height: StyleConstants.magic30,
+              ),
+              _buildSectionTitle(StringConstants.inputSeedPhrase),
+              TextField(
+                controller: _menmonicController,
+                decoration: InputDecoration(
+                  labelText: StringConstants.seedPhrase,
+                  errorText: _errorText,
+                ),
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+                onChanged: (value) => _validateInput(),
+              ),
+              const SizedBox(
+                height: StyleConstants.magic10,
+              ),
+              _buildGenerateSeedButton(),
+              const SizedBox(
+                height: StyleConstants.magic30,
+              ),
+              _buildSectionTitle(StringConstants.keyPairsAndAccounts),
+              const Text(
+                StringConstants.tapOnAnyPrivateKey,
+              ),
+              const SizedBox(
+                height: StyleConstants.magic10,
+              ),
+              _buildKeyResultWidget(),
+            ],
+          ),
         ),
       ),
     );
