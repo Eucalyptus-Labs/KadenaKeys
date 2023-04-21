@@ -22,4 +22,11 @@ class StringConstants {
   static const String account = 'Account:';
   static const String copyToClipboard = 'Copy to Clipboard';
   static const String copiedToClipboard = 'Copied to Clipboard';
+
+  // #region Home page
+  static const String descriptionHome =
+      '''Use this tool to convert your wallet generated mnemonic phrase to
+      Kadena private keys. We recommend saving this page as an HTML
+      file and running this tool OFFLINE for maximum security''';
+  // #endregion
 }
