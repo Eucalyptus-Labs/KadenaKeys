@@ -37,8 +37,6 @@ class AppThemeData {
   );
 
   static final ThemeData darkCustomTheme = ThemeData.dark().copyWith(
-    colorScheme: const ColorScheme.dark().copyWith(
-      background: darkBackground,
-    ),
+    scaffoldBackgroundColor: darkBackground,
   );
 }

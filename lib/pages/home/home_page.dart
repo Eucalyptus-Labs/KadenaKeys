@@ -16,9 +16,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appTheme = Theme.of(context);
     return Scaffold(
-      backgroundColor: appTheme.colorScheme.background,
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.only(
