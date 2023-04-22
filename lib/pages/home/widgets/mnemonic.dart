@@ -5,6 +5,8 @@ import 'package:kadena_keys/utils/themes/app_text_theme.dart';
 import 'package:kadena_keys/utils/wallets.dart';
 import 'package:kadena_keys/widgets/wallet_dropdown.dart';
 
+import 'generate_button.dart';
+
 class Mnemonic extends StatelessWidget {
   const Mnemonic({super.key});
 
@@ -123,31 +125,8 @@ class Mnemonic extends StatelessWidget {
                     width: 688.w,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 48.h,
-                          width: 385.w,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                darkElevatedButtonColor,
-                              ),
-                              shape: MaterialStateProperty.all<
-                                  RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(
-                                    44.r,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            child: Text(
-                              "Generate",
-                              style: AppTextTheme.inter14White500,
-                            ),
-                          ),
-                        ),
+                      children: const [
+                        GenerateButton(),
                       ],
                     ),
                   ),
