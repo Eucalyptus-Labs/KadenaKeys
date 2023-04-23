@@ -6,10 +6,12 @@ import 'package:kadena_keys/utils/themes/app_text_theme.dart';
 class GenerateButton extends StatelessWidget {
   const GenerateButton({
     required this.onPressCallback,
+    this.loading = false,
     super.key,
   });
 
   final Function()? onPressCallback;
+  final bool loading;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class GenerateButton extends StatelessWidget {
       height: 48.h,
       width: 385.w,
       child: ElevatedButton(
-        onPressed: onPressCallback,
+        onPressed: loading ? null : onPressCallback,
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.resolveWith(
             (states) {
@@ -35,10 +37,19 @@ class GenerateButton extends StatelessWidget {
             ),
           ),
         ),
-        child: Text(
-          "Generate",
-          style: AppTextTheme.inter14White500,
-        ),
+        child: loading
+            ? const Padding(
+                padding: EdgeInsets.all(8),
+                child: Center(
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                  ),
+                ),
+              )
+            : Text(
+                "Generate",
+                style: AppTextTheme.inter14White500,
+              ),
       ),
     );
   }

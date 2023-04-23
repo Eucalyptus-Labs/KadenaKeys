@@ -45,7 +45,7 @@ class Derivation extends StatelessWidget {
                               controller: controller.derivationMethodController,
                               enabled: false,
                               decoration: InputDecoration(
-                                hintText: "Derivation method",
+                                hintText: "Derivation method:",
                                 disabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.all(
                                     Radius.circular(8.r),
@@ -66,7 +66,7 @@ class Derivation extends StatelessWidget {
                               controller: controller.derivationPathController,
                               enabled: false,
                               decoration: InputDecoration(
-                                hintText: "Derivation path",
+                                hintText: "Derivation path:",
                                 disabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.all(
                                     Radius.circular(8.r),

@@ -146,10 +146,16 @@ class Mnemonic extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            GenerateButton(
-                              onPressCallback: controller.enableButton
-                                  ? controller.generateKeys
-                                  : null,
+                            GetBuilder<HomeController>(
+                              id: "mnemonic-button",
+                              builder: (context) {
+                                return GenerateButton(
+                                  loading: controller.generatingPrivateKey,
+                                  onPressCallback: controller.enableButton
+                                      ? controller.generateKeysAsync
+                                      : null,
+                                );
+                              },
                             ),
                           ],
                         ),
