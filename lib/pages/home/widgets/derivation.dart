@@ -40,16 +40,22 @@ class Derivation extends StatelessWidget {
                           decoration: InputDecoration(
                             hintText: "Derivation method",
                             enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.r),
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(8.r),
+                              ),
+                              borderSide: const BorderSide(
+                                width: 1,
+                                color: Colors.grey,
+                              ),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.r),
-                              borderSide: const BorderSide(color: Colors.grey),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.r),
-                              borderSide: const BorderSide(color: Colors.red),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(8.r),
+                              ),
+                              borderSide: const BorderSide(
+                                width: 1,
+                                color: Colors.grey,
+                              ),
                             ),
                           ),
                         ),
@@ -62,12 +68,22 @@ class Derivation extends StatelessWidget {
                           decoration: InputDecoration(
                             hintText: "Derivation path",
                             enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.r),
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(8.r),
+                              ),
+                              borderSide: const BorderSide(
+                                width: 1,
+                                color: Colors.grey,
+                              ),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.r),
-                              borderSide: const BorderSide(color: Colors.grey),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(8.r),
+                              ),
+                              borderSide: const BorderSide(
+                                width: 1,
+                                color: Colors.grey,
+                              ),
                             ),
                             errorBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8.r),

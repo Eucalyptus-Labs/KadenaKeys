@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kadena_keys/utils/themes/app_color_theme.dart';
 import 'package:kadena_keys/utils/wallets.dart';
 
 class RoundedWalletDropdown extends StatelessWidget {
-  final WalletData selectedWallet;
+  final WalletData? selectedWallet;
   final Function(WalletData?) onChanged;
-  final InputDecoration? decoration;
 
   const RoundedWalletDropdown({
-    Key? key,
     required this.selectedWallet,
     required this.onChanged,
-    this.decoration,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -30,6 +29,7 @@ class RoundedWalletDropdown extends StatelessWidget {
         ),
         child: DropdownButton(
           underline: const Text(""),
+          hint: const Text("Select wallet"),
           items: kadenaWalletData.values.map((WalletData data) {
             return DropdownMenuItem<WalletData>(
               value: data,
@@ -39,6 +39,8 @@ class RoundedWalletDropdown extends StatelessWidget {
           onChanged: onChanged,
           isExpanded: true,
           value: selectedWallet,
+          iconDisabledColor: Colors.grey,
+          iconEnabledColor: darkElevatedButtonColor,
         ),
       ),
     );
