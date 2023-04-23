@@ -26,8 +26,8 @@ class MyApp extends StatelessWidget {
           title: StringConstants.appTitle,
           debugShowCheckedModeBanner: false,
           theme: AppThemeData.darkCustomTheme,
-          // home: const HomePage(),
-          home: const KeyDerivationPage(),
+          home: const HomePage(),
+          // home: const KeyDerivationPage(),
           initialBinding: HomeBinding(),
           getPages: AppPages.pages,
         );

@@ -6,13 +6,17 @@ import 'package:kadena_keys/utils/wallets.dart';
 class HomeController extends GetxController {
   // #region Mnemonic
   final TextEditingController menmonicController = TextEditingController();
+  final TextEditingController derivationMethodController =
+      TextEditingController();
+  final TextEditingController derivationPathController =
+      TextEditingController();
   bool enableButton = false;
   WalletData? selectedWallet;
 
   onWalletSelected(WalletData? data) {
     selectedWallet = data;
     _enableButton();
-    update(["mnemonic"]);
+    update(["mnemonic", "derivation"]);
   }
 
   generateKeys() {
@@ -33,15 +37,20 @@ class HomeController extends GetxController {
 
   void mnemonicOnChange(String? value) {
     _enableButton();
-    update(["mnemonic"]);
+    update(["mnemonic", "derivation"]);
   }
 
   void _enableButton() {
-    if (selectedWallet != null && menmonicController.text.isNotEmpty) {
-      enableButton = selectedWallet!.deriver.validateMnemonic(
-        menmonicController.text,
-      );
-      return;
+    if (selectedWallet != null) {
+      derivationMethodController.text = selectedWallet!.derivationMethod;
+      derivationPathController.text = selectedWallet!.derivationPath;
+      if (menmonicController.text.isNotEmpty) {
+        enableButton = selectedWallet!.deriver.validateMnemonic(
+          menmonicController.text,
+        );
+
+        return;
+      }
     }
     enableButton = false;
   }

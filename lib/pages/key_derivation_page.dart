@@ -82,7 +82,7 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
                 height: StyleConstants.magic30,
               ),
               _buildSectionTitle(StringConstants.selectedWalletInfo),
-              selectedWallet.infoWidget,
+              if (selectedWallet.infoWidget != null) selectedWallet.infoWidget!,
               const SizedBox(
                 height: StyleConstants.magic30,
               ),
