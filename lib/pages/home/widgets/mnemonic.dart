@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kadena_keys/utils/themes/app_color_theme.dart';
 import 'package:kadena_keys/utils/themes/app_text_theme.dart';
 import 'package:kadena_keys/utils/wallets.dart';
+import 'package:kadena_keys/widgets/round_wallet_dropdown.dart';
 import 'package:kadena_keys/widgets/wallet_dropdown.dart';
 
 import 'generate_button.dart';
@@ -93,25 +94,31 @@ class Mnemonic extends StatelessWidget {
                       SizedBox(
                         width: 688.w,
                         height: 48.h,
-                        child: WalletDropdown(
+                        child: RoundedWalletDropdown(
                           selectedWallet: kadenaWalletData[KadenaWallet.koala]!,
-                          decoration: InputDecoration(
-                            hintText: "Select wallet",
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.r),
-                              borderSide: const BorderSide(color: Colors.grey),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.r),
-                              borderSide: const BorderSide(color: Colors.grey),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.r),
-                              borderSide: const BorderSide(color: Colors.red),
-                            ),
-                          ),
                           onChanged: (walletData) {},
                         ),
+                        // child: WalletDropdown(
+                        //   selectedWallet: kadenaWalletData[KadenaWallet.koala]!,
+                        //   decoration: InputDecoration(
+                        //     hintText: "Select wallet",
+                        //     enabledBorder: OutlineInputBorder(
+                        //       borderRadius: BorderRadius.circular(8.r),
+                        //       borderSide: const BorderSide(
+                        //         color: Colors.grey,
+                        //       ),
+                        //     ),
+                        //     focusedBorder: OutlineInputBorder(
+                        //       borderRadius: BorderRadius.circular(8.r),
+                        //       borderSide: const BorderSide(color: Colors.grey),
+                        //     ),
+                        //     errorBorder: OutlineInputBorder(
+                        //       borderRadius: BorderRadius.circular(8.r),
+                        //       borderSide: const BorderSide(color: Colors.red),
+                        //     ),
+                        //   ),
+                        //   onChanged: (walletData) {},
+                        // ),
                       ),
                     ],
                   ),
@@ -125,8 +132,10 @@ class Mnemonic extends StatelessWidget {
                     width: 688.w,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: const [
-                        GenerateButton(),
+                      children: [
+                        GenerateButton(
+                          onPressCallback: () {},
+                        ),
                       ],
                     ),
                   ),

@@ -83,7 +83,9 @@ class DerivedAccounts extends StatelessWidget {
                   ),
                 ],
               ),
-              const GenerateButton(),
+              GenerateButton(
+                onPressCallback: () {},
+              ),
             ],
           ),
         ),
