@@ -21,22 +21,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return OverlaySupport(
       child: ScreenUtilInit(
-          designSize: const Size(1440, 900),
-          builder: (context, child) {
-            return MaterialApp.router(
-              theme: buildLightTheme(),
-              themeMode: ThemeMode.dark,
-              darkTheme: buildDarkTheme(),
-              routerDelegate: GetIt.I<AppRouter>().delegate(
-                navigatorObservers: () => [
-                  //use this of any purposes (analytics or getting callbacks on stack change or anything else)
-                ],
-              ),
-              routeInformationParser: GetIt.I<AppRouter>().defaultRouteParser(),
-              debugShowCheckedModeBanner: false,
-              title: Strings.appTitle,
-            );
-          }),
+        designSize: const Size(1440, 900),
+        builder: (context, child) {
+          return MaterialApp.router(
+            theme: buildLightTheme(),
+            themeMode: ThemeMode.dark,
+            darkTheme: buildDarkTheme(),
+            routerDelegate: GetIt.I<AppRouter>().delegate(
+              navigatorObservers: () => [
+                //use this of any purposes (analytics or getting callbacks on stack change or anything else)
+              ],
+            ),
+            routeInformationParser: GetIt.I<AppRouter>().defaultRouteParser(),
+            debugShowCheckedModeBanner: false,
+            title: Strings.appTitle,
+          );
+        },
+      ),
     );
   }
 }

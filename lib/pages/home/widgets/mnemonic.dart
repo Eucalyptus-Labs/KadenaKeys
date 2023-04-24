@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:kadena_keys/pages/home/home_controller.dart';
-import 'package:kadena_keys/utils/themes/app_color_theme.dart';
 import 'package:kadena_keys/utils/themes/app_text_theme.dart';
 import 'package:kadena_keys/widgets/round_wallet_dropdown.dart';
+import 'package:kadena_keys/widgets/rounded_container.dart';
 import 'generate_button.dart';
 
 class Mnemonic extends StatelessWidget {
@@ -17,14 +17,8 @@ class Mnemonic extends StatelessWidget {
       builder: (controller) {
         return Column(
           children: [
-            Container(
-              height: 365.h,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16.r),
-                color: darkContainer,
-              ),
-              padding: EdgeInsets.all(40.h),
+            RoundedContainer(
+              height: 365,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

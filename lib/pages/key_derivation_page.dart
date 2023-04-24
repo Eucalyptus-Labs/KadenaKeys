@@ -2,13 +2,13 @@ import 'package:auto_route/annotations.dart';
 import 'package:fl_toast/fl_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kadena_keys/constants/enums/store_states.dart';
+import 'package:kadena_keys/constants/values/values.dart';
 import 'package:kadena_keys/models/key_derivation_result.dart';
 import 'package:kadena_keys/utils/style_constants.dart';
 import 'package:kadena_keys/utils/wallets.dart';
 import 'package:kadena_keys/widgets/custom_button_widget.dart';
 import 'package:kadena_keys/widgets/wallet_dropdown.dart';
-
-import '../constants/values/values.dart';
 
 @RoutePage()
 class KeyDerivationPage extends StatefulWidget {
@@ -21,7 +21,7 @@ class KeyDerivationPage extends StatefulWidget {
 class KeyDerivationPageState extends State<KeyDerivationPage> {
   final TextEditingController _menmonicController = TextEditingController();
 
-  WalletData selectedWallet = kadenaWalletData[KadenaWallet.koala]!;
+  WalletData selectedWallet = Maps.kadenaWalletData[KadenaWallet.koala]!;
   bool generatingPrivateKey = false;
   List<KeyDerivationResult>? keys;
 

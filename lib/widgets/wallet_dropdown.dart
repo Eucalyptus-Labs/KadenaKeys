@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kadena_keys/constants/values/values.dart';
 import 'package:kadena_keys/utils/wallets.dart';
 
 class WalletDropdown extends StatelessWidget {
@@ -21,7 +22,7 @@ class WalletDropdown extends StatelessWidget {
       child: DropdownButtonFormField<WalletData>(
         value: selectedWallet,
         decoration: decoration,
-        items: kadenaWalletData.values.map((WalletData data) {
+        items: Maps.kadenaWalletData.values.map((WalletData data) {
           return DropdownMenuItem<WalletData>(
             value: data,
             child: Text(data.name),
