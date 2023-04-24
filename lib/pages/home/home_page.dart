@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ import 'widgets/home_title.dart';
 import 'widgets/mnemonic.dart';
 import 'widgets/more_info.dart';
 
+@RoutePage()
 class HomePage extends StatelessWidget {
   const HomePage({
     super.key,
@@ -26,6 +28,7 @@ class HomePage extends StatelessWidget {
           ),
           width: double.infinity,
           child: GetBuilder<HomeController>(
+            init: HomeController(),
             builder: (context) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
