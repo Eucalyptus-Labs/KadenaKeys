@@ -55,7 +55,8 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
       generatingPrivateKey = true;
     });
 
-    final List<KeyDerivationResult> value = await selectedWallet.deriver.deriveKeys(
+    final List<KeyDerivationResult> value =
+        await selectedWallet.deriver.deriveKeys(
       mnemonic: _menmonicController.text,
     );
 
@@ -84,7 +85,7 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
                 height: StyleConstants.magic30,
               ),
               _buildSectionTitle(Strings.selectedWalletInfo),
-              selectedWallet.infoWidget,
+              if (selectedWallet.infoWidget != null) selectedWallet.infoWidget!,
               const SizedBox(
                 height: StyleConstants.magic30,
               ),
@@ -131,7 +132,8 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
       padding: padding,
       child: Text(
         title,
-        style: const TextStyle(fontSize: StyleConstants.magic20, fontWeight: FontWeight.bold),
+        style: const TextStyle(
+            fontSize: StyleConstants.magic20, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -151,7 +153,9 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
       );
     } else {
       return CustomButtonWidget(
-        type: _errorText == null ? CustomButtonType.primary : CustomButtonType.disabled,
+        type: _errorText == null
+            ? CustomButtonType.primary
+            : CustomButtonType.disabled,
         onTap: _errorText == null ? _generatePrivateKey : null,
         child: const Text(
           Strings.generate,
@@ -239,40 +243,40 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
     );
   }
 
-  Widget _buildKeyRow(String title, String value) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        bottom: StyleConstants.linear8,
-      ),
-      child: Row(
-        children: [
-          Text(title),
-          const SizedBox(
-            width: StyleConstants.magic10,
-          ),
-          Expanded(
-            child: Text(
-              value,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-          const SizedBox(
-            width: StyleConstants.magic10,
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              await Clipboard.setData(ClipboardData(text: value));
-              await showPlatformToast(
-                child: const Text(Strings.copiedToClipboard),
-                context: context,
-              );
-            },
-            child: const Text(
-              Strings.copyToClipboard,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _buildKeyRow(String title, String value) {
+  //   return Padding(
+  //     padding: const EdgeInsets.only(
+  //       bottom: StyleConstants.linear8,
+  //     ),
+  //     child: Row(
+  //       children: [
+  //         Text(title),
+  //         const SizedBox(
+  //           width: StyleConstants.magic10,
+  //         ),
+  //         Expanded(
+  //           child: Text(
+  //             value,
+  //             overflow: TextOverflow.ellipsis,
+  //           ),
+  //         ),
+  //         const SizedBox(
+  //           width: StyleConstants.magic10,
+  //         ),
+  //         ElevatedButton(
+  //           onPressed: () async {
+  //             await Clipboard.setData(ClipboardData(text: value));
+  //             await showPlatformToast(
+  //               child: const Text(Strings.copiedToClipboard),
+  //               context: context,
+  //             );
+  //           },
+  //           child: const Text(
+  //             Strings.copyToClipboard,
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 }

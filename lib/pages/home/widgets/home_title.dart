@@ -26,10 +26,21 @@ class HomeTitle extends StatelessWidget {
           ),
         ),
         SizedBox(height: 24.h),
-        Text(
-          Strings.descriptionHome,
-          style: AppTextTheme.inter16Grey400,
-          textAlign: TextAlign.center,
+        LayoutBuilder(
+          builder: (context, constraints) {
+            double screenWidth = constraints.maxWidth;
+            int maxLines = screenWidth >= 1200 ? 2 : 3;
+
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: 120.w),
+              child: Text(
+                Strings.descriptionHome,
+                maxLines: maxLines,
+                style: AppTextTheme.inter16Grey400,
+                textAlign: TextAlign.center,
+              ),
+            );
+          },
         ),
         SizedBox(height: 24.h),
         RichText(

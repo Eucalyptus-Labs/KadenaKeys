@@ -1,162 +1,173 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:kadena_keys/pages/home/home_controller.dart';
 import 'package:kadena_keys/utils/themes/app_color_theme.dart';
 import 'package:kadena_keys/utils/themes/app_text_theme.dart';
-import 'package:kadena_keys/utils/wallets.dart';
-import 'package:kadena_keys/widgets/wallet_dropdown.dart';
+import 'package:kadena_keys/widgets/round_wallet_dropdown.dart';
+import 'generate_button.dart';
 
 class Mnemonic extends StatelessWidget {
   const Mnemonic({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 348.h,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16.r),
-            color: darkContainer,
-          ),
-          padding: EdgeInsets.all(40.h),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Text(
-                    "Mnemonic",
-                    style: AppTextTheme.inter24White700,
-                  ),
-                ],
+    return GetBuilder<HomeController>(
+      id: "mnemonic",
+      builder: (controller) {
+        return Column(
+          children: [
+            Container(
+              height: 365.h,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16.r),
+                color: darkContainer,
               ),
-              Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            "Mnemonic phrase",
-                            style: AppTextTheme.inter14White500,
-                          ),
-                          SizedBox(width: 8.w),
-                          const Icon(
-                            Icons.info,
-                            color: Colors.grey,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 688.w,
-                        height: 48.h,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.r),
-                              borderSide: const BorderSide(color: Colors.grey),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.r),
-                              borderSide: const BorderSide(color: Colors.grey),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.r),
-                              borderSide: const BorderSide(color: Colors.red),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 24.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            "Select wallet",
-                            style: AppTextTheme.inter14White500,
-                          ),
-                          SizedBox(width: 8.w),
-                          const Icon(
-                            Icons.info,
-                            color: Colors.grey,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 688.w,
-                        height: 48.h,
-                        child: WalletDropdown(
-                          selectedWallet: kadenaWalletData[KadenaWallet.koala]!,
-                          decoration: InputDecoration(
-                            hintText: "Select wallet",
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.r),
-                              borderSide: const BorderSide(color: Colors.grey),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.r),
-                              borderSide: const BorderSide(color: Colors.grey),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.r),
-                              borderSide: const BorderSide(color: Colors.red),
-                            ),
-                          ),
-                          onChanged: (walletData) {},
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Row(
+              padding: EdgeInsets.all(40.h),
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(""),
-                  SizedBox(
-                    width: 688.w,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 48.h,
-                          width: 385.w,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                darkElevatedButtonColor,
+                  Row(
+                    children: [
+                      Text(
+                        "Mnemonic",
+                        style: AppTextTheme.inter24White700,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                "Mnemonic phrase",
+                                style: AppTextTheme.inter14White500,
                               ),
-                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(
-                                    44.r,
+                              SizedBox(width: 8.w),
+                              const Icon(
+                                Icons.info,
+                                color: Colors.grey,
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            width: 688.w,
+                            child: TextFormField(
+                              controller: controller.menmonicController,
+                              keyboardType: TextInputType.multiline,
+                              maxLines: null,
+                              autovalidateMode:
+                                  AutovalidateMode.onUserInteraction,
+                              validator: controller.mnemonicValidateInput,
+                              onChanged: controller.mnemonicOnChange,
+                              decoration: InputDecoration(
+                                isDense: true,
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8.r),
+                                  ),
+                                  borderSide: const BorderSide(
+                                    width: 1,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8.r),
+                                  ),
+                                  borderSide: const BorderSide(
+                                    width: 1,
+                                    color: Colors.red,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8.r),
+                                  ),
+                                  borderSide: const BorderSide(
+                                    width: 1,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8.r),
+                                  ),
+                                  borderSide: const BorderSide(
+                                    width: 1,
+                                    color: Colors.red,
                                   ),
                                 ),
                               ),
                             ),
-                            child: Text(
-                              "Generate",
-                              style: AppTextTheme.inter14White500,
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 28.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                "Select wallet",
+                                style: AppTextTheme.inter14White500,
+                              ),
+                              SizedBox(width: 8.w),
+                              const Icon(
+                                Icons.info,
+                                color: Colors.grey,
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            width: 688.w,
+                            // height: 48.h,
+                            child: RoundedWalletDropdown(
+                              selectedWallet: controller.selectedWallet,
+                              onChanged: controller.onWalletSelected,
                             ),
                           ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(""),
+                      SizedBox(
+                        width: 688.w,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            GetBuilder<HomeController>(
+                              id: "mnemonic-button",
+                              builder: (context) {
+                                return GenerateButton(
+                                  loading: controller.generatingPrivateKey,
+                                  onPressCallback: controller.enableButton
+                                      ? controller.generateKeysAsync
+                                      : null,
+                                );
+                              },
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
-          ),
-        ),
-        SizedBox(height: 24.h),
-      ],
+            ),
+            SizedBox(height: 24.h),
+          ],
+        );
+      },
     );
   }
 }

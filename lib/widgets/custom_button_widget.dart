@@ -8,10 +8,11 @@ class CustomButtonWidget extends StatelessWidget {
   final Widget child;
   final VoidCallback? onTap;
 
-  CustomButtonWidget({
+  const CustomButtonWidget({
     required this.type,
     required this.child,
     this.onTap,
+    super.key,
   });
 
   Color get _backgroundColor {
@@ -21,18 +22,18 @@ class CustomButtonWidget extends StatelessWidget {
       case CustomButtonType.secondary:
         return Colors.transparent;
       case CustomButtonType.success:
-        return Color(0xFF19990E);
+        return const Color(0xFF19990E);
       case CustomButtonType.failure:
-        return Color(0xFFB92929);
+        return const Color(0xFFB92929);
       case CustomButtonType.disabled:
-        return Color.fromARGB(255, 141, 141, 141);
+        return const Color.fromARGB(255, 141, 141, 141);
     }
   }
 
   BorderSide get _borderSide {
     switch (type) {
       case CustomButtonType.secondary:
-        return BorderSide(width: 4, color: Color(0xFF2980B9));
+        return const BorderSide(width: 4, color: Color(0xFF2980B9));
       default:
         return BorderSide.none;
     }
@@ -41,9 +42,9 @@ class CustomButtonWidget extends StatelessWidget {
   TextStyle get _textTheme {
     switch (type) {
       case CustomButtonType.secondary:
-        return TextStyle(fontSize: 18, color: Color(0xFF2980B9));
+        return const TextStyle(fontSize: 18, color: Color(0xFF2980B9));
       default:
-        return TextStyle(fontSize: 18, color: Colors.white);
+        return const TextStyle(fontSize: 18, color: Colors.white);
     }
   }
 

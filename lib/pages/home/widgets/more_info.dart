@@ -76,10 +76,6 @@ class MoreInfo extends StatelessWidget {
                           "Kadena Ecosystem",
                           style: AppTextTheme.inter16Grey400Underline,
                         ),
-                        Text(
-                          "Eucalyptuslabs",
-                          style: AppTextTheme.inter16Grey400Underline,
-                        ),
                       ],
                     ),
                   ],

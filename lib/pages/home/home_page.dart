@@ -1,18 +1,19 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'home_controller.dart';
 import 'widgets/derivation.dart';
 import 'widgets/derived_accounts.dart';
 import 'widgets/home_title.dart';
 import 'widgets/mnemonic.dart';
 import 'widgets/more_info.dart';
 
+@RoutePage()
 class HomePage extends StatelessWidget {
   const HomePage({
-    required this.pageTitle,
     super.key,
   });
-
-  final String pageTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +27,20 @@ class HomePage extends StatelessWidget {
             bottom: 125.h,
           ),
           width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: const [
-              HomeTitle(),
-              Mnemonic(),
-              Derivation(),
-              DerivedAccounts(),
-              MoreInfo(),
-            ],
+          child: GetBuilder<HomeController>(
+            init: HomeController(),
+            builder: (context) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: const [
+                  HomeTitle(),
+                  Mnemonic(),
+                  Derivation(),
+                  DerivedAccounts(),
+                  MoreInfo(),
+                ],
+              );
+            },
           ),
         ),
       ),

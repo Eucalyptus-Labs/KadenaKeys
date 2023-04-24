@@ -24,34 +24,40 @@ enum DerivationMethod {
 
 class WalletData {
   final KadenaWallet wallet;
-  final String name;
+  final String name, derivationMethod, derivationPath;
   final IKeyDeriver deriver;
-  final Widget infoWidget;
+  Widget? infoWidget;
 
-  const WalletData({
+  WalletData({
     required this.wallet,
     required this.name,
+    required this.derivationMethod,
+    required this.derivationPath,
     required this.deriver,
-    required this.infoWidget,
+    this.infoWidget,
   });
 }
 
 final kadenaWalletData = {
   KadenaWallet.koala: WalletData(
-    wallet: KadenaWallet.koala,
-    name: 'Koala',
-    deriver: DeriveKoala(),
-    infoWidget: const KoalaWidget(),
-  ),
+      wallet: KadenaWallet.koala,
+      name: "Koala Wallet",
+      derivationMethod: "BIP44",
+      derivationPath: "m/44'/626'/0'",
+      deriver: DeriveKoala(),
+      infoWidget: const KoalaWidget()),
   KadenaWallet.eckoWallet: WalletData(
-    wallet: KadenaWallet.eckoWallet,
-    name: 'eckoWallet',
-    deriver: DeriveEcko(),
-    infoWidget: const EckoWidget(),
-  ),
+      wallet: KadenaWallet.eckoWallet,
+      name: "eckoWALLET",
+      derivationMethod: "cardano-crypto.js",
+      derivationPath: "kadena-crypto.js",
+      deriver: DeriveEcko(),
+      infoWidget: const EckoWidget()),
   KadenaWallet.chainweaver: WalletData(
     wallet: KadenaWallet.chainweaver,
-    name: 'Chainweaver',
+    name: "Chainweaver",
+    derivationMethod: "cardano-crypto.js",
+    derivationPath: "kadena-crypto.js",
     deriver: DeriveEcko(),
     infoWidget: const EckoWidget(),
   ),
