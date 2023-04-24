@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:kadena_keys/constants/values/values.dart';
 import 'package:kadena_keys/models/key_derivation_result.dart';
 import 'package:kadena_keys/utils/wallets.dart';
+import 'dart:developer' as developer;
 
 class HomeController extends GetxController {
   // #region Mnemonic
@@ -18,7 +19,7 @@ class HomeController extends GetxController {
   }
 
   Future<void> generateKeysAsync() async {
-    print("Generate keys");
+    developer.log("Generate keys");
     if (enableButton) {
       generatingPrivateKey = true;
       update(["mnemonic-button"]);

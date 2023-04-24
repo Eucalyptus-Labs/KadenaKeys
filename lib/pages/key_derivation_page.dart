@@ -243,40 +243,40 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
     );
   }
 
-  Widget _buildKeyRow(String title, String value) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        bottom: StyleConstants.linear8,
-      ),
-      child: Row(
-        children: [
-          Text(title),
-          const SizedBox(
-            width: StyleConstants.magic10,
-          ),
-          Expanded(
-            child: Text(
-              value,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-          const SizedBox(
-            width: StyleConstants.magic10,
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              await Clipboard.setData(ClipboardData(text: value));
-              await showPlatformToast(
-                child: const Text(Strings.copiedToClipboard),
-                context: context,
-              );
-            },
-            child: const Text(
-              Strings.copyToClipboard,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _buildKeyRow(String title, String value) {
+  //   return Padding(
+  //     padding: const EdgeInsets.only(
+  //       bottom: StyleConstants.linear8,
+  //     ),
+  //     child: Row(
+  //       children: [
+  //         Text(title),
+  //         const SizedBox(
+  //           width: StyleConstants.magic10,
+  //         ),
+  //         Expanded(
+  //           child: Text(
+  //             value,
+  //             overflow: TextOverflow.ellipsis,
+  //           ),
+  //         ),
+  //         const SizedBox(
+  //           width: StyleConstants.magic10,
+  //         ),
+  //         ElevatedButton(
+  //           onPressed: () async {
+  //             await Clipboard.setData(ClipboardData(text: value));
+  //             await showPlatformToast(
+  //               child: const Text(Strings.copiedToClipboard),
+  //               context: context,
+  //             );
+  //           },
+  //           child: const Text(
+  //             Strings.copyToClipboard,
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 }

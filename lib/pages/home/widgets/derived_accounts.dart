@@ -45,18 +45,16 @@ class DerivedAccounts extends StatelessWidget {
                             fit: FlexFit.tight,
                             child: Row(
                               children: [
-                                Text("Accounts"),
+                                const Text("Accounts"),
                                 SizedBox(width: 66.w),
-                                Text("Address"),
+                                const Text("Address"),
                               ],
                             ),
                           ),
-                          Flexible(
+                          const Flexible(
                             flex: 55,
                             fit: FlexFit.tight,
-                            child: Container(
-                              child: Text("Private key"),
-                            ),
+                            child: Text("Private key"),
                           ),
                         ],
                       ),

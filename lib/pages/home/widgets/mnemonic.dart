@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:kadena_keys/pages/home/home_controller.dart';
 import 'package:kadena_keys/utils/themes/app_color_theme.dart';
 import 'package:kadena_keys/utils/themes/app_text_theme.dart';
-import 'package:kadena_keys/utils/wallets.dart';
 import 'package:kadena_keys/widgets/round_wallet_dropdown.dart';
 import 'generate_button.dart';
 

@@ -1,5 +1,6 @@
 import 'package:pinenacl/ed25519.dart';
 import 'package:pinenacl/src/tweetnacl/tweetnacl.dart';
+import 'dart:developer' as developer;
 
 // ignore: depend_on_referenced_packages
 import 'package:convert/convert.dart';
@@ -783,7 +784,7 @@ class ExtendedSigningKey extends AsymmetricPrivateKey
     if (secret.length == TweetNaCl.signingKeyLength) {
       Uint8List pubKey = Uint8List(TweetNaCl.publicKeyLength);
       TweetNaClPubKey.crypto_gen_pubkey(pubKey, secret.sublist(0, 32));
-      print(hex.encode(pubKey));
+      developer.log(hex.encode(pubKey));
       const spkLength = TweetNaCl.signingKeyLength + TweetNaCl.publicKeyLength;
       final spk = Uint8List(spkLength);
       // Copy the secret and the pubKey into the s
