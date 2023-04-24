@@ -9,8 +9,7 @@ class DeriveKoala extends IKeyDeriver {
   @override
   bool validateMnemonic(String mnemonic) {
     String strippedMnemonic = mnemonic.trim();
-    return bip39.validateMnemonic(strippedMnemonic) &&
-        strippedMnemonic.split(' ').length == 24;
+    return bip39.validateMnemonic(strippedMnemonic) && strippedMnemonic.split(' ').length == 24;
   }
 
   @override

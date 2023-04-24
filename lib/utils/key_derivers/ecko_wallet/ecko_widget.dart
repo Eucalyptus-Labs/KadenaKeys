@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kadena_keys/utils/string_constants.dart';
 import 'package:kadena_keys/utils/style_constants.dart';
+
+import '../../../constants/values/values.dart';
 
 class EckoWidget extends StatelessWidget {
   const EckoWidget({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class EckoWidget extends StatelessWidget {
             right: StyleConstants.magic20,
           ),
           child: Text(
-            StringConstants.derivationMethod,
+            Strings.derivationMethod,
             style: StyleConstants.bodyBold,
           ),
         ),
@@ -32,7 +33,7 @@ class EckoWidget extends StatelessWidget {
             right: StyleConstants.magic20,
           ),
           child: Text(
-            StringConstants.derivationPath,
+            Strings.derivationPath,
             style: StyleConstants.bodyBold,
           ),
         ),

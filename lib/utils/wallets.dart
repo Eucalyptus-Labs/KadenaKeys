@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kadena_keys/models/key_derivation_result.dart';
 import 'package:kadena_keys/utils/key_derivers/ecko_wallet/derive_ecko.dart';
 import 'package:kadena_keys/utils/key_derivers/ecko_wallet/ecko_widget.dart';
 import 'package:kadena_keys/utils/key_derivers/koala_wallet/derive_koala.dart';
