@@ -8,6 +8,7 @@ Used to derive the private key from a passphrase for multiple wallets in the Kad
 
 Then choose the platform you wish to run on by following the instructions in the terminal.
 Generally you will want to run it on Chrome.
+flutter run -d chrome --web-renderer html
 
 # To Build
 

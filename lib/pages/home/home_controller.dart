@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kadena_keys/constants/values/values.dart';
 import 'package:kadena_keys/models/key_derivation_result.dart';
-import 'package:kadena_keys/utils/string_constants.dart';
 import 'package:kadena_keys/utils/wallets.dart';
 
 class HomeController extends GetxController {
@@ -39,9 +39,9 @@ class HomeController extends GetxController {
 
     if (enableButton) return null;
 
-    if (selectedWallet == null) return StringConstants.selectWallet;
+    if (selectedWallet == null) return Strings.selectWallet;
 
-    return StringConstants.invalidInput;
+    return Strings.invalidInput;
   }
 
   void mnemonicOnChange(String? value) {

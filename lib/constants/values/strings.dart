@@ -1,4 +1,6 @@
-class StringConstants {
+part of values;
+
+class Strings {
   static const String appTitle = 'Kadena Wallet Key Derivation';
   static const String homeTitle = 'Kadena Wallet Key Derivation';
   static const String selectWallet = 'Select Wallet';

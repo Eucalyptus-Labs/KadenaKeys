@@ -1,13 +1,16 @@
+import 'package:auto_route/annotations.dart';
 import 'package:fl_toast/fl_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kadena_keys/models/key_derivation_result.dart';
-import 'package:kadena_keys/utils/string_constants.dart';
 import 'package:kadena_keys/utils/style_constants.dart';
 import 'package:kadena_keys/utils/wallets.dart';
 import 'package:kadena_keys/widgets/custom_button_widget.dart';
 import 'package:kadena_keys/widgets/wallet_dropdown.dart';
 
+import '../constants/values/values.dart';
+
+@RoutePage()
 class KeyDerivationPage extends StatefulWidget {
   const KeyDerivationPage({super.key});
 
@@ -22,7 +25,7 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
   bool generatingPrivateKey = false;
   List<KeyDerivationResult>? keys;
 
-  String? _errorText = StringConstants.invalidInput;
+  String? _errorText = Strings.invalidInput;
 
   void _onSelectedWalletChanged(WalletData? data) {
     setState(() {
@@ -36,7 +39,7 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
       if (selectedWallet.deriver.validateMnemonic(_menmonicController.text)) {
         _errorText = null;
       } else {
-        _errorText = StringConstants.invalidInput;
+        _errorText = Strings.invalidInput;
       }
     });
   }
@@ -73,7 +76,7 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              _buildSectionTitle(StringConstants.selectWallet),
+              _buildSectionTitle(Strings.selectWallet),
               WalletDropdown(
                 selectedWallet: selectedWallet,
                 onChanged: _onSelectedWalletChanged,
@@ -81,16 +84,16 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
               const SizedBox(
                 height: StyleConstants.magic30,
               ),
-              _buildSectionTitle(StringConstants.selectedWalletInfo),
+              _buildSectionTitle(Strings.selectedWalletInfo),
               if (selectedWallet.infoWidget != null) selectedWallet.infoWidget!,
               const SizedBox(
                 height: StyleConstants.magic30,
               ),
-              _buildSectionTitle(StringConstants.inputSeedPhrase),
+              _buildSectionTitle(Strings.inputSeedPhrase),
               TextField(
                 controller: _menmonicController,
                 decoration: InputDecoration(
-                  labelText: StringConstants.seedPhrase,
+                  labelText: Strings.seedPhrase,
                   errorText: _errorText,
                 ),
                 keyboardType: TextInputType.multiline,
@@ -104,9 +107,9 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
               const SizedBox(
                 height: StyleConstants.magic30,
               ),
-              _buildSectionTitle(StringConstants.keyPairsAndAccounts),
+              _buildSectionTitle(Strings.keyPairsAndAccounts),
               const Text(
-                StringConstants.tapOnAnyPrivateKey,
+                Strings.tapOnAnyPrivateKey,
               ),
               const SizedBox(
                 height: StyleConstants.magic10,
@@ -155,7 +158,7 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
             : CustomButtonType.disabled,
         onTap: _errorText == null ? _generatePrivateKey : null,
         child: const Text(
-          StringConstants.generate,
+          Strings.generate,
         ),
       );
     }
@@ -196,7 +199,7 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
                           );
                           showPlatformToast(
                             child: const Text(
-                              StringConstants.copiedToClipboard,
+                              Strings.copiedToClipboard,
                             ),
                             context: context,
                           );
@@ -210,7 +213,7 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
                           );
                           showPlatformToast(
                             child: const Text(
-                              StringConstants.copiedToClipboard,
+                              Strings.copiedToClipboard,
                             ),
                             context: context,
                           );
@@ -224,7 +227,7 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
                           );
                           showPlatformToast(
                             child: const Text(
-                              StringConstants.copiedToClipboard,
+                              Strings.copiedToClipboard,
                             ),
                             context: context,
                           );
@@ -264,12 +267,12 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
             onPressed: () async {
               await Clipboard.setData(ClipboardData(text: value));
               await showPlatformToast(
-                child: const Text(StringConstants.copiedToClipboard),
+                child: const Text(Strings.copiedToClipboard),
                 context: context,
               );
             },
             child: const Text(
-              StringConstants.copyToClipboard,
+              Strings.copyToClipboard,
             ),
           ),
         ],
