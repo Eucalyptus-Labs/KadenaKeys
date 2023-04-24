@@ -1,4 +1,6 @@
-class StringConstants {
+part of values;
+
+class Strings {
   static const String appTitle = 'Kadena Wallet Key Derivation';
   static const String homeTitle = 'Kadena Wallet Key Derivation';
   static const String selectWallet = 'Select Wallet';
@@ -13,8 +15,7 @@ class StringConstants {
   static const String generateSeed = 'Generate Key Pair and Account';
   static const String generate = 'Generate';
   static const String keyPairsAndAccounts = 'Key Pairs and Accounts';
-  static const String tapOnAnyPrivateKey =
-      'Tap on any cell to copy its contents to your clipboard';
+  static const String tapOnAnyPrivateKey = 'Tap on any cell to copy its contents to your clipboard';
   static const String invalidInput = 'Invalid input';
 
   static const String privateKey = 'Private Key:';
@@ -24,8 +25,7 @@ class StringConstants {
   static const String copiedToClipboard = 'Copied to Clipboard';
 
   // #region Home page
-  static const String descriptionHome =
-      '''Use this tool to convert your wallet generated mnemonic phrase to
+  static const String descriptionHome = '''Use this tool to convert your wallet generated mnemonic phrase to
       Kadena private keys. We recommend saving this page as an HTML
       file and running this tool OFFLINE for maximum security''';
   // #endregion

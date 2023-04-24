@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kadena_keys/utils/string_constants.dart';
 import 'package:kadena_keys/utils/themes/app_text_theme.dart';
+
+import '../../../constants/values/values.dart';
 
 class HomeTitle extends StatelessWidget {
   const HomeTitle({
@@ -26,7 +27,7 @@ class HomeTitle extends StatelessWidget {
         ),
         SizedBox(height: 24.h),
         Text(
-          StringConstants.descriptionHome,
+          Strings.descriptionHome,
           style: AppTextTheme.inter16Grey400,
           textAlign: TextAlign.center,
         ),

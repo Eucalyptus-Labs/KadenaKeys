@@ -133,8 +133,7 @@ class Mnemonic extends StatelessWidget {
                               backgroundColor: MaterialStateProperty.all<Color>(
                                 darkElevatedButtonColor,
                               ),
-                              shape: MaterialStateProperty.all<
-                                  RoundedRectangleBorder>(
+                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(
                                     44.r,
