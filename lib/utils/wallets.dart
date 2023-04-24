@@ -42,14 +42,14 @@ class WalletData {
 final kadenaWalletData = {
   KadenaWallet.koala: WalletData(
       wallet: KadenaWallet.koala,
-      name: "Koala",
+      name: "Koala Wallet",
       derivationMethod: "BIP44",
       derivationPath: "m/44'/626'/0'",
       deriver: DeriveKoala(),
       infoWidget: const KoalaWidget()),
   KadenaWallet.eckoWallet: WalletData(
       wallet: KadenaWallet.eckoWallet,
-      name: "eckoWallet",
+      name: "eckoWALLET",
       derivationMethod: "cardano-crypto.js",
       derivationPath: "kadena-crypto.js",
       deriver: DeriveEcko(),

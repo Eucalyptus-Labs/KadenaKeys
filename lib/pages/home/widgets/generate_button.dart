@@ -41,9 +41,7 @@ class GenerateButton extends StatelessWidget {
             ? const Padding(
                 padding: EdgeInsets.all(8),
                 child: Center(
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                  ),
+                  child: CircularProgressIndicator(),
                 ),
               )
             : Text(
