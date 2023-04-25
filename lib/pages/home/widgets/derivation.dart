@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:kadena_keys/constants/values/values.dart';
 import 'package:kadena_keys/pages/home/home_controller.dart';
-import 'package:kadena_keys/utils/themes/app_color_theme.dart';
-import 'package:kadena_keys/utils/themes/app_text_theme.dart';
+import 'package:kadena_keys/widgets/rounded_container.dart';
 
 class Derivation extends StatelessWidget {
   const Derivation({super.key});
@@ -15,22 +15,16 @@ class Derivation extends StatelessWidget {
       builder: (controller) {
         return Column(
           children: [
-            Container(
-              height: 204.h,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16.r),
-                color: darkContainer,
-              ),
-              padding: EdgeInsets.all(40.h),
+            RoundedContainer(
+              height: 150,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
-                    children: [
+                    children: const [
                       Text(
-                        "Derivation",
-                        style: AppTextTheme.inter24White700,
+                        Strings.derivation,
+                        style: Styles.textStyleHeader4,
                       ),
                     ],
                   ),
@@ -39,43 +33,51 @@ class Derivation extends StatelessWidget {
                       Row(
                         children: [
                           Flexible(
-                            flex: 50,
                             fit: FlexFit.tight,
-                            child: TextFormField(
-                              controller: controller.derivationMethodController,
-                              enabled: false,
-                              decoration: InputDecoration(
-                                hintText: "Derivation method:",
-                                disabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(8.r),
+                            flex: 50,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 16.w),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    Strings.derivationMethod,
+                                    style: Styles.textStyleCaption.copyWith(
+                                      color: CustomColors.light100,
+                                    ),
                                   ),
-                                  borderSide: const BorderSide(
-                                    width: 1,
-                                    color: Colors.grey,
+                                  SizedBox(width: 70.w),
+                                  Text(
+                                    controller.derivationMethod ?? "",
+                                    style: Styles.textStyleCaption.copyWith(
+                                      color: CustomColors.light50,
+                                    ),
                                   ),
-                                ),
+                                ],
                               ),
                             ),
                           ),
                           SizedBox(width: 16.w),
                           Flexible(
-                            flex: 50,
                             fit: FlexFit.tight,
-                            child: TextFormField(
-                              controller: controller.derivationPathController,
-                              enabled: false,
-                              decoration: InputDecoration(
-                                hintText: "Derivation path:",
-                                disabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(8.r),
+                            flex: 50,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 16.w),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    Strings.derivationPath,
+                                    style: Styles.textStyleCaption.copyWith(
+                                      color: CustomColors.light100,
+                                    ),
                                   ),
-                                  borderSide: const BorderSide(
-                                    width: 1,
-                                    color: Colors.grey,
+                                  SizedBox(width: 70.w),
+                                  Text(
+                                    controller.derivationPath ?? "",
+                                    style: Styles.textStyleCaption.copyWith(
+                                      color: CustomColors.light50,
+                                    ),
                                   ),
-                                ),
+                                ],
                               ),
                             ),
                           ),

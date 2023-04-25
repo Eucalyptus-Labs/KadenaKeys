@@ -2,6 +2,7 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:kadena_keys/widgets/footer.dart';
 import 'home_controller.dart';
 import 'widgets/derivation.dart';
 import 'widgets/derived_accounts.dart';
@@ -19,25 +20,31 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.only(
-            top: 57.h,
-            left: 184.w,
-            right: 184.w,
-            bottom: 125.h,
-          ),
+        child: SizedBox(
           width: double.infinity,
           child: GetBuilder<HomeController>(
             init: HomeController(),
             builder: (context) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-                  HomeTitle(),
-                  Mnemonic(),
-                  Derivation(),
-                  DerivedAccounts(),
-                  MoreInfo(),
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(
+                      top: 57.h,
+                      left: 184.w,
+                      right: 184.w,
+                    ),
+                    child: Column(
+                      children: const [
+                        HomeTitle(),
+                        Mnemonic(),
+                        Derivation(),
+                        DerivedAccounts(),
+                        MoreInfo(),
+                      ],
+                    ),
+                  ),
+                  const Footer(),
                 ],
               );
             },

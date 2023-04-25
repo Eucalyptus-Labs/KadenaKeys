@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:kadena_keys/constants/values/values.dart';
 import 'package:kadena_keys/pages/home/home_controller.dart';
-import 'package:kadena_keys/utils/themes/app_text_theme.dart';
 import 'package:kadena_keys/widgets/round_wallet_dropdown.dart';
 import 'package:kadena_keys/widgets/rounded_container.dart';
 import 'generate_button.dart';
@@ -23,10 +23,10 @@ class Mnemonic extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
-                    children: [
+                    children: const [
                       Text(
-                        "Mnemonic",
-                        style: AppTextTheme.inter24White700,
+                        Strings.mnemonic,
+                        style: Styles.textStyleHeader4,
                       ),
                     ],
                   ),
@@ -37,14 +37,40 @@ class Mnemonic extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Text(
-                                "Mnemonic phrase",
-                                style: AppTextTheme.inter14White500,
+                              const Text(
+                                Strings.selectWallet,
+                                style: Styles.textStyleSubheading,
                               ),
                               SizedBox(width: 8.w),
-                              const Icon(
+                              Icon(
                                 Icons.info,
-                                color: Colors.grey,
+                                color: CustomColors.light24,
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            width: 688.w,
+                            child: RoundedWalletDropdown(
+                              selectedWallet: controller.selectedWallet,
+                              onChanged: controller.onWalletSelected,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 28.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              const Text(
+                                Strings.mnemonicPhrase,
+                                style: Styles.textStyleSubheading,
+                              ),
+                              SizedBox(width: 8.w),
+                              Icon(
+                                Icons.info,
+                                color: CustomColors.light24,
                               ),
                             ],
                           ),
@@ -58,72 +84,7 @@ class Mnemonic extends StatelessWidget {
                                   AutovalidateMode.onUserInteraction,
                               validator: controller.mnemonicValidateInput,
                               onChanged: controller.mnemonicOnChange,
-                              decoration: InputDecoration(
-                                isDense: true,
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(8.r),
-                                  ),
-                                  borderSide: const BorderSide(
-                                    width: 1,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(8.r),
-                                  ),
-                                  borderSide: const BorderSide(
-                                    width: 1,
-                                    color: Colors.red,
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(8.r),
-                                  ),
-                                  borderSide: const BorderSide(
-                                    width: 1,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(8.r),
-                                  ),
-                                  borderSide: const BorderSide(
-                                    width: 1,
-                                    color: Colors.red,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 28.h),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                "Select wallet",
-                                style: AppTextTheme.inter14White500,
-                              ),
-                              SizedBox(width: 8.w),
-                              const Icon(
-                                Icons.info,
-                                color: Colors.grey,
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            width: 688.w,
-                            // height: 48.h,
-                            child: RoundedWalletDropdown(
-                              selectedWallet: controller.selectedWallet,
-                              onChanged: controller.onWalletSelected,
+                              decoration: Decorations.defaultInputDecoration,
                             ),
                           ),
                         ],

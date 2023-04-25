@@ -17,4 +17,44 @@ class Decorations {
       ],
     ),
   );
+
+  static InputDecoration defaultInputDecoration = const InputDecoration(
+    isDense: true,
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(8),
+      ),
+      borderSide: BorderSide(
+        width: 1,
+        color: Colors.grey,
+      ),
+    ),
+    focusedErrorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(8),
+      ),
+      borderSide: BorderSide(
+        width: 1,
+        color: Colors.red,
+      ),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(8),
+      ),
+      borderSide: BorderSide(
+        width: 1,
+        color: Colors.grey,
+      ),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(8),
+      ),
+      borderSide: BorderSide(
+        width: 1,
+        color: Colors.red,
+      ),
+    ),
+  );
 }

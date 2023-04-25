@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kadena_keys/utils/themes/app_color_theme.dart';
-import 'package:kadena_keys/utils/themes/app_text_theme.dart';
+import 'package:kadena_keys/constants/values/values.dart';
 
 class GenerateButton extends StatelessWidget {
   const GenerateButton({
     required this.onPressCallback,
+    this.title = Strings.generate,
     this.loading = false,
     super.key,
   });
 
   final Function()? onPressCallback;
   final bool loading;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +25,9 @@ class GenerateButton extends StatelessWidget {
           backgroundColor: MaterialStateProperty.resolveWith(
             (states) {
               if (states.contains(MaterialState.disabled)) {
-                return darkElevatedButtonColor.withOpacity(0.5);
+                return CustomColors.accent100.withOpacity(0.5);
               }
-              return darkElevatedButtonColor;
+              return CustomColors.accent100;
             },
           ),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -45,8 +46,8 @@ class GenerateButton extends StatelessWidget {
                 ),
               )
             : Text(
-                "Generate",
-                style: AppTextTheme.inter14White500,
+                title,
+                style: Styles.textStyleHeader6,
               ),
       ),
     );

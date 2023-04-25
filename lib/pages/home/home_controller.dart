@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kadena_keys/constants/values/values.dart';
 import 'package:kadena_keys/models/key_derivation_result.dart';
-import 'package:kadena_keys/utils/wallets.dart';
+import 'package:kadena_keys/models/wallets.dart';
 import 'dart:developer' as developer;
 
 class HomeController extends GetxController {
@@ -11,6 +11,7 @@ class HomeController extends GetxController {
   bool enableButton = false;
   bool generatingPrivateKey = false;
   WalletData? selectedWallet;
+  String? derivationMethod, derivationPath;
 
   onWalletSelected(WalletData? data) {
     selectedWallet = data;
@@ -66,14 +67,9 @@ class HomeController extends GetxController {
   // #endregion
 
   // #region Derivation
-  final derivationMethodController = TextEditingController();
-  final derivationPathController = TextEditingController();
-
   void _setMethodAndPath() {
-    derivationMethodController.text =
-        "Derivation method: ${selectedWallet!.derivationMethod}";
-    derivationPathController.text =
-        "Derivation path: ${selectedWallet!.derivationPath}";
+    derivationMethod = selectedWallet!.derivationMethod;
+    derivationPath = selectedWallet!.derivationPath;
   }
   // #endregion
 

@@ -1,90 +1,127 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lorem/flutter_lorem.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kadena_keys/utils/themes/app_color_theme.dart';
-import 'package:kadena_keys/utils/themes/app_text_theme.dart';
+import 'package:kadena_keys/constants/values/values.dart';
+import 'package:kadena_keys/widgets/rounded_container.dart';
+import 'package:kadena_keys/widgets/url_text.dart';
 
 class MoreInfo extends StatelessWidget {
   const MoreInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 596.h,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16.r),
-        color: darkContainer,
-      ),
-      padding: EdgeInsets.all(40.h),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              Text(
-                "More info",
-                style: AppTextTheme.inter24White700,
-              ),
-            ],
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
+      children: [
+        RoundedContainer(
+          height: 420,
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "License",
-                style: AppTextTheme.inter16White700,
-              ),
-              SizedBox(
-                width: 688.w,
-                child: Text(
-                  lorem(
-                    paragraphs: 2,
-                    words: 100,
+              Row(
+                children: const [
+                  Text(
+                    Strings.moreInfo,
+                    style: Styles.textStyleHeader4,
                   ),
-                  style: AppTextTheme.inter16Grey400,
-                ),
+                ],
               ),
-            ],
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Our other products",
-                style: AppTextTheme.inter16White700,
-              ),
-              SizedBox(
-                width: 688.w,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Column(
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    Strings.licence,
+                    style: Styles.textStyleSubheading,
+                  ),
+                  SizedBox(
+                    width: 688.w,
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Koala Wallet",
-                          style: AppTextTheme.inter16Grey400Underline,
+                          Strings.licenceOne,
+                          style: Styles.textStyleMediumParagraph.copyWith(
+                            color: CustomColors.light75,
+                          ),
                         ),
-                        Text(
-                          "Explorer",
-                          style: AppTextTheme.inter16Grey400Underline,
-                        ),
-                        Text(
-                          "Kadena Ecosystem",
-                          style: AppTextTheme.inter16Grey400Underline,
+                        Row(
+                          children: [
+                            Text(
+                              Strings.licenceTwo,
+                              style: Styles.textStyleMediumParagraph.copyWith(
+                                color: CustomColors.light75,
+                              ),
+                            ),
+                            Text(
+                              Strings.here,
+                              style: Styles.textStyleMediumParagraph.copyWith(
+                                color: CustomColors.light75,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    Strings.otherProducts,
+                    style: Styles.textStyleSubheading,
+                  ),
+                  SizedBox(
+                    width: 688.w,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(bottom: 8.h),
+                              child: UrlText(
+                                text: Strings.productKoala,
+                                url: Url.koalaWallet,
+                                style: Styles.textStyleMediumParagraph.copyWith(
+                                  color: CustomColors.light75,
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(bottom: 8.h),
+                              child: UrlText(
+                                text: Strings.productExplorer,
+                                url: Url.kdaExplorer,
+                                style: Styles.textStyleMediumParagraph.copyWith(
+                                  color: CustomColors.light75,
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                            ),
+                            UrlText(
+                              text: Strings.productKadena,
+                              url: Url.kadenaEcosystem,
+                              style: Styles.textStyleMediumParagraph.copyWith(
+                                color: CustomColors.light75,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              )
             ],
-          )
-        ],
-      ),
+          ),
+        ),
+        SizedBox(height: 125.h),
+      ],
     );
   }
 }

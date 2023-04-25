@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:kadena_keys/constants/values/values.dart';
 import 'package:kadena_keys/pages/home/home_controller.dart';
-import 'package:kadena_keys/utils/themes/app_color_theme.dart';
-import 'package:kadena_keys/utils/themes/app_text_theme.dart';
+import 'package:kadena_keys/widgets/rounded_container.dart';
 import 'derived_account_item.dart';
 import 'generate_button.dart';
 
@@ -17,22 +17,15 @@ class DerivedAccounts extends StatelessWidget {
       builder: (controller) {
         return Column(
           children: [
-            Container(
-              height: controller.keys.isEmpty ? 350.h : 772.h,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16.r),
-                color: darkContainer,
-              ),
-              padding: EdgeInsets.all(40.h),
+            RoundedContainer(
+              height: controller.keys.isEmpty ? 250 : 772,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
-                    children: [
+                    children: const [
                       Text(
                         "Derived accounts",
-                        style: AppTextTheme.inter24White700,
                       ),
                     ],
                   ),
@@ -67,24 +60,27 @@ class DerivedAccounts extends StatelessWidget {
                           color: Color.fromRGBO(255, 255, 255, 0.5),
                         ),
                       ),
-                      SizedBox(
-                        height: controller.keys.isEmpty ? 40.h : 480.h,
-                        child: ListView.builder(
-                          itemBuilder: (context, index) {
-                            final item = controller.keys[index];
-                            return DerivedAccountItem(
-                              index: index,
-                              result: item,
-                            );
-                          },
-                          itemCount: controller.keys.length,
+                      if (controller.keys.isNotEmpty)
+                        SizedBox(
+                          height: 480.h,
+                          child: ListView.builder(
+                            itemBuilder: (context, index) {
+                              final item = controller.keys[index];
+                              return DerivedAccountItem(
+                                index: index,
+                                result: item,
+                              );
+                            },
+                            itemCount: controller.keys.length,
+                          ),
                         ),
-                      ),
                     ],
                   ),
-                  GenerateButton(
-                    onPressCallback: () {},
-                  ),
+                  if (controller.keys.isNotEmpty)
+                    GenerateButton(
+                      title: Strings.generateMore,
+                      onPressCallback: () {},
+                    ),
                 ],
               ),
             ),

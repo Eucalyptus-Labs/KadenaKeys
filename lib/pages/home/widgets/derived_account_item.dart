@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kadena_keys/constants/values/values.dart';
 import 'package:kadena_keys/models/key_derivation_result.dart';
-import 'package:kadena_keys/utils/themes/app_color_theme.dart';
 
 class DerivedAccountItem extends StatelessWidget {
   const DerivedAccountItem({
@@ -24,7 +24,7 @@ class DerivedAccountItem extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.r),
-        color: derivedAccountItem,
+        color: CustomColors.dark100,
       ),
       child: Row(
         children: [

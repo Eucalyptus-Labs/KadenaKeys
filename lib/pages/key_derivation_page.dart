@@ -6,7 +6,7 @@ import 'package:kadena_keys/constants/enums/store_states.dart';
 import 'package:kadena_keys/constants/values/values.dart';
 import 'package:kadena_keys/models/key_derivation_result.dart';
 import 'package:kadena_keys/utils/style_constants.dart';
-import 'package:kadena_keys/utils/wallets.dart';
+import 'package:kadena_keys/models/wallets.dart';
 import 'package:kadena_keys/widgets/custom_button_widget.dart';
 import 'package:kadena_keys/widgets/wallet_dropdown.dart';
 
