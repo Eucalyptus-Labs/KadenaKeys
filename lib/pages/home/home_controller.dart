@@ -43,7 +43,7 @@ class HomeController extends GetxController {
 
     if (selectedWallet == null) return Strings.selectWallet;
 
-    return Strings.invalidInput;
+    return Errors.invalidInput;
   }
 
   void mnemonicOnChange(String? value) {

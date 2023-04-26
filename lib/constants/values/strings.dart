@@ -18,7 +18,6 @@ class Strings {
   static const String keyPairsAndAccounts = 'Key Pairs and Accounts';
   static const String tapOnAnyPrivateKey =
       'Tap on any cell to copy its contents to your clipboard';
-  static const String invalidInput = 'Invalid input';
 
   static const String privateKey = 'Private Key:';
   static const String publicKey = 'Public Key:';
@@ -27,26 +26,26 @@ class Strings {
   static const String copiedToClipboard = 'Copied to Clipboard';
 
   // #region Home page
-  static const String homeTile = "KadenaKeys";
-  static const String learnMore = "You can learn more ";
-  static const String here = "here";
+  static const String homeTile = 'KadenaKeys';
+  static const String learnMore = 'You can learn more ';
+  static const String here = 'here';
   static const String descriptionHome =
-      "Use this tool to convert your wallet generated mnemonic phrase to Kadena private keys. We recommend saving this page as an HTML file and running this tool OFFLINE for maximum security";
-  static const String mnemonic = "Mnemonic";
-  static const String mnemonicPhrase = "Mnemonic phrase";
-  static const String derivation = "Derivation";
+      'Use this tool to convert your wallet generated mnemonic phrase to Kadena private keys. We recommend saving this page as an HTML file and running this tool OFFLINE for maximum security';
+  static const String mnemonic = 'Mnemonic';
+  static const String mnemonicPhrase = 'Mnemonic phrase';
+  static const String derivation = 'Derivation';
   static const String licenceOne =
-      "KadenaKeys is an open source software tool created by EucalyptusLabs for the Kadena Ecosystem. The software is provided \"as is\", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.";
-  static const String licenceTwo = "View full license ";
-  static const String moreInfo = "More info";
-  static const String licence = "License";
-  static const String otherProducts = "Our other products";
-  static const String productKoala = "Koala Wallet";
-  static const String productExplorer = "Explorer";
-  static const String productKadena = "Kadena Ecosystem";
-  static const String copyRight = "Copyright © ";
-  static const String poweredBy = "Powered by";
-  static const String eucalyptusLabs = "Eucalyptus Labs";
-  static const String privacyPolicy = "Privacy Policy";
+      'KadenaKeys is an open source software tool created by EucalyptusLabs for the Kadena Ecosystem. The software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.';
+  static const String licenceTwo = 'View full license ';
+  static const String moreInfo = 'More info';
+  static const String licence = 'License';
+  static const String otherProducts = 'Our other products';
+  static const String productKoala = 'Koala Wallet';
+  static const String productExplorer = 'Explorer';
+  static const String productKadena = 'Kadena Ecosystem';
+  static const String copyRight = 'Copyright © ';
+  static const String poweredBy = 'Powered by';
+  static const String eucalyptusLabs = 'Eucalyptus Labs';
+  static const String privacyPolicy = 'Privacy Policy';
   // #endregion
 }

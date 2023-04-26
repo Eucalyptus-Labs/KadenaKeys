@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kadena_keys/constants/values/values.dart';
 import 'package:kadena_keys/utils/style_constants.dart';
-
-import '../../../constants/values/values.dart';
 
 class KoalaWidget extends StatelessWidget {
   const KoalaWidget({Key? key}) : super(key: key);

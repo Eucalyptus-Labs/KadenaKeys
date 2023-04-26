@@ -1,10 +1,9 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:kadena_keys/constants/values/values.dart';
 
 // Package imports:
 import 'package:overlay_support/overlay_support.dart';
-
-import '../constants/values/values.dart';
 
 void showCustomOverlayNotification({
   required Color color,
@@ -36,12 +35,15 @@ void showCustomOverlayNotification({
               padding: const EdgeInsets.all(15),
               child: Center(
                 child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.8, //not the best approach
+                  width: MediaQuery.of(context).size.width *
+                      0.8, //not the best approach
                   child: Text(
                     text,
                     textAlign: TextAlign.center,
-                    style:
-                        const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: CustomColors.lightGrayColor),
+                    style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: CustomColors.lightGrayColor),
                   ),
                 ),
               ),

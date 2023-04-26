@@ -26,6 +26,7 @@ class DerivedAccounts extends StatelessWidget {
                     children: const [
                       Text(
                         "Derived accounts",
+                        style: Styles.textStyleHeader4,
                       ),
                     ],
                   ),

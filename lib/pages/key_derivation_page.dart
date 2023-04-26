@@ -2,7 +2,7 @@ import 'package:auto_route/annotations.dart';
 import 'package:fl_toast/fl_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kadena_keys/constants/enums/store_states.dart';
+import 'package:kadena_keys/constants/enums/kadena_wallets.dart';
 import 'package:kadena_keys/constants/values/values.dart';
 import 'package:kadena_keys/models/key_derivation_result.dart';
 import 'package:kadena_keys/utils/style_constants.dart';
@@ -25,7 +25,7 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
   bool generatingPrivateKey = false;
   List<KeyDerivationResult>? keys;
 
-  String? _errorText = Strings.invalidInput;
+  String? _errorText = Errors.invalidInput;
 
   void _onSelectedWalletChanged(WalletData? data) {
     setState(() {
@@ -39,7 +39,7 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
       if (selectedWallet.deriver.validateMnemonic(_menmonicController.text)) {
         _errorText = null;
       } else {
-        _errorText = Strings.invalidInput;
+        _errorText = Errors.invalidInput;
       }
     });
   }

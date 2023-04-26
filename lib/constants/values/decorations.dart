@@ -18,42 +18,42 @@ class Decorations {
     ),
   );
 
-  static InputDecoration defaultInputDecoration = const InputDecoration(
+  static InputDecoration defaultInputDecoration = InputDecoration(
     isDense: true,
     enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.all(
+      borderRadius: const BorderRadius.all(
         Radius.circular(8),
       ),
       borderSide: BorderSide(
         width: 1,
-        color: Colors.grey,
+        color: CustomColors.light02,
       ),
     ),
-    focusedErrorBorder: OutlineInputBorder(
+    focusedErrorBorder: const OutlineInputBorder(
       borderRadius: BorderRadius.all(
         Radius.circular(8),
       ),
       borderSide: BorderSide(
         width: 1,
-        color: Colors.red,
+        color: CustomColors.failed100,
       ),
     ),
     focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.all(
+      borderRadius: const BorderRadius.all(
         Radius.circular(8),
       ),
       borderSide: BorderSide(
         width: 1,
-        color: Colors.grey,
+        color: CustomColors.light02,
       ),
     ),
-    errorBorder: OutlineInputBorder(
+    errorBorder: const OutlineInputBorder(
       borderRadius: BorderRadius.all(
         Radius.circular(8),
       ),
       borderSide: BorderSide(
         width: 1,
-        color: Colors.red,
+        color: CustomColors.failed100,
       ),
     ),
   );

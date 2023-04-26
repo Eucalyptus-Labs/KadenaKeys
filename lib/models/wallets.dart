@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kadena_keys/constants/enums/store_states.dart';
+import 'package:kadena_keys/constants/enums/kadena_wallets.dart';
 import 'package:kadena_keys/utils/key_derivers/i_key_deriver.dart';
 
 class WalletData {
