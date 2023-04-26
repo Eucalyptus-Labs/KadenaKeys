@@ -2,7 +2,7 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:kadena_keys/widgets/footer.dart';
+import '../../widgets/footer.dart';
 import 'home_controller.dart';
 import 'widgets/derivation.dart';
 import 'widgets/derived_accounts.dart';
@@ -17,16 +17,13 @@ class HomePage extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
           width: double.infinity,
           child: GetBuilder<HomeController>(
             init: HomeController(),
-            builder: (context) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+            builder: (context) => Column(
                 children: [
                   Container(
                     padding: EdgeInsets.only(
@@ -46,11 +43,9 @@ class HomePage extends StatelessWidget {
                   ),
                   const Footer(),
                 ],
-              );
-            },
+              ),
           ),
         ),
       ),
     );
-  }
 }

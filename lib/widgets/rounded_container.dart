@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kadena_keys/constants/values/values.dart';
+import '../constants/values/values.dart';
 
 class RoundedContainer extends StatelessWidget {
   const RoundedContainer({
@@ -13,8 +13,7 @@ class RoundedContainer extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
+  Widget build(BuildContext context) => Container(
       height: height.h,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -24,5 +23,4 @@ class RoundedContainer extends StatelessWidget {
       padding: EdgeInsets.all(40.h),
       child: child,
     );
-  }
 }

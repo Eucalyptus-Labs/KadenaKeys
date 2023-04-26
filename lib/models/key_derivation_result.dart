@@ -10,7 +10,5 @@ class KeyDerivationResult {
   });
 
   @override
-  String toString() {
-    return 'KeyDerivationResult{privateKey: $privateKey, publicKey: $publicKey, account: $account}';
-  }
+  String toString() => 'KeyDerivationResult{privateKey: $privateKey, publicKey: $publicKey, account: $account}';
 }

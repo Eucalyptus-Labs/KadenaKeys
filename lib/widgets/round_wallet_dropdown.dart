@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kadena_keys/constants/values/values.dart';
-import 'package:kadena_keys/models/wallets.dart';
+import '../constants/values/values.dart';
+import '../models/wallets.dart';
 import 'package:nil/nil.dart';
 
 class RoundedWalletDropdown extends StatelessWidget {
@@ -15,8 +15,7 @@ class RoundedWalletDropdown extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Center(
+  Widget build(BuildContext context) => Center(
       child: Container(
         width: double.infinity,
         padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -25,7 +24,6 @@ class RoundedWalletDropdown extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.r),
           border: Border.all(
             color: Colors.grey,
-            style: BorderStyle.solid,
             width: 0.80,
           ),
         ),
@@ -36,13 +34,11 @@ class RoundedWalletDropdown extends StatelessWidget {
           ),
           child: DropdownButton(
             underline: const Nil(),
-            hint: const Text("Select wallet"),
-            items: Maps.kadenaWalletData.values.map((WalletData data) {
-              return DropdownMenuItem<WalletData>(
+            hint: const Text('Select wallet'),
+            items: Maps.kadenaWalletData.values.map((data) => DropdownMenuItem<WalletData>(
                 value: data,
                 child: Text(data.name),
-              );
-            }).toList(),
+              )).toList(),
             onChanged: onChanged,
             isExpanded: true,
             value: selectedWallet,
@@ -51,5 +47,4 @@ class RoundedWalletDropdown extends StatelessWidget {
         ),
       ),
     );
-  }
 }

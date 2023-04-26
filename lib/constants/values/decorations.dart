@@ -25,8 +25,7 @@ class Decorations {
         Radius.circular(8),
       ),
       borderSide: BorderSide(
-        width: 1,
-        color: CustomColors.light02,
+        color: CustomColors.light08,
       ),
     ),
     focusedErrorBorder: const OutlineInputBorder(
@@ -34,7 +33,6 @@ class Decorations {
         Radius.circular(8),
       ),
       borderSide: BorderSide(
-        width: 1,
         color: CustomColors.failed100,
       ),
     ),
@@ -43,8 +41,7 @@ class Decorations {
         Radius.circular(8),
       ),
       borderSide: BorderSide(
-        width: 1,
-        color: CustomColors.light02,
+        color: CustomColors.light08,
       ),
     ),
     errorBorder: const OutlineInputBorder(
@@ -52,7 +49,6 @@ class Decorations {
         Radius.circular(8),
       ),
       borderSide: BorderSide(
-        width: 1,
         color: CustomColors.failed100,
       ),
     ),

@@ -13,8 +13,7 @@ class UrlText extends StatelessWidget {
   final TextStyle style;
 
   @override
-  Widget build(BuildContext context) {
-    return MouseRegion(
+  Widget build(BuildContext context) => MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: () async {
@@ -29,5 +28,4 @@ class UrlText extends StatelessWidget {
         ),
       ),
     );
-  }
 }

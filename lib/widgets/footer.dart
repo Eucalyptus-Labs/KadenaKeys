@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kadena_keys/constants/values/values.dart';
+import '../constants/values/values.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Footer extends StatelessWidget {
@@ -9,8 +9,7 @@ class Footer extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
+  Widget build(BuildContext context) => Column(
       children: [
         Divider(
           thickness: 1,
@@ -33,7 +32,7 @@ class Footer extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "${DateTime.now().year} ",
+                    '${DateTime.now().year} ',
                     style: Styles.textStyleSubheading.copyWith(
                       color: CustomColors.light65,
                     ),
@@ -80,5 +79,4 @@ class Footer extends StatelessWidget {
         ),
       ],
     );
-  }
 }

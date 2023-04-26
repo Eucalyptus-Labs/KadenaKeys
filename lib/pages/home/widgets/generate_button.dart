@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kadena_keys/constants/values/values.dart';
+import '../../../constants/values/values.dart';
 
 class GenerateButton extends StatelessWidget {
   const GenerateButton({
@@ -15,8 +15,7 @@ class GenerateButton extends StatelessWidget {
   final String title;
 
   @override
-  Widget build(BuildContext context) {
-    return SizedBox(
+  Widget build(BuildContext context) => SizedBox(
       height: 48.h,
       width: 385.w,
       child: ElevatedButton(
@@ -51,5 +50,4 @@ class GenerateButton extends StatelessWidget {
               ),
       ),
     );
-  }
 }

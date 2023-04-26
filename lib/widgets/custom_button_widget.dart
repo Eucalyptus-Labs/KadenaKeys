@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kadena_keys/utils/style_constants.dart';
+import '../utils/style_constants.dart';
 
 enum CustomButtonType { primary, secondary, success, failure, disabled }
 
@@ -49,8 +49,7 @@ class CustomButtonWidget extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return InkWell(
+  Widget build(BuildContext context) => InkWell(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(
@@ -67,5 +66,4 @@ class CustomButtonWidget extends StatelessWidget {
         ),
       ),
     );
-  }
 }

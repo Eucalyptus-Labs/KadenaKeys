@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kadena_keys/constants/values/values.dart';
-import 'package:kadena_keys/models/wallets.dart';
+import '../constants/values/values.dart';
+import '../models/wallets.dart';
 
 class WalletDropdown extends StatelessWidget {
   final WalletData selectedWallet;
@@ -15,21 +15,17 @@ class WalletDropdown extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 200.0,
-      height: 55.0,
+  Widget build(BuildContext context) => SizedBox(
+      width: 200,
+      height: 55,
       child: DropdownButtonFormField<WalletData>(
         value: selectedWallet,
         decoration: decoration,
-        items: Maps.kadenaWalletData.values.map((WalletData data) {
-          return DropdownMenuItem<WalletData>(
+        items: Maps.kadenaWalletData.values.map((data) => DropdownMenuItem<WalletData>(
             value: data,
             child: Text(data.name),
-          );
-        }).toList(),
+          )).toList(),
         onChanged: onChanged,
       ),
     );
-  }
 }

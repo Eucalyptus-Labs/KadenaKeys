@@ -1,6 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:kadena_keys/constants/values/values.dart';
+import '../constants/values/values.dart';
 
 // Package imports:
 import 'package:overlay_support/overlay_support.dart';

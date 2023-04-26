@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:kadena_keys/constants/values/values.dart';
-import 'package:kadena_keys/pages/home/home_controller.dart';
-import 'package:kadena_keys/widgets/round_wallet_dropdown.dart';
-import 'package:kadena_keys/widgets/rounded_container.dart';
+import '../../../constants/values/values.dart';
+import '../home_controller.dart';
+import '../../../widgets/round_wallet_dropdown.dart';
+import '../../../widgets/rounded_container.dart';
 import 'generate_button.dart';
 
 class Mnemonic extends StatelessWidget {
   const Mnemonic({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return GetBuilder<HomeController>(
-      id: "mnemonic",
-      builder: (controller) {
-        return Column(
+  Widget build(BuildContext context) => GetBuilder<HomeController>(
+      id: 'mnemonic',
+      builder: (controller) => Column(
           children: [
             RoundedContainer(
               height: 365,
@@ -94,22 +92,19 @@ class Mnemonic extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(""),
+                      const Text(''),
                       SizedBox(
                         width: 688.w,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             GetBuilder<HomeController>(
-                              id: "mnemonic-button",
-                              builder: (context) {
-                                return GenerateButton(
+                              id: 'mnemonic-button',
+                              builder: (context) => GenerateButton(
                                   loading: controller.generatingPrivateKey,
                                   onPressCallback: controller.enableButton
                                       ? controller.generateKeysAsync
                                       : null,
-                                );
-                              },
+                                ),
                             ),
                           ],
                         ),
@@ -121,8 +116,6 @@ class Mnemonic extends StatelessWidget {
             ),
             SizedBox(height: 24.h),
           ],
-        );
-      },
+        ),
     );
-  }
 }

@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kadena_keys/constants/values/values.dart';
-import 'package:kadena_keys/widgets/rounded_container.dart';
-import 'package:kadena_keys/widgets/url_text.dart';
+import '../../../constants/values/values.dart';
+import '../../../widgets/rounded_container.dart';
+import '../../../widgets/url_text.dart';
 
 class MoreInfo extends StatelessWidget {
   const MoreInfo({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
+  Widget build(BuildContext context) => Column(
       children: [
         RoundedContainer(
           height: 420,
@@ -75,7 +74,6 @@ class MoreInfo extends StatelessWidget {
                   SizedBox(
                     width: 688.w,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -123,5 +121,4 @@ class MoreInfo extends StatelessWidget {
         SizedBox(height: 125.h),
       ],
     );
-  }
 }

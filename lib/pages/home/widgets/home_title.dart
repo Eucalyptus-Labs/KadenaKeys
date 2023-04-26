@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:kadena_keys/constants/values/values.dart';
-import 'package:kadena_keys/pages/home/home_controller.dart';
-import 'package:kadena_keys/widgets/url_text.dart';
+import '../../../constants/values/values.dart';
+import '../home_controller.dart';
+import '../../../widgets/url_text.dart';
 
 class HomeTitle extends StatelessWidget {
   const HomeTitle({
@@ -11,10 +11,8 @@ class HomeTitle extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return GetBuilder<HomeController>(
-      builder: (controller) {
-        return Column(
+  Widget build(BuildContext context) => GetBuilder<HomeController>(
+      builder: (controller) => Column(
           children: [
             const Text(
               Strings.homeTile,
@@ -23,8 +21,8 @@ class HomeTitle extends StatelessWidget {
             SizedBox(height: 24.h),
             LayoutBuilder(
               builder: (context, constraints) {
-                double screenWidth = constraints.maxWidth;
-                int maxLines = screenWidth >= 1200 ? 2 : 3;
+                final screenWidth = constraints.maxWidth;
+                final maxLines = screenWidth >= 1200 ? 2 : 3;
 
                 return Padding(
                   padding: EdgeInsets.symmetric(horizontal: 140.w),
@@ -61,8 +59,6 @@ class HomeTitle extends StatelessWidget {
             ),
             SizedBox(height: 55.h),
           ],
-        );
-      },
+        ),
     );
-  }
 }

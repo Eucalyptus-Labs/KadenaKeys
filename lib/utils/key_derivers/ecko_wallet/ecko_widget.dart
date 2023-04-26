@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kadena_keys/constants/values/values.dart';
-import 'package:kadena_keys/utils/style_constants.dart';
+import '../../../constants/values/values.dart';
+import '../../style_constants.dart';
 
 class EckoWidget extends StatelessWidget {
   const EckoWidget({Key? key}) : super(key: key);
@@ -9,10 +9,7 @@ class EckoWidget extends StatelessWidget {
   static const String derivationPath = 'kadena-crypto.js';
 
   @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
+  Widget build(BuildContext context) => Row(
       children: <Widget>[
         const Padding(
           padding: EdgeInsets.only(
@@ -39,18 +36,15 @@ class EckoWidget extends StatelessWidget {
         _centeredText(derivationPath),
       ],
     );
-  }
 
   Widget _centeredText(
     String text, {
     TextStyle? style,
-  }) {
-    return Center(
+  }) => Center(
       child: Text(
         text,
         textAlign: TextAlign.center,
         style: style,
       ),
     );
-  }
 }

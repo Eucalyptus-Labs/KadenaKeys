@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:kadena_keys/constants/values/values.dart';
-import 'package:kadena_keys/pages/home/home_controller.dart';
-import 'package:kadena_keys/widgets/rounded_container.dart';
+import '../../../constants/values/values.dart';
+import '../home_controller.dart';
+import '../../../widgets/rounded_container.dart';
 
 class Derivation extends StatelessWidget {
   const Derivation({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return GetBuilder<HomeController>(
-      id: "derivation",
-      builder: (controller) {
-        return Column(
+  Widget build(BuildContext context) => GetBuilder<HomeController>(
+      id: 'derivation',
+      builder: (controller) => Column(
           children: [
             RoundedContainer(
               height: 150,
@@ -47,7 +45,7 @@ class Derivation extends StatelessWidget {
                                   ),
                                   SizedBox(width: 70.w),
                                   Text(
-                                    controller.derivationMethod ?? "",
+                                    controller.derivationMethod ?? '',
                                     style: Styles.textStyleCaption.copyWith(
                                       color: CustomColors.light50,
                                     ),
@@ -72,7 +70,7 @@ class Derivation extends StatelessWidget {
                                   ),
                                   SizedBox(width: 70.w),
                                   Text(
-                                    controller.derivationPath ?? "",
+                                    controller.derivationPath ?? '',
                                     style: Styles.textStyleCaption.copyWith(
                                       color: CustomColors.light50,
                                     ),
@@ -90,8 +88,6 @@ class Derivation extends StatelessWidget {
             ),
             SizedBox(height: 24.h),
           ],
-        );
-      },
+        ),
     );
-  }
 }

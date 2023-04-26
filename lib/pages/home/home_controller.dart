@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kadena_keys/constants/values/values.dart';
-import 'package:kadena_keys/models/key_derivation_result.dart';
-import 'package:kadena_keys/models/wallets.dart';
+import '../../constants/values/values.dart';
+import '../../models/key_derivation_result.dart';
+import '../../models/wallets.dart';
 import 'dart:developer' as developer;
 
 class HomeController extends GetxController {
@@ -16,21 +16,21 @@ class HomeController extends GetxController {
   onWalletSelected(WalletData? data) {
     selectedWallet = data;
     _enableButton();
-    update(["mnemonic", "derivation"]);
+    update(['mnemonic', 'derivation']);
   }
 
   Future<void> generateKeysAsync() async {
-    developer.log("Generate keys");
+    developer.log('Generate keys');
     if (enableButton) {
       generatingPrivateKey = true;
-      update(["mnemonic-button"]);
+      update(['mnemonic-button']);
       await Future.delayed(const Duration(seconds: 1));
       keys = [];
       keys = await selectedWallet!.deriver.deriveKeys(
         mnemonic: menmonicController.text,
       );
       generatingPrivateKey = false;
-      update(["mnemonic-button", "derived-accounts"]);
+      update(['mnemonic-button', 'derived-accounts']);
     }
   }
 
@@ -48,7 +48,7 @@ class HomeController extends GetxController {
 
   void mnemonicOnChange(String? value) {
     _enableButton();
-    update(["mnemonic", "derivation"]);
+    update(['mnemonic', 'derivation']);
   }
 
   void _enableButton() {
