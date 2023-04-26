@@ -635,7 +635,9 @@ class TweetNaClPubKey {
     }
     for (a = 253; a >= 0; a--) {
       _S_off(c, 0, c, 0);
-      if (a != 2 && a != 4) _M_off(c, 0, c, 0, i, ioff);
+      if (a != 2 && a != 4) {
+        _M_off(c, 0, c, 0, i, ioff);
+      }
     }
     for (a = 0; a < 16; a++) {
       o[a + ooff] = c[a];

@@ -19,7 +19,7 @@ class DeriveEcko extends IKeyDeriver {
     int count = 10,
   }) async {
     final root = kadenaMnemonicToRootKeypair('', mnemonic.trim());
-    num hardIndex = 0x80000000 + startIndex;
+    final hardIndex = 0x80000000 + startIndex;
 
     final results = <KeyDerivationResult>[];
     for (num i = 0; i < count; i++) {

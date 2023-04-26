@@ -13,7 +13,7 @@ class HomeController extends GetxController {
   WalletData? selectedWallet;
   String? derivationMethod, derivationPath;
 
-  onWalletSelected(WalletData? data) {
+  void onWalletSelected(WalletData? data) {
     selectedWallet = data;
     _enableButton();
     update(['mnemonic', 'derivation']);
@@ -35,13 +35,21 @@ class HomeController extends GetxController {
   }
 
   String? mnemonicValidateInput(String? value) {
-    if (value == null) return null;
+    if (value == null) {
+      return null;
+    }
 
-    if (value.isEmpty) return null;
+    if (value.isEmpty) {
+      return null;
+    }
 
-    if (enableButton) return null;
+    if (enableButton) {
+      return null;
+    }
 
-    if (selectedWallet == null) return Strings.selectWallet;
+    if (selectedWallet == null) {
+      return Strings.selectWallet;
+    }
 
     return Errors.invalidInput;
   }

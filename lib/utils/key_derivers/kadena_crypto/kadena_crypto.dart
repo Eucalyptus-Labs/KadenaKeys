@@ -15,7 +15,7 @@ external dynamic _kadenaGenKeypair(String pwd, Uint8List root, num index);
 external Uint8List _interopArrayBufferToUint8List(Object arrayBuffer);
 
 List<List<int>> kadenaGenKeypair(String pwd, Uint8List root, num index) {
-  dynamic nativeByteBuffers = _kadenaGenKeypair(pwd, root, index);
+  final nativeByteBuffers = _kadenaGenKeypair(pwd, root, index);
   return [
     _interopArrayBufferToUint8List(nativeByteBuffers[0]),
     _interopArrayBufferToUint8List(nativeByteBuffers[1]),
