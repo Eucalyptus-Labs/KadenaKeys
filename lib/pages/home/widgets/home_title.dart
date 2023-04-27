@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kadena_keys/utils/themes/app_text_theme.dart';
-
+import 'package:get/get.dart';
 import '../../../constants/values/values.dart';
+import '../home_controller.dart';
+import '../../../widgets/url_text.dart';
 
 class HomeTitle extends StatelessWidget {
   const HomeTitle({
@@ -10,53 +11,54 @@ class HomeTitle extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        RichText(
-          text: TextSpan(
-            text: "Kadena",
-            style: AppTextTheme.inter18White700,
-            children: [
-              TextSpan(
-                text: "Keys",
-                style: AppTextTheme.inter18White400,
-              ),
-            ],
-          ),
-        ),
-        SizedBox(height: 24.h),
-        LayoutBuilder(
-          builder: (context, constraints) {
-            double screenWidth = constraints.maxWidth;
-            int maxLines = screenWidth >= 1200 ? 2 : 3;
+  Widget build(BuildContext context) => GetBuilder<HomeController>(
+      builder: (controller) => Column(
+          children: [
+            const Text(
+              Strings.homeTile,
+              style: Styles.textStyleHeader4,
+            ),
+            SizedBox(height: 24.h),
+            LayoutBuilder(
+              builder: (context, constraints) {
+                final screenWidth = constraints.maxWidth;
+                final maxLines = screenWidth >= 1200 ? 2 : 3;
 
-            return Padding(
-              padding: EdgeInsets.symmetric(horizontal: 120.w),
-              child: Text(
-                Strings.descriptionHome,
-                maxLines: maxLines,
-                style: AppTextTheme.inter16Grey400,
-                textAlign: TextAlign.center,
-              ),
-            );
-          },
+                return Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 140.w),
+                  child: Text(
+                    Strings.descriptionHome,
+                    maxLines: maxLines,
+                    style: Styles.textStyleLargeParagraph.copyWith(
+                      color: CustomColors.light75,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                );
+              },
+            ),
+            SizedBox(height: 24.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  Strings.learnMore,
+                  style: Styles.textStyleLargeParagraph.copyWith(
+                    color: CustomColors.light75,
+                  ),
+                ),
+                UrlText(
+                  url: Url.readMe,
+                  text: Strings.here,
+                  style: Styles.textStyleLargeParagraph.copyWith(
+                    color: CustomColors.light75,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 55.h),
+          ],
         ),
-        SizedBox(height: 24.h),
-        RichText(
-          text: TextSpan(
-            text: "You can ",
-            style: AppTextTheme.inter16Grey400,
-            children: [
-              TextSpan(
-                text: "learn more here",
-                style: AppTextTheme.inter16Grey400Underline,
-              ),
-            ],
-          ),
-        ),
-        SizedBox(height: 55.h),
-      ],
     );
-  }
 }

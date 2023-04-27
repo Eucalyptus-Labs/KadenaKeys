@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kadena_keys/models/key_derivation_result.dart';
-import 'package:kadena_keys/utils/themes/app_color_theme.dart';
+import '../../../constants/values/values.dart';
+import '../../../models/key_derivation_result.dart';
 
 class DerivedAccountItem extends StatelessWidget {
   const DerivedAccountItem({
@@ -14,8 +14,7 @@ class DerivedAccountItem extends StatelessWidget {
   final KeyDerivationResult result;
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
+  Widget build(BuildContext context) => Container(
       width: double.infinity,
       height: 40.h,
       padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -24,7 +23,7 @@ class DerivedAccountItem extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.r),
-        color: derivedAccountItem,
+        color: CustomColors.dark100,
       ),
       child: Row(
         children: [
@@ -33,7 +32,7 @@ class DerivedAccountItem extends StatelessWidget {
             fit: FlexFit.tight,
             child: Row(
               children: [
-                Text("$index"),
+                Text('$index'),
                 SizedBox(width: 80.w),
                 Text(result.account),
               ],
@@ -49,5 +48,4 @@ class DerivedAccountItem extends StatelessWidget {
         ],
       ),
     );
-  }
 }

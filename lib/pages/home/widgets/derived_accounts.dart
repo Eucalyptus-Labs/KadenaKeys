@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:kadena_keys/pages/home/home_controller.dart';
-import 'package:kadena_keys/utils/themes/app_color_theme.dart';
-import 'package:kadena_keys/utils/themes/app_text_theme.dart';
+import '../../../constants/values/values.dart';
+import '../home_controller.dart';
+import '../../../widgets/rounded_container.dart';
 import 'derived_account_item.dart';
 import 'generate_button.dart';
 
@@ -11,28 +11,20 @@ class DerivedAccounts extends StatelessWidget {
   const DerivedAccounts({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return GetBuilder<HomeController>(
-      id: "derived-accounts",
-      builder: (controller) {
-        return Column(
+  Widget build(BuildContext context) => GetBuilder<HomeController>(
+      id: 'derived-accounts',
+      builder: (controller) => Column(
           children: [
-            Container(
-              height: controller.keys.isEmpty ? 350.h : 772.h,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16.r),
-                color: darkContainer,
-              ),
-              padding: EdgeInsets.all(40.h),
+            RoundedContainer(
+              height: controller.keys.isEmpty ? 250 : 772,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
-                    children: [
+                    children: const [
                       Text(
-                        "Derived accounts",
-                        style: AppTextTheme.inter24White700,
+                        'Derived accounts',
+                        style: Styles.textStyleHeader4,
                       ),
                     ],
                   ),
@@ -45,16 +37,16 @@ class DerivedAccounts extends StatelessWidget {
                             fit: FlexFit.tight,
                             child: Row(
                               children: [
-                                const Text("Accounts"),
+                                const Text('Accounts'),
                                 SizedBox(width: 66.w),
-                                const Text("Address"),
+                                const Text('Address'),
                               ],
                             ),
                           ),
                           const Flexible(
                             flex: 55,
                             fit: FlexFit.tight,
-                            child: Text("Private key"),
+                            child: Text('Private key'),
                           ),
                         ],
                       ),
@@ -67,31 +59,32 @@ class DerivedAccounts extends StatelessWidget {
                           color: Color.fromRGBO(255, 255, 255, 0.5),
                         ),
                       ),
-                      SizedBox(
-                        height: controller.keys.isEmpty ? 40.h : 480.h,
-                        child: ListView.builder(
-                          itemBuilder: (context, index) {
-                            final item = controller.keys[index];
-                            return DerivedAccountItem(
-                              index: index,
-                              result: item,
-                            );
-                          },
-                          itemCount: controller.keys.length,
+                      if (controller.keys.isNotEmpty)
+                        SizedBox(
+                          height: 480.h,
+                          child: ListView.builder(
+                            itemBuilder: (context, index) {
+                              final item = controller.keys[index];
+                              return DerivedAccountItem(
+                                index: index,
+                                result: item,
+                              );
+                            },
+                            itemCount: controller.keys.length,
+                          ),
                         ),
-                      ),
                     ],
                   ),
-                  GenerateButton(
-                    onPressCallback: () {},
-                  ),
+                  if (controller.keys.isNotEmpty)
+                    GenerateButton(
+                      title: Strings.generateMore,
+                      onPressCallback: () {},
+                    ),
                 ],
               ),
             ),
             SizedBox(height: 24.h),
           ],
-        );
-      },
+        ),
     );
-  }
 }

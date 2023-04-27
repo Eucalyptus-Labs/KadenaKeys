@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kadena_keys/utils/style_constants.dart';
-
 import '../../../constants/values/values.dart';
+import '../../style_constants.dart';
 
 class KoalaWidget extends StatelessWidget {
   const KoalaWidget({Key? key}) : super(key: key);
@@ -10,10 +9,7 @@ class KoalaWidget extends StatelessWidget {
   static const String derivationPath = "m/44'/626'/0'";
 
   @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
+  Widget build(BuildContext context) => Row(
       children: <Widget>[
         const Padding(
           padding: EdgeInsets.only(
@@ -40,18 +36,15 @@ class KoalaWidget extends StatelessWidget {
         _centeredText(derivationPath),
       ],
     );
-  }
 
   Widget _centeredText(
     String text, {
     TextStyle? style,
-  }) {
-    return Center(
+  }) => Center(
       child: Text(
         text,
         textAlign: TextAlign.center,
         style: style,
       ),
     );
-  }
 }

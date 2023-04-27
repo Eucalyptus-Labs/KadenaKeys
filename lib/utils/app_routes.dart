@@ -1,4 +1,4 @@
 class AppRoutes {
-  static const home = "/home";
-  static const keyDerivation = "/key-derivation";
+  static const home = '/home';
+  static const keyDerivation = '/key-derivation';
 }

@@ -2,13 +2,13 @@ import 'package:auto_route/annotations.dart';
 import 'package:fl_toast/fl_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kadena_keys/models/key_derivation_result.dart';
-import 'package:kadena_keys/utils/style_constants.dart';
-import 'package:kadena_keys/utils/wallets.dart';
-import 'package:kadena_keys/widgets/custom_button_widget.dart';
-import 'package:kadena_keys/widgets/wallet_dropdown.dart';
-
+import '../constants/enums/kadena_wallets.dart';
 import '../constants/values/values.dart';
+import '../models/key_derivation_result.dart';
+import '../utils/style_constants.dart';
+import '../models/wallets.dart';
+import '../widgets/custom_button_widget.dart';
+import '../widgets/wallet_dropdown.dart';
 
 @RoutePage()
 class KeyDerivationPage extends StatefulWidget {
@@ -21,11 +21,11 @@ class KeyDerivationPage extends StatefulWidget {
 class KeyDerivationPageState extends State<KeyDerivationPage> {
   final TextEditingController _menmonicController = TextEditingController();
 
-  WalletData selectedWallet = kadenaWalletData[KadenaWallet.koala]!;
+  WalletData selectedWallet = Maps.kadenaWalletData[KadenaWallet.koala]!;
   bool generatingPrivateKey = false;
   List<KeyDerivationResult>? keys;
 
-  String? _errorText = Strings.invalidInput;
+  String? _errorText = Errors.invalidInput;
 
   void _onSelectedWalletChanged(WalletData? data) {
     setState(() {
@@ -39,7 +39,7 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
       if (selectedWallet.deriver.validateMnemonic(_menmonicController.text)) {
         _errorText = null;
       } else {
-        _errorText = Strings.invalidInput;
+        _errorText = Errors.invalidInput;
       }
     });
   }
@@ -55,7 +55,7 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
       generatingPrivateKey = true;
     });
 
-    final List<KeyDerivationResult> value =
+    final value =
         await selectedWallet.deriver.deriveKeys(
       mnemonic: _menmonicController.text,
     );
@@ -67,13 +67,11 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(StyleConstants.magic16),
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               _buildSectionTitle(Strings.selectWallet),
@@ -120,15 +118,13 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
         ),
       ),
     );
-  }
 
   Widget _buildSectionTitle(
     String title, {
     EdgeInsets padding = const EdgeInsets.only(
       bottom: StyleConstants.magic20,
     ),
-  }) {
-    return Padding(
+  }) => Padding(
       padding: padding,
       child: Text(
         title,
@@ -136,7 +132,6 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
             fontSize: StyleConstants.magic20, fontWeight: FontWeight.bold),
       ),
     );
-  }
 
   Widget _buildGenerateSeedButton() {
     if (generatingPrivateKey) {
@@ -180,7 +175,6 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
           child: DataTable(
             columns: const [
               DataColumn(label: Text('Private key')),
@@ -197,7 +191,7 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
                           await Clipboard.setData(
                             ClipboardData(text: accountData.privateKey),
                           );
-                          showPlatformToast(
+                          await showPlatformToast(
                             child: const Text(
                               Strings.copiedToClipboard,
                             ),
@@ -211,7 +205,7 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
                           await Clipboard.setData(
                             ClipboardData(text: accountData.publicKey),
                           );
-                          showPlatformToast(
+                          await showPlatformToast(
                             child: const Text(
                               Strings.copiedToClipboard,
                             ),
@@ -225,7 +219,7 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
                           await Clipboard.setData(
                             ClipboardData(text: accountData.account),
                           );
-                          showPlatformToast(
+                          await showPlatformToast(
                             child: const Text(
                               Strings.copiedToClipboard,
                             ),

@@ -1,6 +1,5 @@
 part of values;
 
-// These are NON material colors
 class CustomColors {
   static const Color darkGreyColor = Color(0xFF232323);
   static const Color lightGrayColor = Color(0xFFf3f3f3);
@@ -70,5 +69,8 @@ class CustomColors {
   static Color light75 = const Color(0xFFFFFFFF).withOpacity(0.75);
   static Color light65 = const Color(0xFFFFFFFF).withOpacity(0.65);
   static Color light50 = const Color(0xFFFFFFFF).withOpacity(0.50);
+  static Color light24 = const Color(0xFFFFFFFF).withOpacity(0.24);
   static Color light10 = const Color(0xFFFFFFFF).withOpacity(0.10);
+  static Color light08 = const Color(0xFFFFFFFF).withOpacity(0.08);
+  static Color light02 = const Color(0xFFFFFFFF).withOpacity(0.02);
 }

@@ -88,14 +88,14 @@ class TweetNaClPubKey {
 
       m[15] = t[15] - 0x7fff - ((m[14] >> 16) & 1);
 
-      final b = ((m[15] >> 16) & 1);
+      final b = (m[15] >> 16) & 1;
       m[14] &= 0xffff;
       _sel25519_off(t, 0, m, 0, 1 - b);
     }
 
     for (var i = 0; i < 16; i++) {
       o[2 * i] = t[i] & 0xff;
-      o[2 * i + 1] = (t[i] >> 8);
+      o[2 * i + 1] = t[i] >> 8;
     }
   }
 
@@ -104,7 +104,7 @@ class TweetNaClPubKey {
 
     _pack25519(d, a, aoff);
 
-    return (d[0] & 1);
+    return d[0] & 1;
   }
 
   static void _A_off(Int32List o, final int ooff, Int32List a, final int aoff,
@@ -635,7 +635,9 @@ class TweetNaClPubKey {
     }
     for (a = 253; a >= 0; a--) {
       _S_off(c, 0, c, 0);
-      if (a != 2 && a != 4) _M_off(c, 0, c, 0, i, ioff);
+      if (a != 2 && a != 4) {
+        _M_off(c, 0, c, 0, i, ioff);
+      }
     }
     for (a = 0; a < 16; a++) {
       o[a + ooff] = c[a];
@@ -746,7 +748,7 @@ class TweetNaClPubKey {
     final k = Uint8List(64);
     final p = List<Int32List>.generate(4, (_) => Int32List(16));
 
-    for (int i = 0; i < 32; i++) {
+    for (var i = 0; i < 32; i++) {
       k[i] = sk[i];
     }
 
@@ -782,13 +784,13 @@ class ExtendedSigningKey extends AsymmetricPrivateKey
 
   factory ExtendedSigningKey({required Uint8List secret}) {
     if (secret.length == TweetNaCl.signingKeyLength) {
-      Uint8List pubKey = Uint8List(TweetNaCl.publicKeyLength);
+      final pubKey = Uint8List(TweetNaCl.publicKeyLength);
       TweetNaClPubKey.crypto_gen_pubkey(pubKey, secret.sublist(0, 32));
       developer.log(hex.encode(pubKey));
       const spkLength = TweetNaCl.signingKeyLength + TweetNaCl.publicKeyLength;
       final spk = Uint8List(spkLength);
       // Copy the secret and the pubKey into the s
-      for (int i = 0; i < spkLength; i++) {
+      for (var i = 0; i < spkLength; i++) {
         if (i < TweetNaCl.signingKeyLength) {
           spk[i] = secret[i];
         } else {
@@ -860,7 +862,7 @@ class ExtendedSigningKey extends AsymmetricPrivateKey
   @override
   SignedMessage sign(Uint8List message) {
     // signed message
-    var sm = Uint8List(message.length + TweetNaCl.signatureLength);
+    final sm = Uint8List(message.length + TweetNaCl.signatureLength);
     final result = TweetNaCl.crypto_sign(
       sm,
       -1,

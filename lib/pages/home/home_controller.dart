@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kadena_keys/constants/values/values.dart';
-import 'package:kadena_keys/models/key_derivation_result.dart';
-import 'package:kadena_keys/utils/wallets.dart';
+import '../../constants/values/values.dart';
+import '../../models/key_derivation_result.dart';
+import '../../models/wallets.dart';
 import 'dart:developer' as developer;
 
 class HomeController extends GetxController {
@@ -11,43 +11,52 @@ class HomeController extends GetxController {
   bool enableButton = false;
   bool generatingPrivateKey = false;
   WalletData? selectedWallet;
+  String? derivationMethod, derivationPath;
 
-  onWalletSelected(WalletData? data) {
+  void onWalletSelected(WalletData? data) {
     selectedWallet = data;
     _enableButton();
-    update(["mnemonic", "derivation"]);
+    update(['mnemonic', 'derivation']);
   }
 
   Future<void> generateKeysAsync() async {
-    developer.log("Generate keys");
+    developer.log('Generate keys');
     if (enableButton) {
       generatingPrivateKey = true;
-      update(["mnemonic-button"]);
+      update(['mnemonic-button']);
       await Future.delayed(const Duration(seconds: 1));
       keys = [];
       keys = await selectedWallet!.deriver.deriveKeys(
         mnemonic: menmonicController.text,
       );
       generatingPrivateKey = false;
-      update(["mnemonic-button", "derived-accounts"]);
+      update(['mnemonic-button', 'derived-accounts']);
     }
   }
 
   String? mnemonicValidateInput(String? value) {
-    if (value == null) return null;
+    if (value == null) {
+      return null;
+    }
 
-    if (value.isEmpty) return null;
+    if (value.isEmpty) {
+      return null;
+    }
 
-    if (enableButton) return null;
+    if (enableButton) {
+      return null;
+    }
 
-    if (selectedWallet == null) return Strings.selectWallet;
+    if (selectedWallet == null) {
+      return Strings.selectWallet;
+    }
 
-    return Strings.invalidInput;
+    return Errors.invalidInput;
   }
 
   void mnemonicOnChange(String? value) {
     _enableButton();
-    update(["mnemonic", "derivation"]);
+    update(['mnemonic', 'derivation']);
   }
 
   void _enableButton() {
@@ -66,14 +75,9 @@ class HomeController extends GetxController {
   // #endregion
 
   // #region Derivation
-  final derivationMethodController = TextEditingController();
-  final derivationPathController = TextEditingController();
-
   void _setMethodAndPath() {
-    derivationMethodController.text =
-        "Derivation method: ${selectedWallet!.derivationMethod}";
-    derivationPathController.text =
-        "Derivation path: ${selectedWallet!.derivationPath}";
+    derivationMethod = selectedWallet!.derivationMethod;
+    derivationPath = selectedWallet!.derivationPath;
   }
   // #endregion
 
