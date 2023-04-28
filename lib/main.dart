@@ -19,21 +19,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OverlaySupport(
-      child: ScreenUtilInit(
-        designSize: const Size(1440, 900),
-        builder: (context, child) => MaterialApp.router(
+        child: ScreenUtilInit(
+          designSize: const Size(1440, 900),
+          builder: (context, child) => MaterialApp.router(
+            title: Strings.appTitle,
+            debugShowCheckedModeBanner: false,
             theme: buildLightTheme(),
-            themeMode: ThemeMode.dark,
             darkTheme: buildDarkTheme(),
+            themeMode: ThemeMode.dark,
             routerDelegate: GetIt.I<AppRouter>().delegate(
               navigatorObservers: () => [
                 //use this of any purposes (analytics or getting callbacks on stack change or anything else)
               ],
             ),
             routeInformationParser: GetIt.I<AppRouter>().defaultRouteParser(),
-            debugShowCheckedModeBanner: false,
-            title: Strings.appTitle,
           ),
-      ),
-    );
+        ),
+      );
 }

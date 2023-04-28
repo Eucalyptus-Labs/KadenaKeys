@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../constants/values/values.dart';
-import '../../style_constants.dart';
+import '../../../constants/style_constants.dart';
 
 class EckoWidget extends StatelessWidget {
   const EckoWidget({Key? key}) : super(key: key);
