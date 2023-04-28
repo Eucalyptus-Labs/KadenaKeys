@@ -3,7 +3,7 @@ import 'package:mobx/mobx.dart';
 
 part 'marketplace_state.g.dart';
 
-class MarketplaceState = _MarketplaceStateBase with _$MarketplaceState;
+class MarketplaceState extends _MarketplaceStateBase with _$MarketplaceState {}
 
 abstract class _MarketplaceStateBase with Store {
 //   late ReactionDisposer disposer;

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:auto_route/annotations.dart';
 import 'package:fl_toast/fl_toast.dart';
 import 'package:flutter/material.dart';
