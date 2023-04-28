@@ -25,6 +25,71 @@ mixin _$HomePageStore on _HomePageStore, Store {
     });
   }
 
+  late final _$generatingPrivateKeyAtom =
+      Atom(name: '_HomePageStore.generatingPrivateKey', context: context);
+
+  @override
+  bool get generatingPrivateKey {
+    _$generatingPrivateKeyAtom.reportRead();
+    return super.generatingPrivateKey;
+  }
+
+  @override
+  set generatingPrivateKey(bool value) {
+    _$generatingPrivateKeyAtom.reportWrite(value, super.generatingPrivateKey,
+        () {
+      super.generatingPrivateKey = value;
+    });
+  }
+
+  late final _$enableButtonAtom =
+      Atom(name: '_HomePageStore.enableButton', context: context);
+
+  @override
+  bool get enableButton {
+    _$enableButtonAtom.reportRead();
+    return super.enableButton;
+  }
+
+  @override
+  set enableButton(bool value) {
+    _$enableButtonAtom.reportWrite(value, super.enableButton, () {
+      super.enableButton = value;
+    });
+  }
+
+  late final _$derivationMethodAtom =
+      Atom(name: '_HomePageStore.derivationMethod', context: context);
+
+  @override
+  String? get derivationMethod {
+    _$derivationMethodAtom.reportRead();
+    return super.derivationMethod;
+  }
+
+  @override
+  set derivationMethod(String? value) {
+    _$derivationMethodAtom.reportWrite(value, super.derivationMethod, () {
+      super.derivationMethod = value;
+    });
+  }
+
+  late final _$derivationPathAtom =
+      Atom(name: '_HomePageStore.derivationPath', context: context);
+
+  @override
+  String? get derivationPath {
+    _$derivationPathAtom.reportRead();
+    return super.derivationPath;
+  }
+
+  @override
+  set derivationPath(String? value) {
+    _$derivationPathAtom.reportWrite(value, super.derivationPath, () {
+      super.derivationPath = value;
+    });
+  }
+
   late final _$keysAtom = Atom(name: '_HomePageStore.keys', context: context);
 
   @override
@@ -55,9 +120,24 @@ mixin _$HomePageStore on _HomePageStore, Store {
   }
 
   @override
+  void mnemonicOnChange(String? value) {
+    final _$actionInfo = _$_HomePageStoreActionController.startAction(
+        name: '_HomePageStore.mnemonicOnChange');
+    try {
+      return super.mnemonicOnChange(value);
+    } finally {
+      _$_HomePageStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 selectedWallet: ${selectedWallet},
+generatingPrivateKey: ${generatingPrivateKey},
+enableButton: ${enableButton},
+derivationMethod: ${derivationMethod},
+derivationPath: ${derivationPath},
 keys: ${keys}
     ''';
   }

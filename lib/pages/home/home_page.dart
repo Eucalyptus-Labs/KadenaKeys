@@ -1,7 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../widgets/footer.dart';
 import 'widgets/derivation_container.dart';
 import 'widgets/derived_accounts.dart';
@@ -28,11 +27,11 @@ class HomePage extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      HomeTitle(),
+                      const HomeTitle(),
                       Mnemonic(),
                       DerivationContainer(),
                       DerivedAccounts(),
-                      MoreInfo(),
+                      const MoreInfo(),
                     ],
                   ),
                 ),

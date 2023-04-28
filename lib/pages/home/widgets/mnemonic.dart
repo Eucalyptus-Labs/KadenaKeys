@@ -14,108 +14,107 @@ class Mnemonic extends StatelessWidget {
   final homePageStore = GetIt.I<HomePageStore>();
 
   @override
-  Widget build(BuildContext context) => Column(
-        children: [
-          RoundedContainer(
-            height: 365,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: const [
-                    Text(
-                      Strings.mnemonic,
-                      style: Styles.textStyleHeader4,
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            const Text(
-                              Strings.selectWallet,
-                              style: Styles.textStyleSubheading,
-                            ),
-                            SizedBox(width: 8.w),
-                            Icon(
-                              Icons.info,
-                              color: CustomColors.light24,
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          width: 688.w,
-                          child: Observer(
-                            builder: (_) => RoundedWalletDropdown(
+  Widget build(BuildContext context) => Observer(
+        builder: (context) => Column(
+          children: [
+            RoundedContainer(
+              height: 365,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: const [
+                      Text(
+                        Strings.mnemonic,
+                        style: Styles.textStyleHeader4,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              const Text(
+                                Strings.selectWallet,
+                                style: Styles.textStyleSubheading,
+                              ),
+                              SizedBox(width: 8.w),
+                              Icon(
+                                Icons.info,
+                                color: CustomColors.light24,
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            width: 688.w,
+                            child: RoundedWalletDropdown(
                               selectedWallet: homePageStore.selectedWallet,
                               onChanged: homePageStore.onWalletSelected,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 28.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            const Text(
-                              Strings.mnemonicPhrase,
-                              style: Styles.textStyleSubheading,
-                            ),
-                            SizedBox(width: 8.w),
-                            Icon(
-                              Icons.info,
-                              color: CustomColors.light24,
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          width: 688.w,
-                          child: TextFormField(
-                            // controller: controller.menmonicController,
-                            keyboardType: TextInputType.multiline,
-                            maxLines: null,
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            // validator: controller.mnemonicValidateInput,
-                            // onChanged: controller.mnemonicOnChange,
-                            decoration: Decorations.defaultInputDecoration,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(''),
-                    SizedBox(
-                      width: 688.w,
-                      child: Row(
+                        ],
+                      ),
+                      SizedBox(height: 28.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          GenerateButton(
-                            // loading: controller.generatingPrivateKey,
-                            // onPressCallback: controller.enableButton
-                            //     ? controller.generateKeysAsync
-                            //     : null,
-                            onPressCallback: () {},
+                          Row(
+                            children: [
+                              const Text(
+                                Strings.mnemonicPhrase,
+                                style: Styles.textStyleSubheading,
+                              ),
+                              SizedBox(width: 8.w),
+                              Icon(
+                                Icons.info,
+                                color: CustomColors.light24,
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            width: 688.w,
+                            child: TextFormField(
+                              controller: homePageStore.menmonicController,
+                              keyboardType: TextInputType.multiline,
+                              maxLines: null,
+                              autovalidateMode:
+                                  AutovalidateMode.onUserInteraction,
+                              validator: homePageStore.mnemonicValidateInput,
+                              onChanged: homePageStore.mnemonicOnChange,
+                              decoration: Decorations.defaultInputDecoration,
+                            ),
                           ),
                         ],
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(''),
+                      SizedBox(
+                        width: 688.w,
+                        child: Row(
+                          children: [
+                            GenerateButton(
+                              loading: homePageStore.generatingPrivateKey,
+                              onPressCallback: homePageStore.enableButton
+                                  ? homePageStore.generateKeysAsync
+                                  : null,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          SizedBox(height: 24.h),
-        ],
+            SizedBox(height: 24.h),
+          ],
+        ),
       );
 }

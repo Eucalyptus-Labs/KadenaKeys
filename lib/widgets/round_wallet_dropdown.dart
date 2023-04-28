@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants/values/values.dart';
 import '../models/wallets.dart';
-import 'package:nil/nil.dart';
 
 class RoundedWalletDropdown extends StatelessWidget {
   final WalletData? selectedWallet;
@@ -31,24 +30,27 @@ class RoundedWalletDropdown extends StatelessWidget {
               focusColor: Colors.transparent,
               // hoverColor: Colors.transparent,
             ),
-            child: DropdownButton(
-              underline: const Nil(),
-              hint: Text(
-                'Select wallet',
-                style: Styles.textStyleMediumParagraph.copyWith(
-                  color: CustomColors.light50,
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton(
+                // underline: const Nil(),
+                hint: Text(
+                  'Select wallet',
+                  style: Styles.textStyleMediumParagraph.copyWith(
+                    color: CustomColors.light50,
+                    decoration: TextDecoration.none,
+                  ),
                 ),
+                items: Maps.kadenaWalletData.values
+                    .map((data) => DropdownMenuItem<WalletData>(
+                          value: data,
+                          child: Text(data.name),
+                        ))
+                    .toList(),
+                onChanged: onChanged,
+                isExpanded: true,
+                value: selectedWallet,
+                iconEnabledColor: CustomColors.accent100,
               ),
-              items: Maps.kadenaWalletData.values
-                  .map((data) => DropdownMenuItem<WalletData>(
-                        value: data,
-                        child: Text(data.name),
-                      ))
-                  .toList(),
-              onChanged: onChanged,
-              isExpanded: true,
-              value: selectedWallet,
-              iconEnabledColor: CustomColors.accent100,
             ),
           ),
         ),
