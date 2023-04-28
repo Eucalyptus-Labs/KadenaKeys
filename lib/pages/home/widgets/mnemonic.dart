@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 import '../../../constants/values/values.dart';
+import '../../../store/home_page/home_page_store.dart';
 import '../../../widgets/round_wallet_dropdown.dart';
 import '../../../widgets/rounded_container.dart';
 import 'generate_button.dart';
 
 class Mnemonic extends StatelessWidget {
-  const Mnemonic({super.key});
+  Mnemonic({super.key});
+
+  final homePageStore = GetIt.I<HomePageStore>();
 
   @override
   Widget build(BuildContext context) => Column(
@@ -44,11 +49,11 @@ class Mnemonic extends StatelessWidget {
                         ),
                         SizedBox(
                           width: 688.w,
-                          child: RoundedWalletDropdown(
-                            // selectedWallet: controller.selectedWallet,
-                            // onChanged: controller.onWalletSelected,
-                            selectedWallet: null,
-                            onChanged: (p0) {},
+                          child: Observer(
+                            builder: (_) => RoundedWalletDropdown(
+                              selectedWallet: homePageStore.selectedWallet,
+                              onChanged: homePageStore.onWalletSelected,
+                            ),
                           ),
                         ),
                       ],

@@ -24,12 +24,14 @@ mixin _$ExampleListResponse {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ExampleListResponseCopyWith<ExampleListResponse> get copyWith => throw _privateConstructorUsedError;
+  $ExampleListResponseCopyWith<ExampleListResponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $ExampleListResponseCopyWith<$Res> {
-  factory $ExampleListResponseCopyWith(ExampleListResponse value, $Res Function(ExampleListResponse) then) =
+  factory $ExampleListResponseCopyWith(
+          ExampleListResponse value, $Res Function(ExampleListResponse) then) =
       _$ExampleListResponseCopyWithImpl<$Res, ExampleListResponse>;
   @useResult
   $Res call({List<ExampleModel> example});
@@ -60,8 +62,10 @@ class _$ExampleListResponseCopyWithImpl<$Res, $Val extends ExampleListResponse>
 }
 
 /// @nodoc
-abstract class _$$_ExampleListResponseCopyWith<$Res> implements $ExampleListResponseCopyWith<$Res> {
-  factory _$$_ExampleListResponseCopyWith(_$_ExampleListResponse value, $Res Function(_$_ExampleListResponse) then) =
+abstract class _$$_ExampleListResponseCopyWith<$Res>
+    implements $ExampleListResponseCopyWith<$Res> {
+  factory _$$_ExampleListResponseCopyWith(_$_ExampleListResponse value,
+          $Res Function(_$_ExampleListResponse) then) =
       __$$_ExampleListResponseCopyWithImpl<$Res>;
   @override
   @useResult
@@ -69,9 +73,11 @@ abstract class _$$_ExampleListResponseCopyWith<$Res> implements $ExampleListResp
 }
 
 /// @nodoc
-class __$$_ExampleListResponseCopyWithImpl<$Res> extends _$ExampleListResponseCopyWithImpl<$Res, _$_ExampleListResponse>
+class __$$_ExampleListResponseCopyWithImpl<$Res>
+    extends _$ExampleListResponseCopyWithImpl<$Res, _$_ExampleListResponse>
     implements _$$_ExampleListResponseCopyWith<$Res> {
-  __$$_ExampleListResponseCopyWithImpl(_$_ExampleListResponse _value, $Res Function(_$_ExampleListResponse) _then)
+  __$$_ExampleListResponseCopyWithImpl(_$_ExampleListResponse _value,
+      $Res Function(_$_ExampleListResponse) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -91,9 +97,11 @@ class __$$_ExampleListResponseCopyWithImpl<$Res> extends _$ExampleListResponseCo
 /// @nodoc
 @JsonSerializable()
 class _$_ExampleListResponse implements _ExampleListResponse {
-  _$_ExampleListResponse({required final List<ExampleModel> example}) : _example = example;
+  _$_ExampleListResponse({required final List<ExampleModel> example})
+      : _example = example;
 
-  factory _$_ExampleListResponse.fromJson(Map<String, dynamic> json) => _$$_ExampleListResponseFromJson(json);
+  factory _$_ExampleListResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_ExampleListResponseFromJson(json);
 
   final List<ExampleModel> _example;
   @override
@@ -118,13 +126,15 @@ class _$_ExampleListResponse implements _ExampleListResponse {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(_example));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_example));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_ExampleListResponseCopyWith<_$_ExampleListResponse> get copyWith =>
-      __$$_ExampleListResponseCopyWithImpl<_$_ExampleListResponse>(this, _$identity);
+      __$$_ExampleListResponseCopyWithImpl<_$_ExampleListResponse>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -135,15 +145,18 @@ class _$_ExampleListResponse implements _ExampleListResponse {
 }
 
 abstract class _ExampleListResponse implements ExampleListResponse {
-  factory _ExampleListResponse({required final List<ExampleModel> example}) = _$_ExampleListResponse;
+  factory _ExampleListResponse({required final List<ExampleModel> example}) =
+      _$_ExampleListResponse;
 
-  factory _ExampleListResponse.fromJson(Map<String, dynamic> json) = _$_ExampleListResponse.fromJson;
+  factory _ExampleListResponse.fromJson(Map<String, dynamic> json) =
+      _$_ExampleListResponse.fromJson;
 
   @override
   List<ExampleModel> get example;
   @override
   @JsonKey(ignore: true)
-  _$$_ExampleListResponseCopyWith<_$_ExampleListResponse> get copyWith => throw _privateConstructorUsedError;
+  _$$_ExampleListResponseCopyWith<_$_ExampleListResponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 ExampleModel _$ExampleModelFromJson(Map<String, dynamic> json) {
@@ -158,19 +171,22 @@ mixin _$ExampleModel {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ExampleModelCopyWith<ExampleModel> get copyWith => throw _privateConstructorUsedError;
+  $ExampleModelCopyWith<ExampleModel> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $ExampleModelCopyWith<$Res> {
-  factory $ExampleModelCopyWith(ExampleModel value, $Res Function(ExampleModel) then) =
+  factory $ExampleModelCopyWith(
+          ExampleModel value, $Res Function(ExampleModel) then) =
       _$ExampleModelCopyWithImpl<$Res, ExampleModel>;
   @useResult
   $Res call({String x, String y, String? link});
 }
 
 /// @nodoc
-class _$ExampleModelCopyWithImpl<$Res, $Val extends ExampleModel> implements $ExampleModelCopyWith<$Res> {
+class _$ExampleModelCopyWithImpl<$Res, $Val extends ExampleModel>
+    implements $ExampleModelCopyWith<$Res> {
   _$ExampleModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -203,8 +219,10 @@ class _$ExampleModelCopyWithImpl<$Res, $Val extends ExampleModel> implements $Ex
 }
 
 /// @nodoc
-abstract class _$$_ExampleModelCopyWith<$Res> implements $ExampleModelCopyWith<$Res> {
-  factory _$$_ExampleModelCopyWith(_$_ExampleModel value, $Res Function(_$_ExampleModel) then) =
+abstract class _$$_ExampleModelCopyWith<$Res>
+    implements $ExampleModelCopyWith<$Res> {
+  factory _$$_ExampleModelCopyWith(
+          _$_ExampleModel value, $Res Function(_$_ExampleModel) then) =
       __$$_ExampleModelCopyWithImpl<$Res>;
   @override
   @useResult
@@ -212,9 +230,12 @@ abstract class _$$_ExampleModelCopyWith<$Res> implements $ExampleModelCopyWith<$
 }
 
 /// @nodoc
-class __$$_ExampleModelCopyWithImpl<$Res> extends _$ExampleModelCopyWithImpl<$Res, _$_ExampleModel>
+class __$$_ExampleModelCopyWithImpl<$Res>
+    extends _$ExampleModelCopyWithImpl<$Res, _$_ExampleModel>
     implements _$$_ExampleModelCopyWith<$Res> {
-  __$$_ExampleModelCopyWithImpl(_$_ExampleModel _value, $Res Function(_$_ExampleModel) _then) : super(_value, _then);
+  __$$_ExampleModelCopyWithImpl(
+      _$_ExampleModel _value, $Res Function(_$_ExampleModel) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -245,7 +266,8 @@ class __$$_ExampleModelCopyWithImpl<$Res> extends _$ExampleModelCopyWithImpl<$Re
 class _$_ExampleModel implements _ExampleModel {
   _$_ExampleModel({required this.x, required this.y, this.link});
 
-  factory _$_ExampleModel.fromJson(Map<String, dynamic> json) => _$$_ExampleModelFromJson(json);
+  factory _$_ExampleModel.fromJson(Map<String, dynamic> json) =>
+      _$$_ExampleModelFromJson(json);
 
   @override
   final String x;
@@ -288,9 +310,13 @@ class _$_ExampleModel implements _ExampleModel {
 }
 
 abstract class _ExampleModel implements ExampleModel {
-  factory _ExampleModel({required final String x, required final String y, final String? link}) = _$_ExampleModel;
+  factory _ExampleModel(
+      {required final String x,
+      required final String y,
+      final String? link}) = _$_ExampleModel;
 
-  factory _ExampleModel.fromJson(Map<String, dynamic> json) = _$_ExampleModel.fromJson;
+  factory _ExampleModel.fromJson(Map<String, dynamic> json) =
+      _$_ExampleModel.fromJson;
 
   @override
   String get x;
@@ -300,5 +326,6 @@ abstract class _ExampleModel implements ExampleModel {
   String? get link;
   @override
   @JsonKey(ignore: true)
-  _$$_ExampleModelCopyWith<_$_ExampleModel> get copyWith => throw _privateConstructorUsedError;
+  _$$_ExampleModelCopyWith<_$_ExampleModel> get copyWith =>
+      throw _privateConstructorUsedError;
 }

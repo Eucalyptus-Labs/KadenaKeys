@@ -1,10 +1,11 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../constants/values/values.dart';
 import '../../../widgets/rounded_container.dart';
 
-class Derivation extends StatelessWidget {
-  const Derivation({super.key});
+class DerivationContainer extends StatelessWidget {
+  const DerivationContainer({super.key});
 
   @override
   Widget build(BuildContext context) => Column(

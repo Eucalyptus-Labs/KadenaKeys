@@ -1,8 +1,9 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../widgets/footer.dart';
-import 'widgets/derivation.dart';
+import 'widgets/derivation_container.dart';
 import 'widgets/derived_accounts.dart';
 import 'widgets/home_title.dart';
 import 'widgets/mnemonic.dart';
@@ -10,9 +11,7 @@ import 'widgets/more_info.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {
-  const HomePage({
-    super.key,
-  });
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -28,10 +27,10 @@ class HomePage extends StatelessWidget {
                     right: 184.w,
                   ),
                   child: Column(
-                    children: const [
+                    children: [
                       HomeTitle(),
                       Mnemonic(),
-                      Derivation(),
+                      DerivationContainer(),
                       DerivedAccounts(),
                       MoreInfo(),
                     ],
