@@ -6,4 +6,5 @@ class Url {
   static const String koalaWallet = 'https://koalawallet.io';
   static const String kdaExplorer = 'https://kdaexplorer.com';
   static const String kadenaEcosystem = 'https://kadenaecosystem.com';
+  static const String privacyPolicy = 'https://eucalyptuslabs.com/privacy';
 }
