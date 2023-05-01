@@ -25,20 +25,20 @@ mixin _$HomePageStore on _HomePageStore, Store {
     });
   }
 
-  late final _$generatingPrivateKeyAtom =
-      Atom(name: '_HomePageStore.generatingPrivateKey', context: context);
+  late final _$isGeneratingPrivateKeyAtom =
+      Atom(name: '_HomePageStore.isGeneratingPrivateKey', context: context);
 
   @override
-  bool get generatingPrivateKey {
-    _$generatingPrivateKeyAtom.reportRead();
-    return super.generatingPrivateKey;
+  bool get isGeneratingPrivateKey {
+    _$isGeneratingPrivateKeyAtom.reportRead();
+    return super.isGeneratingPrivateKey;
   }
 
   @override
-  set generatingPrivateKey(bool value) {
-    _$generatingPrivateKeyAtom.reportWrite(value, super.generatingPrivateKey,
-        () {
-      super.generatingPrivateKey = value;
+  set isGeneratingPrivateKey(bool value) {
+    _$isGeneratingPrivateKeyAtom
+        .reportWrite(value, super.isGeneratingPrivateKey, () {
+      super.isGeneratingPrivateKey = value;
     });
   }
 
@@ -134,7 +134,7 @@ mixin _$HomePageStore on _HomePageStore, Store {
   String toString() {
     return '''
 selectedWallet: ${selectedWallet},
-generatingPrivateKey: ${generatingPrivateKey},
+isGeneratingPrivateKey: ${isGeneratingPrivateKey},
 enableButton: ${enableButton},
 derivationMethod: ${derivationMethod},
 derivationPath: ${derivationPath},

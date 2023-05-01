@@ -100,7 +100,7 @@ class Mnemonic extends StatelessWidget {
                         child: Row(
                           children: [
                             GenerateButton(
-                              loading: homePageStore.generatingPrivateKey,
+                              loading: homePageStore.isGeneratingPrivateKey,
                               onPressCallback: homePageStore.enableButton
                                   ? homePageStore.generateKeysAsync
                                   : null,

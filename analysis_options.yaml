@@ -23,7 +23,7 @@ linter:
   # producing the lint.  
 analyzer:
   exclude:
-    - "**/*.g.dart"
+    - "**/*.g.dart"    
   # language:
   #   strict-casts: true
   #   strict-inference: true

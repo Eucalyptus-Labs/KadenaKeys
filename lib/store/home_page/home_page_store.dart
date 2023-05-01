@@ -18,7 +18,7 @@ abstract class _HomePageStore with Store {
   WalletData? selectedWallet;
 
   @observable
-  bool generatingPrivateKey = false;
+  bool isGeneratingPrivateKey = false;
 
   @observable
   bool enableButton = false;
@@ -39,14 +39,14 @@ abstract class _HomePageStore with Store {
   Future<void> generateKeysAsync() async {
     developer.log('Generate keys');
     if (enableButton) {
-      generatingPrivateKey = true;
+      isGeneratingPrivateKey = true;
       await Future.delayed(const Duration(seconds: 1));
       keys.clear();
       final response = await selectedWallet!.deriver.deriveKeys(
         mnemonic: menmonicController.text,
       );
-      keys = response.asObservable();
-      generatingPrivateKey = false;
+      keys.addAll(response);
+      isGeneratingPrivateKey = false;
     }
   }
 
