@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../constants/values/values.dart';
+import '../../../utils/size_info.dart';
 import '../../../widgets/url_text.dart';
 
 class HomeTitle extends StatelessWidget {
@@ -16,23 +17,16 @@ class HomeTitle extends StatelessWidget {
             style: Styles.textStyleHeader4,
           ),
           SizedBox(height: 24.h),
-          LayoutBuilder(
-            builder: (context, constraints) {
-              final screenWidth = constraints.maxWidth;
-              final maxLines = screenWidth >= 1200 ? 2 : 3;
-
-              return Padding(
-                padding: EdgeInsets.symmetric(horizontal: 140.w),
-                child: Text(
-                  Strings.descriptionHome,
-                  maxLines: maxLines,
-                  style: Styles.textStyleLargeParagraph.copyWith(
-                    color: CustomColors.light75,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              );
-            },
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 140.w),
+            child: Text(
+              Strings.descriptionHome,
+              maxLines: SizeInfo.screenWidth >= SizeInfo.bigWidth ? 2 : 3,
+              style: Styles.textStyleLargeParagraph.copyWith(
+                color: CustomColors.light75,
+              ),
+              textAlign: TextAlign.center,
+            ),
           ),
           SizedBox(height: 24.h),
           Row(
