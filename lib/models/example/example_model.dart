@@ -10,7 +10,8 @@ class ExampleListResponse with _$ExampleListResponse {
     required List<ExampleModel> example,
   }) = _ExampleListResponse;
 
-  factory ExampleListResponse.fromJson(Map<String, dynamic> json) => _$ExampleListResponseFromJson(json);
+  factory ExampleListResponse.fromJson(Map<String, dynamic> json) =>
+      _$ExampleListResponseFromJson(json);
 }
 
 @freezed
@@ -21,5 +22,6 @@ class ExampleModel with _$ExampleModel {
     String? link,
   }) = _ExampleModel;
 
-  factory ExampleModel.fromJson(Map<String, dynamic> json) => _$ExampleModelFromJson(json);
+  factory ExampleModel.fromJson(Map<String, dynamic> json) =>
+      _$ExampleModelFromJson(json);
 }
