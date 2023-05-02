@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../utils/style_constants.dart';
+import '../constants/style_constants.dart';
 
 enum CustomButtonType { primary, secondary, success, failure, disabled }
 

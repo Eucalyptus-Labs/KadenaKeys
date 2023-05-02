@@ -9,7 +9,7 @@ import '../../helpers/overlay_helper.dart';
 part 'loading_state.g.dart';
 
 /// an in-memory volatile generic state holder
-class LoadingState = _LoadingState with _$LoadingState;
+class LoadingState extends _LoadingState with _$LoadingState {}
 
 abstract class _LoadingState with Store {
   @observable
@@ -36,14 +36,16 @@ abstract class _LoadingState with Store {
   @action
   void showOverlay() {
     if (errorMessage != null && errorMessage!.isNotEmpty) {
-      showCustomOverlayNotification(color: CustomColors.dark100, text: errorMessage!);
+      showCustomOverlayNotification(
+          color: CustomColors.dark100, text: errorMessage!);
     }
   }
 
   @action
   void showSuccessOverlay() {
     if (successMessage != null && successMessage!.isNotEmpty) {
-      showCustomOverlayNotification(color: CustomColors.neutralTwo100, text: successMessage!);
+      showCustomOverlayNotification(
+          color: CustomColors.neutralTwo100, text: successMessage!);
     }
   }
 

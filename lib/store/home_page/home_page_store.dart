@@ -1,37 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:mobx/mobx.dart';
+
 import '../../constants/values/values.dart';
 import '../../models/key_derivation_result.dart';
 import '../../models/wallets.dart';
+
 import 'dart:developer' as developer;
 
-class HomeController extends GetxController {
-  // #region Mnemonic
+part 'home_page_store.g.dart';
+
+class HomePageStore extends _HomePageStore with _$HomePageStore {}
+
+abstract class _HomePageStore with Store {
   final menmonicController = TextEditingController();
-  bool enableButton = false;
-  bool generatingPrivateKey = false;
+
+  @observable
   WalletData? selectedWallet;
+
+  @observable
+  bool isGeneratingPrivateKey = false;
+
+  @observable
+  bool enableButton = false;
+
+  @observable
   String? derivationMethod, derivationPath;
 
+  @observable
+  ObservableList<KeyDerivationResult> keys =
+      <KeyDerivationResult>[].asObservable();
+
+  @action
   void onWalletSelected(WalletData? data) {
     selectedWallet = data;
     _enableButton();
-    update(['mnemonic', 'derivation']);
   }
 
   Future<void> generateKeysAsync() async {
     developer.log('Generate keys');
     if (enableButton) {
-      generatingPrivateKey = true;
-      update(['mnemonic-button']);
+      isGeneratingPrivateKey = true;
       await Future.delayed(const Duration(seconds: 1));
-      keys = [];
-      keys = await selectedWallet!.deriver.deriveKeys(
+      keys.clear();
+      final response = await selectedWallet!.deriver.deriveKeys(
         mnemonic: menmonicController.text,
       );
-      generatingPrivateKey = false;
-      update(['mnemonic-button', 'derived-accounts']);
+      keys.addAll(response);
+      isGeneratingPrivateKey = false;
     }
+  }
+
+  @action
+  void mnemonicOnChange(String? value) {
+    _enableButton();
   }
 
   String? mnemonicValidateInput(String? value) {
@@ -54,11 +75,6 @@ class HomeController extends GetxController {
     return Errors.invalidInput;
   }
 
-  void mnemonicOnChange(String? value) {
-    _enableButton();
-    update(['mnemonic', 'derivation']);
-  }
-
   void _enableButton() {
     if (selectedWallet != null) {
       _setMethodAndPath();
@@ -72,16 +88,9 @@ class HomeController extends GetxController {
     }
     enableButton = false;
   }
-  // #endregion
 
-  // #region Derivation
   void _setMethodAndPath() {
     derivationMethod = selectedWallet!.derivationMethod;
     derivationPath = selectedWallet!.derivationPath;
   }
-  // #endregion
-
-  // #region Derived accounts
-  List<KeyDerivationResult> keys = [];
-  // #endregion
 }

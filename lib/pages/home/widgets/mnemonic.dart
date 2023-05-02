@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:get_it/get_it.dart';
 import '../../../constants/values/values.dart';
-import '../home_controller.dart';
+import '../../../store/home_page/home_page_store.dart';
 import '../../../widgets/round_wallet_dropdown.dart';
 import '../../../widgets/rounded_container.dart';
 import 'generate_button.dart';
 
 class Mnemonic extends StatelessWidget {
-  const Mnemonic({super.key});
+  Mnemonic({super.key});
+
+  final homePageStore = GetIt.I<HomePageStore>();
 
   @override
-  Widget build(BuildContext context) => GetBuilder<HomeController>(
-      id: 'mnemonic',
-      builder: (controller) => Column(
+  Widget build(BuildContext context) => Observer(
+        builder: (context) => Column(
           children: [
             RoundedContainer(
               height: 365,
@@ -49,8 +51,8 @@ class Mnemonic extends StatelessWidget {
                           SizedBox(
                             width: 688.w,
                             child: RoundedWalletDropdown(
-                              selectedWallet: controller.selectedWallet,
-                              onChanged: controller.onWalletSelected,
+                              selectedWallet: homePageStore.selectedWallet,
+                              onChanged: homePageStore.onWalletSelected,
                             ),
                           ),
                         ],
@@ -75,13 +77,13 @@ class Mnemonic extends StatelessWidget {
                           SizedBox(
                             width: 688.w,
                             child: TextFormField(
-                              controller: controller.menmonicController,
+                              controller: homePageStore.menmonicController,
                               keyboardType: TextInputType.multiline,
                               maxLines: null,
                               autovalidateMode:
                                   AutovalidateMode.onUserInteraction,
-                              validator: controller.mnemonicValidateInput,
-                              onChanged: controller.mnemonicOnChange,
+                              validator: homePageStore.mnemonicValidateInput,
+                              onChanged: homePageStore.mnemonicOnChange,
                               decoration: Decorations.defaultInputDecoration,
                             ),
                           ),
@@ -97,14 +99,11 @@ class Mnemonic extends StatelessWidget {
                         width: 688.w,
                         child: Row(
                           children: [
-                            GetBuilder<HomeController>(
-                              id: 'mnemonic-button',
-                              builder: (context) => GenerateButton(
-                                  loading: controller.generatingPrivateKey,
-                                  onPressCallback: controller.enableButton
-                                      ? controller.generateKeysAsync
-                                      : null,
-                                ),
+                            GenerateButton(
+                              loading: homePageStore.isGeneratingPrivateKey,
+                              onPressCallback: homePageStore.enableButton
+                                  ? homePageStore.generateKeysAsync
+                                  : null,
                             ),
                           ],
                         ),
@@ -117,5 +116,5 @@ class Mnemonic extends StatelessWidget {
             SizedBox(height: 24.h),
           ],
         ),
-    );
+      );
 }

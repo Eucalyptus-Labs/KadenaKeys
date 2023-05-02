@@ -13,7 +13,9 @@ mixin _$LoadingState on _LoadingState, Store {
 
   @override
   bool get isLoading =>
-      (_$isLoadingComputed ??= Computed<bool>(() => super.isLoading, name: '_LoadingState.isLoading')).value;
+      (_$isLoadingComputed ??= Computed<bool>(() => super.isLoading,
+              name: '_LoadingState.isLoading'))
+          .value;
 
   late final _$stateAtom = Atom(name: '_LoadingState.state', context: context);
 
@@ -30,7 +32,8 @@ mixin _$LoadingState on _LoadingState, Store {
     });
   }
 
-  late final _$errorMessageAtom = Atom(name: '_LoadingState.errorMessage', context: context);
+  late final _$errorMessageAtom =
+      Atom(name: '_LoadingState.errorMessage', context: context);
 
   @override
   String? get errorMessage {
@@ -45,7 +48,8 @@ mixin _$LoadingState on _LoadingState, Store {
     });
   }
 
-  late final _$successMessageAtom = Atom(name: '_LoadingState.successMessage', context: context);
+  late final _$successMessageAtom =
+      Atom(name: '_LoadingState.successMessage', context: context);
 
   @override
   String? get successMessage {
@@ -60,11 +64,13 @@ mixin _$LoadingState on _LoadingState, Store {
     });
   }
 
-  late final _$_LoadingStateActionController = ActionController(name: '_LoadingState', context: context);
+  late final _$_LoadingStateActionController =
+      ActionController(name: '_LoadingState', context: context);
 
   @override
   void changeState(StoreStates state) {
-    final _$actionInfo = _$_LoadingStateActionController.startAction(name: '_LoadingState.changeState');
+    final _$actionInfo = _$_LoadingStateActionController.startAction(
+        name: '_LoadingState.changeState');
     try {
       return super.changeState(state);
     } finally {
@@ -74,7 +80,8 @@ mixin _$LoadingState on _LoadingState, Store {
 
   @override
   void setErrorMessage(String errorMessage) {
-    final _$actionInfo = _$_LoadingStateActionController.startAction(name: '_LoadingState.setErrorMessage');
+    final _$actionInfo = _$_LoadingStateActionController.startAction(
+        name: '_LoadingState.setErrorMessage');
     try {
       return super.setErrorMessage(errorMessage);
     } finally {
@@ -84,7 +91,8 @@ mixin _$LoadingState on _LoadingState, Store {
 
   @override
   void showOverlay() {
-    final _$actionInfo = _$_LoadingStateActionController.startAction(name: '_LoadingState.showOverlay');
+    final _$actionInfo = _$_LoadingStateActionController.startAction(
+        name: '_LoadingState.showOverlay');
     try {
       return super.showOverlay();
     } finally {
@@ -94,7 +102,8 @@ mixin _$LoadingState on _LoadingState, Store {
 
   @override
   void showSuccessOverlay() {
-    final _$actionInfo = _$_LoadingStateActionController.startAction(name: '_LoadingState.showSuccessOverlay');
+    final _$actionInfo = _$_LoadingStateActionController.startAction(
+        name: '_LoadingState.showSuccessOverlay');
     try {
       return super.showSuccessOverlay();
     } finally {
@@ -104,7 +113,8 @@ mixin _$LoadingState on _LoadingState, Store {
 
   @override
   void setSuccessMessage(String message) {
-    final _$actionInfo = _$_LoadingStateActionController.startAction(name: '_LoadingState.setSuccessMessage');
+    final _$actionInfo = _$_LoadingStateActionController.startAction(
+        name: '_LoadingState.setSuccessMessage');
     try {
       return super.setSuccessMessage(message);
     } finally {

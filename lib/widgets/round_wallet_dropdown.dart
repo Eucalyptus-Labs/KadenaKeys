@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants/values/values.dart';
 import '../models/wallets.dart';
-import 'package:nil/nil.dart';
 
 class RoundedWalletDropdown extends StatelessWidget {
   final WalletData? selectedWallet;
@@ -16,35 +15,44 @@ class RoundedWalletDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Center(
-      child: Container(
-        width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 10.w),
-        decoration: BoxDecoration(
-          color: Colors.transparent,
-          borderRadius: BorderRadius.circular(8.r),
-          border: Border.all(
-            color: Colors.grey,
-            width: 0.80,
+        child: Container(
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(horizontal: 10.w),
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(8.r),
+            border: Border.all(
+              color: CustomColors.light08,
+            ),
+          ),
+          child: Theme(
+            data: Theme.of(context).copyWith(
+              focusColor: Colors.transparent,
+              // hoverColor: Colors.transparent,
+            ),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton(
+                // underline: const Nil(),
+                hint: Text(
+                  'Select wallet',
+                  style: Styles.textStyleMediumParagraph.copyWith(
+                    color: CustomColors.light50,
+                    decoration: TextDecoration.none,
+                  ),
+                ),
+                items: Maps.kadenaWalletData.values
+                    .map((data) => DropdownMenuItem<WalletData>(
+                          value: data,
+                          child: Text(data.name),
+                        ))
+                    .toList(),
+                onChanged: onChanged,
+                isExpanded: true,
+                value: selectedWallet,
+                iconEnabledColor: CustomColors.accent100,
+              ),
+            ),
           ),
         ),
-        child: Theme(
-          data: Theme.of(context).copyWith(
-            focusColor: Colors.transparent,
-            // hoverColor: Colors.transparent,
-          ),
-          child: DropdownButton(
-            underline: const Nil(),
-            hint: const Text('Select wallet'),
-            items: Maps.kadenaWalletData.values.map((data) => DropdownMenuItem<WalletData>(
-                value: data,
-                child: Text(data.name),
-              )).toList(),
-            onChanged: onChanged,
-            isExpanded: true,
-            value: selectedWallet,
-            iconEnabledColor: CustomColors.accent100,
-          ),
-        ),
-      ),
-    );
+      );
 }

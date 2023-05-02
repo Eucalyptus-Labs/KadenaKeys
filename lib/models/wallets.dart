@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import '../constants/enums/kadena_wallets.dart';
 import '../utils/key_derivers/i_key_deriver.dart';
 
-class WalletData {
-  final KadenaWallet wallet;
-  final String name, derivationMethod, derivationPath;
-  final IKeyDeriver deriver;
-  Widget? infoWidget;
+part 'wallets.freezed.dart';
 
-  WalletData({
-    required this.wallet,
-    required this.name,
-    required this.derivationMethod,
-    required this.derivationPath,
-    required this.deriver,
-    this.infoWidget,
-  });
+@freezed
+class WalletData with _$WalletData {
+  factory WalletData({
+    required KadenaWallet wallet,
+    required String name,
+    required String derivationMethod,
+    required String derivationPath,
+    required IKeyDeriver deriver,
+    Widget? infoWidget,
+  }) = _WalletData;
 }

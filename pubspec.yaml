@@ -43,14 +43,13 @@ dependencies:
   flutter_js: ^0.6.0
   flutter_screenutil: ^5.7.0
   flutter_svg: ^2.0.5
-  freezed_annotation: ^2.2.0
-  get: ^4.6.5
+  freezed_annotation: ^2.2.0  
   get_it: ^7.3.0
   hex: ^0.2.0
   http2: 2.0.1
   js: ^0.6.5
   mobx: ^2.1.4
-  nil: ^1.1.1
+  flutter_mobx: ^2.0.6+5  
   overlay_support: ^2.1.0
   pinenacl: ^0.5.1
   slip_0010_ed25519: ^3.1.0
