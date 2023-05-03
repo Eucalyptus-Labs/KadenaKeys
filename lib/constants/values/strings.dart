@@ -47,5 +47,8 @@ class Strings {
   static const String poweredBy = 'Powered by';
   static const String eucalyptusLabs = 'Eucalyptus Labs';
   static const String privacyPolicy = 'Privacy Policy';
+  static const String accounts = 'Accounts';
+  static const String address = 'Address';
+  static const String privateKeyTitle = 'Private Key';
   // #endregion
 }

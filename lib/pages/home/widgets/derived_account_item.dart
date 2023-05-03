@@ -30,24 +30,23 @@ class DerivedAccountItem extends StatelessWidget {
         child: Row(
           children: [
             Flexible(
-              flex: 60,
+              flex: 10,
               fit: FlexFit.tight,
-              child: Row(
-                children: [
-                  Text('$index'),
-                  SizedBox(width: 80.w),
-                  MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: CustomToast(
-                      content: result.account,
-                      child: Text(result.account),
-                    ),
-                  ),
-                ],
+              child: Text('$index'),
+            ),
+            Flexible(
+              flex: 45,
+              fit: FlexFit.tight,
+              child: MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: CustomToast(
+                  content: result.account,
+                  child: Text(result.account),
+                ),
               ),
             ),
             Flexible(
-              flex: 40,
+              flex: 45,
               fit: FlexFit.tight,
               child: MouseRegion(
                 cursor: SystemMouseCursors.click,
@@ -58,7 +57,11 @@ class DerivedAccountItem extends StatelessWidget {
                     );
                     toast(Strings.copiedToClipboard);
                   },
-                  child: Text(result.privateKey),
+                  child: Row(
+                    children: [
+                      Text(result.privateKey),
+                    ],
+                  ),
                 ),
               ),
             ),
