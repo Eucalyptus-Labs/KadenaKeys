@@ -34,7 +34,7 @@ class DerivationContainer extends StatelessWidget {
                           children: [
                             Flexible(
                               fit: FlexFit.tight,
-                              flex: 50,
+                              flex: 1,
                               child: Padding(
                                 padding: EdgeInsets.only(left: 16.w),
                                 child: Row(
@@ -59,7 +59,7 @@ class DerivationContainer extends StatelessWidget {
                             SizedBox(width: 16.w),
                             Flexible(
                               fit: FlexFit.tight,
-                              flex: 50,
+                              flex: 1,
                               child: Padding(
                                 padding: EdgeInsets.only(left: 16.w),
                                 child: Row(
