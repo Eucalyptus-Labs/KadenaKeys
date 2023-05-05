@@ -16,8 +16,7 @@ class RoundedWalletDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Center(
         child: Container(
-          width: double.infinity,
-          padding: EdgeInsets.symmetric(horizontal: 10.w),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           decoration: BoxDecoration(
             color: Colors.transparent,
             borderRadius: BorderRadius.circular(8.r),
@@ -34,7 +33,7 @@ class RoundedWalletDropdown extends StatelessWidget {
               child: DropdownButton(
                 // underline: const Nil(),
                 hint: Text(
-                  'Select wallet',
+                  Strings.selectWallet,
                   style: Styles.textStyleMediumParagraph.copyWith(
                     color: CustomColors.light50,
                     decoration: TextDecoration.none,
