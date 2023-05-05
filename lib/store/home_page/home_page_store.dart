@@ -1,3 +1,4 @@
+import 'package:async/async.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
@@ -13,6 +14,8 @@ class HomePageStore extends _HomePageStore with _$HomePageStore {}
 
 abstract class _HomePageStore with Store {
   final menmonicController = TextEditingController();
+  OverlayEntry? overlayEntry;
+  CancelableOperation<void>? cancelableOperation;
 
   @observable
   WalletData? selectedWallet;
@@ -92,5 +95,43 @@ abstract class _HomePageStore with Store {
   void _setMethodAndPath() {
     derivationMethod = selectedWallet!.derivationMethod;
     derivationPath = selectedWallet!.derivationPath;
+  }
+
+  void showCustomToast(BuildContext context, Offset position) {
+    overlayEntry?.remove();
+    overlayEntry = null;
+    cancelableOperation?.cancel();
+
+    overlayEntry = OverlayEntry(
+      builder: (context) => Positioned(
+        left: position.dx + 30,
+        top: position.dy + 30,
+        child: Material(
+          color: Colors.transparent,
+          child: Container(
+            padding: const EdgeInsets.all(8.0),
+            decoration: BoxDecoration(
+              color: Colors.grey.withOpacity(0.9),
+              borderRadius: BorderRadius.circular(5.0),
+            ),
+            child: const Text(
+              Strings.copiedToClipboard,
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    Overlay.of(context).insert(overlayEntry!);
+    cancelableOperation = CancelableOperation.fromFuture(
+      Future.delayed(
+        const Duration(seconds: 2),
+      ),
+    );
+    cancelableOperation!.value.whenComplete(() {
+      overlayEntry?.remove();
+      overlayEntry = null;
+    });
   }
 }

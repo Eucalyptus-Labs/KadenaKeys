@@ -32,25 +32,42 @@ class DerivedAccounts extends StatelessWidget {
                   ),
                   Column(
                     children: [
-                      Row(
-                        children: [
-                          Flexible(
-                            flex: 45,
-                            fit: FlexFit.tight,
-                            child: Row(
-                              children: [
-                                const Text('Accounts'),
-                                SizedBox(width: 66.w),
-                                const Text('Address'),
-                              ],
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.w),
+                        child: Row(
+                          children: [
+                            Flexible(
+                              flex: 10,
+                              fit: FlexFit.tight,
+                              child: Text(
+                                Strings.accounts,
+                                style: Styles.textStyleSubheading.copyWith(
+                                  color: CustomColors.light100,
+                                ),
+                              ),
                             ),
-                          ),
-                          const Flexible(
-                            flex: 55,
-                            fit: FlexFit.tight,
-                            child: Text('Private key'),
-                          ),
-                        ],
+                            Flexible(
+                              flex: 45,
+                              fit: FlexFit.tight,
+                              child: Text(
+                                Strings.address,
+                                style: Styles.textStyleSubheading.copyWith(
+                                  color: CustomColors.light100,
+                                ),
+                              ),
+                            ),
+                            Flexible(
+                              flex: 45,
+                              fit: FlexFit.tight,
+                              child: Text(
+                                Strings.privateKeyTitle,
+                                style: Styles.textStyleSubheading.copyWith(
+                                  color: CustomColors.light100,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       Container(
                         margin: EdgeInsets.only(

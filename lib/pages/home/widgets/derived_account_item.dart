@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:overlay_support/overlay_support.dart';
 import '../../../constants/values/values.dart';
 import '../../../models/key_derivation_result.dart';
+import 'custom_toast.dart';
 
 class DerivedAccountItem extends StatelessWidget {
   const DerivedAccountItem({
@@ -30,39 +29,28 @@ class DerivedAccountItem extends StatelessWidget {
         child: Row(
           children: [
             Flexible(
-              flex: 60,
+              flex: 10,
               fit: FlexFit.tight,
-              child: Row(
-                children: [
-                  Text('$index'),
-                  SizedBox(width: 80.w),
-                  MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () async {
-                        await Clipboard.setData(
-                          ClipboardData(text: result.account),
-                        );
-                        toast(Strings.copiedToClipboard);
-                      },
-                      child: Text(result.account),
-                    ),
-                  ),
-                ],
-              ),
+              child: Text('$index'),
             ),
             Flexible(
-              flex: 40,
+              flex: 45,
               fit: FlexFit.tight,
               child: MouseRegion(
                 cursor: SystemMouseCursors.click,
-                child: GestureDetector(
-                  onTap: () async {
-                    await Clipboard.setData(
-                      ClipboardData(text: result.privateKey),
-                    );
-                    toast(Strings.copiedToClipboard);
-                  },
+                child: CustomToast(
+                  content: result.account,
+                  child: Text(result.account),
+                ),
+              ),
+            ),
+            Flexible(
+              flex: 45,
+              fit: FlexFit.tight,
+              child: MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: CustomToast(
+                  content: result.privateKey,
                   child: Text(result.privateKey),
                 ),
               ),
