@@ -18,3 +18,4 @@ part 'styles.dart';
 part 'errors.dart';
 part 'strings.dart';
 part 'url_addresses.dart';
+part 'sizes.dart';
