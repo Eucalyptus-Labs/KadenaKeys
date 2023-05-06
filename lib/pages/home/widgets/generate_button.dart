@@ -29,6 +29,18 @@ class GenerateButton extends StatelessWidget {
                 return CustomColors.accent100;
               },
             ),
+            textStyle: MaterialStateProperty.resolveWith(
+              (states) {
+                if (states.contains(MaterialState.disabled)) {
+                  return Styles.textStyleHeader6.copyWith(
+                    color: CustomColors.light100.withOpacity(0.5),
+                  );
+                }
+                return Styles.textStyleHeader6.copyWith(
+                  color: CustomColors.light100,
+                );
+              },
+            ),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(
@@ -46,7 +58,6 @@ class GenerateButton extends StatelessWidget {
                 )
               : Text(
                   title,
-                  style: Styles.textStyleHeader6,
                 ),
         ),
       );

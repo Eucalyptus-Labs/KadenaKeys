@@ -13,117 +13,120 @@ class Mnemonic extends StatelessWidget {
   final homePageStore = GetIt.I<HomePageStore>();
 
   @override
-  Widget build(BuildContext context) => Observer(
-        builder: (context) => Column(
-          children: [
-            RoundedContainer(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(
-                      bottom: 40,
-                    ),
-                    child: Row(
-                      children: const [
-                        Text(
-                          Strings.mnemonic,
-                          style: Styles.textStyleHeader4,
-                        ),
-                      ],
-                    ),
+  Widget build(BuildContext context) => Column(
+        children: [
+          RoundedContainer(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(
+                    bottom: 40,
                   ),
-                  Column(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(bottom: 24),
-                        child: LayoutBuilder(
-                          builder: (ctx, constraints) {
-                            final children = [
-                              const Expanded(
-                                flex: 1,
-                                child: MnemonicLabel(
-                                  text: Strings.selectWallet,
-                                ),
-                              ),
-                              Expanded(
-                                flex: 3,
-                                child: RoundedWalletDropdown(
-                                  selectedWallet: homePageStore.selectedWallet,
-                                  onChanged: homePageStore.onWalletSelected,
-                                ),
-                              )
-                            ];
-                            final isMobile =
-                                constraints.maxWidth > Sizes.mobileWidth;
-                            return isMobile
-                                ? Row(
-                                    children: children,
-                                  )
-                                : Wrap(
-                                    children: children,
-                                  );
-                          },
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(bottom: 24),
-                        child: LayoutBuilder(
-                          builder: (ctx, constraints) {
-                            final children = [
-                              const Expanded(
-                                flex: 1,
-                                child: MnemonicLabel(
-                                  text: Strings.mnemonicPhrase,
-                                ),
-                              ),
-                              Expanded(
-                                flex: 3,
-                                child: TextFormField(
-                                  controller: homePageStore.menmonicController,
-                                  keyboardType: TextInputType.multiline,
-                                  maxLines: null,
-                                  autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
-                                  validator:
-                                      homePageStore.mnemonicValidateInput,
-                                  onChanged: homePageStore.mnemonicOnChange,
-                                  decoration:
-                                      Decorations.defaultInputDecoration,
-                                ),
-                              ),
-                            ];
-                            final isMobile =
-                                constraints.maxWidth > Sizes.mobileWidth;
-                            return isMobile
-                                ? Row(
-                                    children: children,
-                                  )
-                                : Wrap(
-                                    children: children,
-                                  );
-                          },
-                        ),
+                  child: Row(
+                    children: const [
+                      Text(
+                        Strings.mnemonic,
+                        style: Styles.textStyleHeader4,
                       ),
                     ],
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GenerateButton(
-                        loading: homePageStore.isGeneratingPrivateKey,
-                        onPressCallback: homePageStore.enableButton
-                            ? homePageStore.generateKeysAsync
-                            : null,
+                ),
+                Column(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 24),
+                      child: LayoutBuilder(
+                        builder: (ctx, constraints) {
+                          final isMobile = constraints.maxWidth < Sizes.small;
+                          const label = MnemonicLabel(
+                            text: Strings.selectWallet,
+                          );
+                          final dropDown = Observer(
+                            builder: (context) {
+                              return RoundedWalletDropdown(
+                                selectedWallet: homePageStore.selectedWallet,
+                                onChanged: homePageStore.onWalletSelected,
+                              );
+                            },
+                          );
+                          return isMobile
+                              ? Wrap(
+                                  children: [label, dropDown],
+                                )
+                              : Row(
+                                  children: [
+                                    const Expanded(
+                                      flex: 1,
+                                      child: label,
+                                    ),
+                                    Expanded(
+                                      flex: 3,
+                                      child: dropDown,
+                                    ),
+                                  ],
+                                );
+                        },
                       ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 24),
+                      child: LayoutBuilder(
+                        builder: (ctx, constraints) {
+                          final isMobile = constraints.maxWidth < Sizes.small;
+                          const label = MnemonicLabel(
+                            text: Strings.mnemonicPhrase,
+                          );
+                          final input = Observer(
+                            builder: (context) {
+                              return TextFormField(
+                                controller: homePageStore.menmonicController,
+                                keyboardType: TextInputType.multiline,
+                                maxLines: null,
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                validator: homePageStore.mnemonicValidateInput,
+                                onChanged: homePageStore.selectedWallet != null
+                                    ? homePageStore.mnemonicOnChange
+                                    : null,
+                                decoration: Decorations.defaultInputDecoration,
+                              );
+                            },
+                          );
+                          return isMobile
+                              ? Wrap(
+                                  children: [label, input],
+                                )
+                              : Row(
+                                  children: [
+                                    const Expanded(flex: 1, child: label),
+                                    Expanded(
+                                      flex: 3,
+                                      child: input,
+                                    ),
+                                  ],
+                                );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GenerateButton(
+                      loading: homePageStore.isGeneratingPrivateKey,
+                      onPressCallback: homePageStore.enableButton
+                          ? homePageStore.generateKeysAsync
+                          : null,
+                    ),
+                  ],
+                ),
+              ],
             ),
-            const SizedBox(height: 24),
-          ],
-        ),
+          ),
+          const SizedBox(height: 24),
+        ],
       );
 }
 

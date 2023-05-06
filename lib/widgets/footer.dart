@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants/values/values.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import 'url_text.dart';
 
 class Footer extends StatelessWidget {
@@ -19,7 +18,7 @@ class Footer extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.symmetric(
-              vertical: 29.h,
+              vertical: 29,
               horizontal: 118.w,
             ),
             child: Row(
@@ -27,23 +26,31 @@ class Footer extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text(
-                      Strings.copyRight,
-                      style: Styles.textStyleSubheading.copyWith(
-                        color: CustomColors.light65,
-                      ),
-                    ),
-                    Text(
-                      '${DateTime.now().year} ',
-                      style: Styles.textStyleSubheading.copyWith(
-                        color: CustomColors.light65,
-                      ),
-                    ),
-                    Text(
-                      Strings.eucalyptusLabs,
-                      style: Styles.textStyleSubheading.copyWith(
-                        color: CustomColors.light65,
-                      ),
+                    Column(
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              Strings.copyRight,
+                              style: Styles.textStyleSubheading.copyWith(
+                                color: CustomColors.light65,
+                              ),
+                            ),
+                            Text(
+                              '${DateTime.now().year} ',
+                              style: Styles.textStyleSubheading.copyWith(
+                                color: CustomColors.light65,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Text(
+                          Strings.eucalyptusLabs,
+                          style: Styles.textStyleSubheading.copyWith(
+                            color: CustomColors.light65,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -56,9 +63,9 @@ class Footer extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(
-                        left: 8.5.w,
-                        right: 6.5.w,
+                      margin: const EdgeInsets.only(
+                        left: 8.5,
+                        right: 6.5,
                       ),
                       child: SvgPicture.asset(ImagePath.leaves),
                     ),
@@ -70,12 +77,6 @@ class Footer extends StatelessWidget {
                     ),
                   ],
                 ),
-                // Text(
-                //   Strings.privacyPolicy,
-                //   style: Styles.textStyleSubheading.copyWith(
-                //     color: CustomColors.light100,
-                //   ),
-                // ),
                 UrlText(
                   url: Url.privacyPolicy,
                   text: Strings.privacyPolicy,
