@@ -114,11 +114,15 @@ class Mnemonic extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    GenerateButton(
-                      loading: homePageStore.isGeneratingPrivateKey,
-                      onPressCallback: homePageStore.enableButton
-                          ? homePageStore.generateKeysAsync
-                          : null,
+                    Observer(
+                      builder: (context) {
+                        return GenerateButton(
+                          loading: homePageStore.isGeneratingPrivateKey,
+                          onPressCallback: homePageStore.enableButton
+                              ? homePageStore.generateKeysAsync
+                              : null,
+                        );
+                      },
                     ),
                   ],
                 ),

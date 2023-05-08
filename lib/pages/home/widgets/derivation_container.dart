@@ -30,6 +30,56 @@ class DerivationContainer extends StatelessWidget {
                   final isSmall = maxWidth <= Sizes.small;
                   final isExtraSmall = maxWidth <= Sizes.extraSmall;
 
+                  final firstChildren = [
+                    Text(
+                      Strings.derivationMethod,
+                      style: Styles.textStyleCaption.copyWith(
+                        color: CustomColors.light100,
+                      ),
+                    ),
+                    if (!isExtraSmall)
+                      const Flexible(
+                        child: SizedBox(
+                          width: 70,
+                        ),
+                      ),
+                    Observer(
+                      builder: (context) {
+                        return Text(
+                          homePageStore.derivationMethod ?? '',
+                          style: Styles.textStyleCaption.copyWith(
+                            color: CustomColors.light50,
+                          ),
+                        );
+                      },
+                    ),
+                  ];
+
+                  final secondChildren = [
+                    Text(
+                      Strings.derivationPath,
+                      style: Styles.textStyleCaption.copyWith(
+                        color: CustomColors.light100,
+                      ),
+                    ),
+                    if (!isExtraSmall)
+                      const Flexible(
+                        child: SizedBox(
+                          width: 70,
+                        ),
+                      ),
+                    Observer(
+                      builder: (context) {
+                        return Text(
+                          homePageStore.derivationPath ?? '',
+                          style: Styles.textStyleCaption.copyWith(
+                            color: CustomColors.light50,
+                          ),
+                        );
+                      },
+                    )
+                  ];
+
                   return Container(
                     margin: const EdgeInsets.only(top: 20),
                     width: double.infinity,
@@ -42,58 +92,24 @@ class DerivationContainer extends StatelessWidget {
                       runSpacing: 30,
                       spacing: 40,
                       children: [
-                        Wrap(
-                          alignment: WrapAlignment.start,
-                          children: [
-                            Text(
-                              Strings.derivationMethod,
-                              style: Styles.textStyleCaption.copyWith(
-                                color: CustomColors.light100,
+                        isExtraSmall
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: firstChildren,
+                              )
+                            : Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: firstChildren,
                               ),
-                            ),
-                            const Flexible(
-                              child: SizedBox(
-                                width: 70,
+                        isExtraSmall
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: secondChildren,
+                              )
+                            : Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: secondChildren,
                               ),
-                            ),
-                            Observer(
-                              builder: (context) {
-                                return Text(
-                                  homePageStore.derivationMethod ?? '',
-                                  style: Styles.textStyleCaption.copyWith(
-                                    color: CustomColors.light50,
-                                  ),
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                        Wrap(
-                          alignment: WrapAlignment.start,
-                          children: [
-                            Text(
-                              Strings.derivationPath,
-                              style: Styles.textStyleCaption.copyWith(
-                                color: CustomColors.light100,
-                              ),
-                            ),
-                            const Flexible(
-                              child: SizedBox(
-                                width: 70,
-                              ),
-                            ),
-                            Observer(
-                              builder: (context) {
-                                return Text(
-                                  homePageStore.derivationPath ?? '',
-                                  style: Styles.textStyleCaption.copyWith(
-                                    color: CustomColors.light50,
-                                  ),
-                                );
-                              },
-                            ),
-                          ],
-                        ),
                       ],
                     ),
                   );

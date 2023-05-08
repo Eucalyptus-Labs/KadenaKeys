@@ -52,4 +52,5 @@ To run all unit tests:
 **Expected Public Key:** 3cae1ab99513cdbbe9c361f9629d35abcd5f535748fc76d45f72b4fcdaf7f4e4  
 **Expected Account:** k:3cae1ab99513cdbbe9c361f9629d35abcd5f535748fc76d45f72b4fcdaf7f4e4  
 
-TEST final
+# Commands
+flutter packages pub run build_runner build --delete-conflicting-outputs
