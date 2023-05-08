@@ -140,21 +140,24 @@ class MnemonicLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          margin: const EdgeInsets.only(right: 8),
-          child: Text(
-            text,
-            style: Styles.textStyleSubheading,
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(right: 8),
+            child: Text(
+              text,
+              style: Styles.textStyleSubheading,
+            ),
           ),
-        ),
-        Icon(
-          Icons.info,
-          color: CustomColors.light24,
-        ),
-      ],
+          Icon(
+            Icons.info,
+            color: CustomColors.light24,
+          ),
+        ],
+      ),
     );
   }
 }

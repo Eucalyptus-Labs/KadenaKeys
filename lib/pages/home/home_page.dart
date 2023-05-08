@@ -1,6 +1,5 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../widgets/footer.dart';
 import 'widgets/derivation_container.dart';
 import 'widgets/derived_accounts.dart';
@@ -20,10 +19,10 @@ class HomePage extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  padding: EdgeInsets.only(
-                    top: 57.h,
-                    left: 184.w,
-                    right: 184.w,
+                  padding: const EdgeInsets.only(
+                    top: 57,
+                    left: 184,
+                    right: 184,
                   ),
                   child: Column(
                     children: [

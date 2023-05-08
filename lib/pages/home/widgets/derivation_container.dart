@@ -31,7 +31,6 @@ class DerivationContainer extends StatelessWidget {
                   final isExtraSmall = maxWidth <= Sizes.extraSmall;
 
                   return Container(
-                    // color: Colors.red,
                     margin: const EdgeInsets.only(top: 20),
                     width: double.infinity,
                     child: Wrap(
@@ -43,9 +42,8 @@ class DerivationContainer extends StatelessWidget {
                       runSpacing: 30,
                       spacing: 40,
                       children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        Wrap(
+                          alignment: WrapAlignment.start,
                           children: [
                             Text(
                               Strings.derivationMethod,
@@ -70,9 +68,8 @@ class DerivationContainer extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        Wrap(
+                          alignment: WrapAlignment.start,
                           children: [
                             Text(
                               Strings.derivationPath,
