@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../constants/values/values.dart';
-import '../../../utils/size_info.dart';
 import '../../../widgets/url_text.dart';
 
 class HomeTitle extends StatelessWidget {
@@ -34,7 +33,6 @@ class HomeTitle extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           Wrap(
-            // mainAxisAlignment: MainAxisAlignment.center,
             alignment: WrapAlignment.center,
             children: [
               Text(
