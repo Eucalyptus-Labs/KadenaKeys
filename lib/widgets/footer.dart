@@ -21,71 +21,103 @@ class Footer extends StatelessWidget {
               vertical: 29,
               horizontal: 118.w,
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Column(
-                      children: [
-                        Row(
+            child: LayoutBuilder(builder: (ctx, constraints) {
+              final isMobile = constraints.maxWidth < Sizes.small;
+
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                Strings.copyRight,
+                                style: Styles.textStyleSubheading.copyWith(
+                                  color: CustomColors.light65,
+                                ),
+                              ),
+                              Text(
+                                '${DateTime.now().year} ',
+                                style: Styles.textStyleSubheading.copyWith(
+                                  color: CustomColors.light65,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            Strings.eucalyptusLabs,
+                            style: Styles.textStyleSubheading.copyWith(
+                              color: CustomColors.light65,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  isMobile
+                      ? Column(
                           children: [
                             Text(
-                              Strings.copyRight,
+                              Strings.poweredBy,
                               style: Styles.textStyleSubheading.copyWith(
                                 color: CustomColors.light65,
                               ),
                             ),
+                            Row(
+                              children: [
+                                Container(
+                                  margin: const EdgeInsets.only(
+                                    left: 8.5,
+                                    right: 6.5,
+                                  ),
+                                  child: SvgPicture.asset(ImagePath.leaves),
+                                ),
+                                Text(
+                                  Strings.eucalyptusLabs,
+                                  style: Styles.textStyleSubheading.copyWith(
+                                    color: CustomColors.light100,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        )
+                      : Row(
+                          children: [
                             Text(
-                              '${DateTime.now().year} ',
+                              Strings.poweredBy,
                               style: Styles.textStyleSubheading.copyWith(
                                 color: CustomColors.light65,
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(
+                                left: 8.5,
+                                right: 6.5,
+                              ),
+                              child: SvgPicture.asset(ImagePath.leaves),
+                            ),
+                            Text(
+                              Strings.eucalyptusLabs,
+                              style: Styles.textStyleSubheading.copyWith(
+                                color: CustomColors.light100,
                               ),
                             ),
                           ],
                         ),
-                        Text(
-                          Strings.eucalyptusLabs,
-                          style: Styles.textStyleSubheading.copyWith(
-                            color: CustomColors.light65,
-                          ),
-                        ),
-                      ],
+                  UrlText(
+                    url: Url.privacyPolicy,
+                    text: Strings.privacyPolicy,
+                    style: Styles.textStyleSubheading.copyWith(
+                      color: CustomColors.light100,
                     ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(
-                      Strings.poweredBy,
-                      style: Styles.textStyleSubheading.copyWith(
-                        color: CustomColors.light65,
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(
-                        left: 8.5,
-                        right: 6.5,
-                      ),
-                      child: SvgPicture.asset(ImagePath.leaves),
-                    ),
-                    Text(
-                      Strings.eucalyptusLabs,
-                      style: Styles.textStyleSubheading.copyWith(
-                        color: CustomColors.light100,
-                      ),
-                    ),
-                  ],
-                ),
-                UrlText(
-                  url: Url.privacyPolicy,
-                  text: Strings.privacyPolicy,
-                  style: Styles.textStyleSubheading.copyWith(
-                    color: CustomColors.light100,
                   ),
-                ),
-              ],
-            ),
+                ],
+              );
+            }),
           ),
         ],
       );

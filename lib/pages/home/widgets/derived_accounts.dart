@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import '../../../constants/values/values.dart';
 import '../../../store/home_page/home_page_store.dart';
@@ -18,91 +17,124 @@ class DerivedAccounts extends StatelessWidget {
         builder: (context) => Column(
           children: [
             RoundedContainer(
-              height: homePageStore.keys.isEmpty ? 250 : 772,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    children: const [
-                      Text(
-                        'Derived accounts',
-                        style: Styles.textStyleHeader4,
-                      ),
-                    ],
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 15),
+                    child: Wrap(
+                      children: [
+                        const Text(
+                          "${Strings.derived} ",
+                          style: Styles.textStyleHeader4,
+                        ),
+                        Text(
+                          Strings.accounts.toLowerCase(),
+                          style: Styles.textStyleHeader4,
+                        ),
+                      ],
+                    ),
                   ),
-                  Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16.w),
-                        child: Row(
-                          children: [
-                            Flexible(
-                              flex: 10,
-                              fit: FlexFit.tight,
-                              child: Text(
-                                Strings.accounts,
-                                style: Styles.textStyleSubheading.copyWith(
-                                  color: CustomColors.light100,
-                                ),
+                  LayoutBuilder(
+                    builder: (ctx, constraints) {
+                      final isMobile = constraints.maxWidth < Sizes.small;
+                      final accountsText = Text(
+                        Strings.accounts,
+                        style: Styles.textStyleSubheading.copyWith(
+                          color: CustomColors.light100,
+                        ),
+                      );
+                      final addressText = Text(
+                        Strings.address,
+                        style: Styles.textStyleSubheading.copyWith(
+                          color: CustomColors.light100,
+                        ),
+                      );
+                      final privateKeyText = Text(
+                        Strings.privateKeyTitle,
+                        style: Styles.textStyleSubheading.copyWith(
+                          color: CustomColors.light100,
+                        ),
+                      );
+                      return Column(
+                        children: [
+                          if (isMobile)
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  accountsText,
+                                  addressText,
+                                  privateKeyText,
+                                ],
                               ),
                             ),
-                            Flexible(
-                              flex: 45,
-                              fit: FlexFit.tight,
-                              child: Text(
-                                Strings.address,
-                                style: Styles.textStyleSubheading.copyWith(
-                                  color: CustomColors.light100,
-                                ),
+                          if (!isMobile)
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              child: Row(
+                                children: [
+                                  Flexible(
+                                    flex: 10,
+                                    fit: FlexFit.tight,
+                                    child: accountsText,
+                                  ),
+                                  Flexible(
+                                    flex: 45,
+                                    fit: FlexFit.tight,
+                                    child: addressText,
+                                  ),
+                                  Flexible(
+                                    flex: 45,
+                                    fit: FlexFit.tight,
+                                    child: privateKeyText,
+                                  ),
+                                ],
                               ),
                             ),
-                            Flexible(
-                              flex: 45,
-                              fit: FlexFit.tight,
-                              child: Text(
-                                Strings.privateKeyTitle,
-                                style: Styles.textStyleSubheading.copyWith(
-                                  color: CustomColors.light100,
-                                ),
-                              ),
+                          Container(
+                            margin: const EdgeInsets.only(
+                              top: 23,
+                              bottom: 18,
                             ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(
-                          top: 23.h,
-                          bottom: 18.h,
-                        ),
-                        child: Divider(
-                          color: CustomColors.light10,
-                        ),
-                      ),
-                      if (homePageStore.keys.isNotEmpty)
-                        SizedBox(
-                          height: 480.h,
-                          child: ListView.builder(
-                            itemBuilder: (context, index) {
-                              final item = homePageStore.keys[index];
-                              return DerivedAccountItem(
-                                index: index,
-                                result: item,
-                              );
-                            },
-                            itemCount: homePageStore.keys.length,
+                            child: Divider(
+                              color: CustomColors.light10,
+                            ),
                           ),
-                        ),
-                    ],
+                          if (homePageStore.keys.isNotEmpty)
+                            SizedBox(
+                              height: 480,
+                              child: ListView.builder(
+                                itemBuilder: (context, index) {
+                                  final item = homePageStore.keys[index];
+                                  return DerivedAccountItem(
+                                    index: index,
+                                    result: item,
+                                  );
+                                },
+                                itemCount: homePageStore.keys.length,
+                              ),
+                            ),
+                        ],
+                      );
+                    },
                   ),
                   if (homePageStore.keys.isNotEmpty)
-                    GenerateButton(
-                      title: Strings.generateMore,
-                      onPressCallback: () {},
+                    Container(
+                      margin: const EdgeInsets.only(top: 20),
+                      child: GenerateButton(
+                        title: Strings.generateMore,
+                        onPressCallback: () {},
+                      ),
                     ),
                 ],
               ),
             ),
-            SizedBox(height: 24.h),
+            const SizedBox(height: 24),
           ],
         ),
       );

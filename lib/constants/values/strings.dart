@@ -35,7 +35,7 @@ class Strings {
   static const String mnemonicPhrase = 'Mnemonic phrase';
   static const String derivation = 'Derivation';
   static const String licenceOne =
-      'KadenaKeys is an open source software tool created by EucalyptusLabs for the Kadena Ecosystem. The software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.';
+      'KadenaKeys is an open source software tool created by EucalyptusLabs for the Kadena Ecosystem. The software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software. \n';
   static const String licenceTwo = 'View full license ';
   static const String moreInfo = 'More info';
   static const String licence = 'License';
@@ -50,5 +50,6 @@ class Strings {
   static const String accounts = 'Accounts';
   static const String address = 'Address';
   static const String privateKeyTitle = 'Private Key';
+  static const String derived = 'Derived';
   // #endregion
 }
