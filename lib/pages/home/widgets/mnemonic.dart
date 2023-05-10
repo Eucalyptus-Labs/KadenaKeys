@@ -39,7 +39,7 @@ class Mnemonic extends StatelessWidget {
                       child: LayoutBuilder(
                         builder: (ctx, constraints) {
                           final isMobile = constraints.maxWidth < Sizes.small;
-                          const label = MnemonicLabel(
+                          final label = MnemonicLabel(
                             text: Strings.selectWallet,
                           );
                           final dropDown = Observer(
@@ -56,7 +56,7 @@ class Mnemonic extends StatelessWidget {
                                 )
                               : Row(
                                   children: [
-                                    const Expanded(
+                                    Expanded(
                                       flex: 1,
                                       child: label,
                                     ),
@@ -74,8 +74,9 @@ class Mnemonic extends StatelessWidget {
                       child: LayoutBuilder(
                         builder: (ctx, constraints) {
                           final isMobile = constraints.maxWidth < Sizes.small;
-                          const label = MnemonicLabel(
+                          final label = MnemonicLabel(
                             text: Strings.mnemonicPhrase,
+                            showTooltip: true,
                           );
                           final input = Observer(
                             builder: (context) {
@@ -99,7 +100,7 @@ class Mnemonic extends StatelessWidget {
                                 )
                               : Row(
                                   children: [
-                                    const Expanded(flex: 1, child: label),
+                                    Expanded(flex: 1, child: label),
                                     Expanded(
                                       flex: 3,
                                       child: input,
@@ -135,12 +136,15 @@ class Mnemonic extends StatelessWidget {
 }
 
 class MnemonicLabel extends StatelessWidget {
-  const MnemonicLabel({
+  MnemonicLabel({
     required this.text,
+    this.showTooltip = false,
     super.key,
   });
 
   final String text;
+  final bool showTooltip;
+  final homePageStore = GetIt.I<HomePageStore>();
 
   @override
   Widget build(BuildContext context) {
@@ -156,10 +160,25 @@ class MnemonicLabel extends StatelessWidget {
               style: Styles.textStyleSubheading,
             ),
           ),
-          Icon(
-            Icons.info,
-            color: CustomColors.light24,
-          ),
+          if (!showTooltip)
+            Icon(
+              Icons.info,
+              color: CustomColors.light24,
+            ),
+          if (showTooltip)
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              onEnter: (_) {
+                homePageStore.showTooltip(context, _.position);
+              },
+              onExit: (_) {
+                homePageStore.hideTooltip(context);
+              },
+              child: Icon(
+                Icons.info,
+                color: CustomColors.light24,
+              ),
+            ),
         ],
       ),
     );

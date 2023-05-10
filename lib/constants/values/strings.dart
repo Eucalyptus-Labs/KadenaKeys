@@ -51,5 +51,7 @@ class Strings {
   static const String address = 'Address';
   static const String privateKeyTitle = 'Private Key';
   static const String derived = 'Derived';
+  static const String mnemonicTooltip =
+      'This is your 12 or 24 words. Sometimes also called a "mnemonic phrase", "seed phrase" or "security phrase';
   // #endregion
 }

@@ -16,7 +16,7 @@ class RoundedWalletDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Center(
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          // padding: const EdgeInsets.symmetric(horizontal: 10),
           decoration: BoxDecoration(
             color: Colors.transparent,
             borderRadius: BorderRadius.circular(8.r),
@@ -32,17 +32,23 @@ class RoundedWalletDropdown extends StatelessWidget {
             child: DropdownButtonHideUnderline(
               child: DropdownButton(
                 // underline: const Nil(),
-                hint: Text(
-                  Strings.selectWallet,
-                  style: Styles.textStyleMediumParagraph.copyWith(
-                    color: CustomColors.light50,
-                    decoration: TextDecoration.none,
+                hint: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Text(
+                    Strings.selectWallet,
+                    style: Styles.textStyleMediumParagraph.copyWith(
+                      color: CustomColors.light50,
+                      decoration: TextDecoration.none,
+                    ),
                   ),
                 ),
                 items: Maps.kadenaWalletData.values
                     .map((data) => DropdownMenuItem<WalletData>(
                           value: data,
-                          child: Text(data.name),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Text(data.name),
+                          ),
                         ))
                     .toList(),
                 onChanged: onChanged,
