@@ -22,9 +22,16 @@ git clone git@github.com:Eucalyptus-Labs/KadenaKeys.git $ts
 # install deps and build
 cd $ts
 source ~/.nvm/nvm.sh
-nvm use 14
+
+rm package-lock.json
+nvm install 14
+npm cache clean --force
 npm install
 npx webpack
+
+rm pubspec.lock
+/snap/bin/flutter clean
+/snap/bin/flutter pub get
 /snap/bin/flutter build web
 
 # re-link current
