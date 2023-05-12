@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../constants/values/values.dart';
-import '../../../utils/size_info.dart';
 import '../../../widgets/url_text.dart';
 
 class HomeTitle extends StatelessWidget {
@@ -16,21 +15,25 @@ class HomeTitle extends StatelessWidget {
             Strings.homeTile,
             style: Styles.textStyleHeader4,
           ),
-          SizedBox(height: 24.h),
+          const SizedBox(height: 24),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 140.w),
-            child: Text(
-              Strings.descriptionHome,
-              maxLines: SizeInfo.screenWidth >= SizeInfo.bigWidth ? 2 : 3,
-              style: Styles.textStyleLargeParagraph.copyWith(
-                color: CustomColors.light75,
-              ),
-              textAlign: TextAlign.center,
+            padding: EdgeInsets.symmetric(horizontal: 90.w),
+            child: Column(
+              children: [
+                Text(
+                  Strings.descriptionHome,
+                  style: Styles.textStyleLargeParagraph.copyWith(
+                    color: CustomColors.light75,
+                  ),
+                  textAlign: TextAlign.center,
+                  softWrap: true,
+                ),
+              ],
             ),
           ),
-          SizedBox(height: 24.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          const SizedBox(height: 24),
+          Wrap(
+            alignment: WrapAlignment.center,
             children: [
               Text(
                 Strings.learnMore,
@@ -48,7 +51,7 @@ class HomeTitle extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 55.h),
+          const SizedBox(height: 55),
         ],
       );
 }

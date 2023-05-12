@@ -16,38 +16,49 @@ class GenerateButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SizedBox(
-      height: 48.h,
-      width: 385.w,
-      child: ElevatedButton(
-        onPressed: loading ? null : onPressCallback,
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.resolveWith(
-            (states) {
-              if (states.contains(MaterialState.disabled)) {
-                return CustomColors.accent100.withOpacity(0.5);
-              }
-              return CustomColors.accent100;
-            },
-          ),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                44.r,
+        height: 48,
+        width: 385.w,
+        child: ElevatedButton(
+          onPressed: loading ? null : onPressCallback,
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.resolveWith(
+              (states) {
+                if (states.contains(MaterialState.disabled)) {
+                  return CustomColors.accent100.withOpacity(0.5);
+                }
+                return CustomColors.accent100;
+              },
+            ),
+            textStyle: MaterialStateProperty.resolveWith(
+              (states) {
+                if (states.contains(MaterialState.disabled)) {
+                  return Styles.textStyleHeader6.copyWith(
+                    color: CustomColors.light100.withOpacity(0.5),
+                  );
+                }
+                return Styles.textStyleHeader6.copyWith(
+                  color: CustomColors.light100,
+                );
+              },
+            ),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                  44,
+                ),
               ),
             ),
           ),
-        ),
-        child: loading
-            ? const Padding(
-                padding: EdgeInsets.all(8),
-                child: Center(
-                  child: CircularProgressIndicator(),
+          child: loading
+              ? const Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                )
+              : Text(
+                  title,
                 ),
-              )
-            : Text(
-                title,
-                style: Styles.textStyleHeader6,
-              ),
-      ),
-    );
+        ),
+      );
 }

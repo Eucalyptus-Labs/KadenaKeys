@@ -4,23 +4,22 @@ import '../constants/values/values.dart';
 
 class RoundedContainer extends StatelessWidget {
   const RoundedContainer({
-    required this.height,
     required this.child,
+    this.height,
     super.key,
   });
 
-  final int height;
+  final int? height;
   final Widget child;
 
   @override
   Widget build(BuildContext context) => Container(
-      height: height.h,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16.r),
-        color: CustomColors.light02,
-      ),
-      padding: EdgeInsets.all(40.h),
-      child: child,
-    );
+        width: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16.r),
+          color: CustomColors.light02,
+        ),
+        padding: EdgeInsets.all(40.h),
+        child: child,
+      );
 }
