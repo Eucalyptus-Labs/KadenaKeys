@@ -168,11 +168,11 @@ class MnemonicLabel extends StatelessWidget {
           if (showTooltip)
             MouseRegion(
               cursor: SystemMouseCursors.click,
-              onEnter: (_) {
-                homePageStore.showTooltip(context, _.position);
+              onEnter: (event) {
+                homePageStore.showTooltip(context, event.position);
               },
-              onExit: (_) {
-                homePageStore.hideTooltip(context);
+              onExit: (event) {
+                homePageStore.hideOverlay(context);
               },
               child: Icon(
                 Icons.info,

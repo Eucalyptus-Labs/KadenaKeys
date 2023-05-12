@@ -1,6 +1,7 @@
 import 'package:async/async.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../constants/values/values.dart';
 import '../../models/key_derivation_result.dart';
@@ -126,7 +127,27 @@ abstract class _HomePageStore with Store {
     Overlay.of(context).insert(overlayEntry!);
   }
 
-  void hideTooltip(BuildContext context) {
+  void showQrCode(BuildContext context, String data) {
+    overlayEntry?.remove();
+    overlayEntry = null;
+
+    overlayEntry = OverlayEntry(
+      builder: (context) => Positioned(
+        top: 0,
+        right: 0,
+        child: QrImage(
+          data: data,
+          version: QrVersions.auto,
+          backgroundColor: Colors.white,
+          size: 300,
+        ),
+      ),
+    );
+
+    Overlay.of(context).insert(overlayEntry!);
+  }
+
+  void hideOverlay(BuildContext context) {
     overlayEntry?.remove();
     overlayEntry = null;
   }
