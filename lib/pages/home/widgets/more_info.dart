@@ -112,12 +112,12 @@ class MoreInfo extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Flexible(
-                          flex: 2,
+                          flex: 1,
                           child: licence,
                         ),
                         const SizedBox(width: 20),
                         Flexible(
-                          flex: 4,
+                          flex: 2,
                           child: licenceText,
                         ),
                       ],
@@ -139,12 +139,12 @@ class MoreInfo extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Flexible(
-                          flex: 2,
+                          flex: 1,
                           child: productText,
                         ),
                         const SizedBox(width: 20),
                         Flexible(
-                          flex: 4,
+                          flex: 2,
                           child: SizedBox(
                             width: double.infinity,
                             child: productColumn,

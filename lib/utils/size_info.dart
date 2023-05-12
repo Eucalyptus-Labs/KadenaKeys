@@ -5,10 +5,6 @@ class SizeInfo {
   static late double screenHeight;
   static late Orientation orientation;
 
-  // static int smallWidth = 360;
-  static int mediumWidth = 768;
-  // static int bigWidth = 1200;
-
   void init(BoxConstraints constraints, Orientation orientationArg) {
     orientation = orientationArg;
 
