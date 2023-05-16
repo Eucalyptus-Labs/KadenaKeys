@@ -1,17 +1,19 @@
 import 'package:async/async.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-
 import '../../constants/values/values.dart';
 import '../../models/key_derivation_result.dart';
 import '../../models/wallets.dart';
 
-import 'dart:developer' as developer;
-
 part 'home_page_store.g.dart';
 
 class HomePageStore extends _HomePageStore with _$HomePageStore {}
+
+List<int> parseTopStories(String jsonString) {
+  return [];
+}
 
 abstract class _HomePageStore with Store {
   final menmonicController = TextEditingController();
@@ -41,17 +43,25 @@ abstract class _HomePageStore with Store {
   }
 
   Future<void> generateKeysAsync() async {
-    developer.log('Generate keys');
     if (enableButton) {
       isGeneratingPrivateKey = true;
-      await Future.delayed(const Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 2));
       keys.clear();
-      final response = await selectedWallet!.deriver.deriveKeys(
-        mnemonic: menmonicController.text,
+      var response = await compute<String, List<KeyDerivationResult>>(
+        generateKeyAsync,
+        menmonicController.text,
       );
       keys.addAll(response);
       isGeneratingPrivateKey = false;
     }
+  }
+
+  Future<List<KeyDerivationResult>> generateKeyAsync(
+    String menmonicText,
+  ) async {
+    return await selectedWallet!.deriver.deriveKeys(
+      mnemonic: menmonicText,
+    );
   }
 
   @action

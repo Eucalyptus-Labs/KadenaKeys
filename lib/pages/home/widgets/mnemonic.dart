@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import '../../../constants/values/values.dart';
 import '../../../store/home_page/home_page_store.dart';
+import '../../../utils/size_info.dart';
 import '../../../widgets/round_wallet_dropdown.dart';
 import '../../../widgets/rounded_container.dart';
 import 'generate_button.dart';
@@ -13,126 +14,120 @@ class Mnemonic extends StatelessWidget {
   final homePageStore = GetIt.I<HomePageStore>();
 
   @override
-  Widget build(BuildContext context) => Column(
-        children: [
-          RoundedContainer(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(
-                    bottom: 40,
-                  ),
-                  child: Row(
-                    children: const [
-                      Text(
-                        Strings.mnemonic,
-                        style: Styles.textStyleHeader4,
-                      ),
-                    ],
-                  ),
+  Widget build(BuildContext context) {
+    final isTablet = SizeInfo.screenWidth < Sizes.tabletWidth;
+    final walletLabel = MnemonicLabel(
+      text: Strings.selectWallet,
+    );
+    final dropDown = Observer(
+      builder: (context) {
+        return RoundedWalletDropdown(
+          selectedWallet: homePageStore.selectedWallet,
+          onChanged: homePageStore.onWalletSelected,
+        );
+      },
+    );
+
+    final mnemonicLabel = MnemonicLabel(
+      text: Strings.mnemonicPhrase,
+      showTooltip: true,
+    );
+    final input = Observer(
+      builder: (context) {
+        return TextFormField(
+          controller: homePageStore.menmonicController,
+          keyboardType: TextInputType.multiline,
+          maxLines: null,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          validator: homePageStore.mnemonicValidateInput,
+          onChanged: homePageStore.selectedWallet != null
+              ? homePageStore.mnemonicOnChange
+              : null,
+          decoration: Decorations.defaultInputDecoration,
+        );
+      },
+    );
+
+    return Column(
+      children: [
+        RoundedContainer(
+          bottomMargin: 24,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                margin: const EdgeInsets.only(
+                  bottom: 40,
                 ),
-                Column(
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 24),
-                      child: LayoutBuilder(
-                        builder: (ctx, constraints) {
-                          final isMobile = constraints.maxWidth < Sizes.small;
-                          final label = MnemonicLabel(
-                            text: Strings.selectWallet,
-                          );
-                          final dropDown = Observer(
-                            builder: (context) {
-                              return RoundedWalletDropdown(
-                                selectedWallet: homePageStore.selectedWallet,
-                                onChanged: homePageStore.onWalletSelected,
-                              );
-                            },
-                          );
-                          return isMobile
-                              ? Wrap(
-                                  children: [label, dropDown],
-                                )
-                              : Row(
-                                  children: [
-                                    Expanded(
-                                      flex: 1,
-                                      child: label,
-                                    ),
-                                    Expanded(
-                                      flex: 3,
-                                      child: dropDown,
-                                    ),
-                                  ],
-                                );
-                        },
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 24),
-                      child: LayoutBuilder(
-                        builder: (ctx, constraints) {
-                          final isMobile = constraints.maxWidth < Sizes.small;
-                          final label = MnemonicLabel(
-                            text: Strings.mnemonicPhrase,
-                            showTooltip: true,
-                          );
-                          final input = Observer(
-                            builder: (context) {
-                              return TextFormField(
-                                controller: homePageStore.menmonicController,
-                                keyboardType: TextInputType.multiline,
-                                maxLines: null,
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                validator: homePageStore.mnemonicValidateInput,
-                                onChanged: homePageStore.selectedWallet != null
-                                    ? homePageStore.mnemonicOnChange
-                                    : null,
-                                decoration: Decorations.defaultInputDecoration,
-                              );
-                            },
-                          );
-                          return isMobile
-                              ? Wrap(
-                                  children: [label, input],
-                                )
-                              : Row(
-                                  children: [
-                                    Expanded(flex: 1, child: label),
-                                    Expanded(
-                                      flex: 3,
-                                      child: input,
-                                    ),
-                                  ],
-                                );
-                        },
-                      ),
+                child: Row(
+                  children: const [
+                    Text(
+                      Strings.mnemonic,
+                      style: Styles.textStyleHeader4,
                     ),
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Observer(
-                      builder: (context) {
-                        return GenerateButton(
-                          loading: homePageStore.isGeneratingPrivateKey,
-                          onPressCallback: homePageStore.enableButton
-                              ? homePageStore.generateKeysAsync
-                              : null,
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            ),
+              ),
+              Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 24),
+                    child: isTablet
+                        ? Wrap(
+                            children: [walletLabel, dropDown],
+                          )
+                        : Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: walletLabel,
+                              ),
+                              Expanded(
+                                flex: 3,
+                                child: dropDown,
+                              ),
+                            ],
+                          ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 24),
+                    child: isTablet
+                        ? Wrap(
+                            children: [mnemonicLabel, input],
+                          )
+                        : Row(
+                            children: [
+                              Expanded(flex: 1, child: mnemonicLabel),
+                              Expanded(
+                                flex: 3,
+                                child: input,
+                              ),
+                            ],
+                          ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Observer(
+                    builder: (context) {
+                      return GenerateButton(
+                        loading: homePageStore.isGeneratingPrivateKey,
+                        onPressCallback: homePageStore.enableButton
+                            ? homePageStore.generateKeysAsync
+                            : null,
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
           ),
-          const SizedBox(height: 24),
-        ],
-      );
+        ),
+      ],
+    );
+  }
 }
 
 class MnemonicLabel extends StatelessWidget {
