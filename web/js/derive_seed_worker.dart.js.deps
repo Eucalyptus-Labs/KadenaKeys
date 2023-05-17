@@ -250,8 +250,8 @@ file:///Users/moria/.pub-cache/hosted/pub.dev/typed_data-1.3.1/lib/src/typed_que
 file:///Users/moria/.pub-cache/hosted/pub.dev/typed_data-1.3.1/lib/typed_buffers.dart
 file:///Users/moria/.pub-cache/hosted/pub.dev/typed_data-1.3.1/lib/typed_data.dart
 file:///Users/moria/development/projects/KadenaKeys/.dart_tool/package_config.json
-file:///Users/moria/development/projects/KadenaKeys/lib/utils/key_derivers/extract_seed/browser/extract_seed_worker.dart
-file:///Users/moria/development/projects/KadenaKeys/lib/utils/key_derivers/extract_seed/extract_seed_service.dart
+file:///Users/moria/development/projects/KadenaKeys/lib/utils/key_derivers/derive_seed/browser/derive_seed_worker.dart
+file:///Users/moria/development/projects/KadenaKeys/lib/utils/key_derivers/derive_seed/derive_seed_service.dart
 file:///opt/homebrew/Cellar/dart/2.19.6/libexec/lib/_internal/dart2js_platform.dill
 file:///opt/homebrew/Cellar/dart/2.19.6/libexec/lib/libraries.json
 org-dartlang-sdk:///lib/_http/crypto.dart

@@ -2,6 +2,6 @@
 
 import 'package:squadron/squadron_service.dart';
 
-import '../extract_seed_service.dart';
+import '../derive_seed_service.dart';
 
 void start(Map command) => run((startRequest) => SeedExtractionServiceImpl(), command);

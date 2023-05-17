@@ -1,3 +1,7 @@
+import 'dart:typed_data';
+
+import 'package:kadena_keys/utils/key_derivers/derive_seed/derive_seed_worker_pool.dart';
+
 import '../../../models/key_derivation_result.dart';
 import '../i_key_deriver.dart';
 import '../kadena_crypto/kadena_crypto.dart';
@@ -18,12 +22,22 @@ class DeriveEcko extends IKeyDeriver {
     int startIndex = 0,
     int count = 10,
   }) async {
-    final root = kadenaMnemonicToRootKeypair('', mnemonic.trim());
+    SeedDerivationWorkerPool? seedDerivationWorkerPool;
+    Uint8List? seedBytes;
+
+    try {
+      seedDerivationWorkerPool = SeedDerivationWorkerPool();
+      await seedDerivationWorkerPool.start();
+      seedBytes = await seedDerivationWorkerPool.getBip39Seed(mnemonic.trim());
+    } finally {
+      seedDerivationWorkerPool?.stop();
+    }
+
     final hardIndex = 0x80000000 + startIndex;
 
     final results = <KeyDerivationResult>[];
     for (num i = 0; i < count; i++) {
-      final privPubKey = kadenaGenKeypair('', root, hardIndex + i);
+      final privPubKey = kadenaGenKeypair('', seedBytes, hardIndex + i);
       results.add(
         KeyDerivationResult(
           privateKey: hex.encode(privPubKey[0]).substring(
