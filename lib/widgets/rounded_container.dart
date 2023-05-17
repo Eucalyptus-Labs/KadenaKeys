@@ -5,11 +5,13 @@ import '../constants/values/values.dart';
 class RoundedContainer extends StatelessWidget {
   const RoundedContainer({
     required this.child,
+    required this.bottomMargin,
     this.height,
     super.key,
   });
 
   final int? height;
+  final double bottomMargin;
   final Widget child;
 
   @override
@@ -20,6 +22,7 @@ class RoundedContainer extends StatelessWidget {
           color: CustomColors.light02,
         ),
         padding: EdgeInsets.all(40.h),
+        margin: EdgeInsets.only(bottom: bottomMargin),
         child: child,
       );
 }
