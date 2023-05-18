@@ -13,6 +13,6 @@
 //
 // Of course, this can be automated in a release script (shell, batch or PowerShell depending on your dev platform)
 
-import '../derive_seed_worker_pool.dart' show SeedExtractionWorker;
+import '../derive_seed_worker_pool.dart' show SeedDerivationWorker;
 
-SeedExtractionWorker createWorker() => SeedExtractionWorker('/js/derive_seed_worker.dart.js');
+SeedDerivationWorker createWorker() => SeedDerivationWorker('/js/derive_seed_worker.dart.js');

@@ -5,6 +5,6 @@
 // of course, if your application does not target both Web and VM platforms,
 // you need not define a stub file and can go directly for your target platform
 
-import 'derive_seed_worker_pool.dart' show SeedExtractionWorker;
+import 'derive_seed_worker_pool.dart' show SeedDerivationWorker;
 
-SeedExtractionWorker createWorker() => throw UnsupportedError('Not supported on this platform');
+SeedDerivationWorker createWorker() => throw UnsupportedError('Not supported on this platform');

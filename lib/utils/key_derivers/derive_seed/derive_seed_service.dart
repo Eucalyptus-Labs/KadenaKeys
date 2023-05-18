@@ -10,7 +10,7 @@ import '../kadena_crypto/kadena_crypto.dart';
 /// this abstract class represents the functionality you want to support in your service
 ///
 /// now there is only one functionality: given a mnemonic phrase, compute a seed
-abstract class SeedExtractionService {
+abstract class SeedDerivationService {
   FutureOr<Uint8List> getBip39Seed(String mnemonicPhrase);
 
   FutureOr<Uint8List> getKadenaSeed(String mnemonicPhrase);
@@ -21,7 +21,7 @@ abstract class SeedExtractionService {
 }
 
 /// this class is the actual implementation of the service defined above
-class SeedExtractionServiceImpl implements SeedExtractionService, WorkerService {
+class SeedExtractionServiceImpl implements SeedDerivationService, WorkerService {
   @override
   Uint8List getBip39Seed(String mnemonicPhrase) {
     final seedBytes = bip39.mnemonicToSeed(mnemonicPhrase.trim());
@@ -40,11 +40,11 @@ class SeedExtractionServiceImpl implements SeedExtractionService, WorkerService 
   /// and the method implementations in [SeedExtractionServiceImpl]
   @override
   late final Map<int, CommandHandler> operations = {
-    SeedExtractionService.getBip39SeedCommand: (WorkerRequest r) {
+    SeedDerivationService.getBip39SeedCommand: (WorkerRequest r) {
       Squadron.info('Received getBip39SeedCommand in ${r.travelTime} µs');
       return getBip39Seed(r.args[0]);
     },
-    SeedExtractionService.getKadenaSeedCommand: (WorkerRequest r) {
+    SeedDerivationService.getKadenaSeedCommand: (WorkerRequest r) {
       Squadron.info('Received getKadenaSeedCommand in ${r.travelTime} µs');
       return getKadenaSeed(r.args[0]);
     }

@@ -28,7 +28,7 @@ class DeriveEcko extends IKeyDeriver {
     try {
       seedDerivationWorkerPool = SeedDerivationWorkerPool();
       await seedDerivationWorkerPool.start();
-      seedBytes = await seedDerivationWorkerPool.getBip39Seed(mnemonic.trim());
+      seedBytes = await seedDerivationWorkerPool.getKadenaSeed(mnemonic.trim());
     } finally {
       seedDerivationWorkerPool?.stop();
     }
@@ -36,14 +36,11 @@ class DeriveEcko extends IKeyDeriver {
     final hardIndex = 0x80000000 + startIndex;
 
     final results = <KeyDerivationResult>[];
-    for (num i = 0; i < count; i++) {
+    for (int i = 0; i < count; i++) {
       final privPubKey = kadenaGenKeypair('', seedBytes, hardIndex + i);
       results.add(
         KeyDerivationResult(
-          privateKey: hex.encode(privPubKey[0]).substring(
-                0,
-                128,
-              ),
+          privateKey: hex.encode(privPubKey[0]).substring(0, 128),
           publicKey: hex.encode(privPubKey[1]),
           account: 'k:${hex.encode(privPubKey[1])}',
         ),

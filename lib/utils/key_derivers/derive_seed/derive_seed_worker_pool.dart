@@ -16,8 +16,8 @@ import 'derive_seed_activator.dart'
     if (dart.library.html) './browser/derive_seed_worker_activator.dart'
     if (dart.library.io) './vm/derive_seed_worker_activator.dart';
 
-/// Implementation of [SeedExtractionService] as a Squadron worker pool
-class SeedDerivationWorkerPool extends WorkerPool<SeedExtractionWorker> implements SeedExtractionService {
+/// Implementation of [SeedDerivationService] as a Squadron worker pool
+class SeedDerivationWorkerPool extends WorkerPool<SeedDerivationWorker> implements SeedDerivationService {
   SeedDerivationWorkerPool()
       : super(
           createWorker,
@@ -31,15 +31,15 @@ class SeedDerivationWorkerPool extends WorkerPool<SeedExtractionWorker> implemen
   Future<Uint8List> getKadenaSeed(String mnemonicPhrase) => execute((w) => w.getKadenaSeed(mnemonicPhrase));
 }
 
-/// Implementation of [SeedExtractionService] as a Squadron worker
-class SeedExtractionWorker extends Worker implements SeedExtractionService {
-  SeedExtractionWorker(dynamic entryPoint, {List args = const []}) : super(entryPoint, args: args);
+/// Implementation of [SeedDerivationService] as a Squadron worker
+class SeedDerivationWorker extends Worker implements SeedDerivationService {
+  SeedDerivationWorker(dynamic entryPoint, {List args = const []}) : super(entryPoint, args: args);
 
   @override
   Future<Uint8List> getBip39Seed(String mnemonicPhrase) =>
-      send(SeedExtractionService.getBip39SeedCommand, args: [mnemonicPhrase]);
+      send(SeedDerivationService.getBip39SeedCommand, args: [mnemonicPhrase]);
 
   @override
   Future<Uint8List> getKadenaSeed(String mnemonicPhrase) =>
-      send(SeedExtractionService.getKadenaSeedCommand, args: [mnemonicPhrase]);
+      send(SeedDerivationService.getKadenaSeedCommand, args: [mnemonicPhrase]);
 }
