@@ -55,6 +55,7 @@ dependencies:
   pinenacl: ^0.5.1
   qr_flutter: ^4.0.0
   slip_0010_ed25519: ^3.1.0
+  squadron: ^4.3.8
   url_launcher: ^6.1.10
   x25519: ^0.1.1
 

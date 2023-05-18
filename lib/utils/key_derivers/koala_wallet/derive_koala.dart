@@ -1,5 +1,10 @@
+import 'dart:typed_data';
+
+import 'package:kadena_keys/utils/key_derivers/derive_seed/derive_seed_worker_pool.dart';
+
 import '../../../models/key_derivation_result.dart';
 import 'package:bip39/bip39.dart' as bip39;
+
 // ignore: depend_on_referenced_packages
 import 'package:convert/convert.dart';
 import '../i_key_deriver.dart';
@@ -18,7 +23,16 @@ class DeriveKoala extends IKeyDeriver {
     int startIndex = 0,
     int count = 10,
   }) async {
-    final seedBytes = bip39.mnemonicToSeed(mnemonic.trim());
+    SeedDerivationWorkerPool? seedExtractWorkerPool;
+    Uint8List? seedBytes;
+
+    try {
+      seedExtractWorkerPool = SeedDerivationWorkerPool();
+      await seedExtractWorkerPool.start();
+      seedBytes = await seedExtractWorkerPool.getBip39Seed(mnemonic.trim());
+    } finally {
+      seedExtractWorkerPool?.stop();
+    }
 
     final results = <KeyDerivationResult>[];
     for (var i = 0; i < count; i++) {

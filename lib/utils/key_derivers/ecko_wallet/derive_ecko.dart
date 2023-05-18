@@ -22,14 +22,11 @@ class DeriveEcko extends IKeyDeriver {
     final hardIndex = 0x80000000 + startIndex;
 
     final results = <KeyDerivationResult>[];
-    for (num i = 0; i < count; i++) {
+    for (int i = 0; i < count; i++) {
       final privPubKey = kadenaGenKeypair('', root, hardIndex + i);
       results.add(
         KeyDerivationResult(
-          privateKey: hex.encode(privPubKey[0]).substring(
-                0,
-                128,
-              ),
+          privateKey: hex.encode(privPubKey[0]).substring(0, 128),
           publicKey: hex.encode(privPubKey[1]),
           account: 'k:${hex.encode(privPubKey[1])}',
         ),
