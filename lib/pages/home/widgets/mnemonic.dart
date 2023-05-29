@@ -59,8 +59,8 @@ class Mnemonic extends StatelessWidget {
                 margin: const EdgeInsets.only(
                   bottom: 40,
                 ),
-                child: Row(
-                  children: const [
+                child: const Row(
+                  children: [
                     Text(
                       Strings.mnemonic,
                       style: Styles.textStyleHeader4,

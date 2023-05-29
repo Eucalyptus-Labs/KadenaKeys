@@ -129,7 +129,7 @@ class DerivedAccounts extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.only(top: 20),
                       child: GenerateButton(
-                        title: Strings.generateMore,
+                        title: Strings.deriveMore,
                         onPressCallback: () {},
                       ),
                     ),

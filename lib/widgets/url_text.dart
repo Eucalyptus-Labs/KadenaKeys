@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UrlText extends StatelessWidget {
@@ -14,18 +15,23 @@ class UrlText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: () async {
-          final uri = Uri.parse(url);
-          if (!await launchUrl(uri)) {
-            throw Exception('Could not launch $url ');
-          }
-        },
-        child: Text(
-          text,
-          style: style,
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: () async {
+            final uri = Uri.parse(url);
+            if (!await launchUrl(uri)) {
+              throw Exception('Could not launch $url ');
+            }
+          },
+          child: Link(
+            uri: Uri.parse(url),
+            builder: (context, onLlink) {
+              return Text(
+                text,
+                style: style,
+              );
+            },
+          ),
         ),
-      ),
-    );
+      );
 }

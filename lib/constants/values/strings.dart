@@ -14,7 +14,9 @@ class Strings {
   static const String seedPhrase = 'Mnemonic/Recovery/Seed Phrase';
   static const String generateSeed = 'Generate Key Pair and Account';
   static const String generate = 'Generate';
+  static const String deriveAccounts = 'Derive Accounts';
   static const String generateMore = 'Generate more';
+  static const String deriveMore = 'Derive more';
   static const String keyPairsAndAccounts = 'Key Pairs and Accounts';
   static const String tapOnAnyPrivateKey =
       'Tap on any cell to copy its contents to your clipboard';

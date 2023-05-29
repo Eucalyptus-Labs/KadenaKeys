@@ -1,5 +1,4 @@
 import 'package:async/async.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -45,23 +44,13 @@ abstract class _HomePageStore with Store {
   Future<void> generateKeysAsync() async {
     if (enableButton) {
       isGeneratingPrivateKey = true;
-      await Future.delayed(const Duration(seconds: 2));
       keys.clear();
-      var response = await compute<String, List<KeyDerivationResult>>(
-        generateKeyAsync,
-        menmonicController.text,
+      var response = await selectedWallet!.deriver.deriveKeys(
+        mnemonic: menmonicController.text,
       );
       keys.addAll(response);
       isGeneratingPrivateKey = false;
     }
-  }
-
-  Future<List<KeyDerivationResult>> generateKeyAsync(
-    String menmonicText,
-  ) async {
-    return await selectedWallet!.deriver.deriveKeys(
-      mnemonic: menmonicText,
-    );
   }
 
   @action
@@ -145,11 +134,11 @@ abstract class _HomePageStore with Store {
       builder: (context) => Positioned(
         top: 0,
         right: 0,
-        child: QrImage(
+        child: QrImageView(
           data: data,
           version: QrVersions.auto,
           backgroundColor: Colors.white,
-          size: 300,
+          size: 200,
         ),
       ),
     );
