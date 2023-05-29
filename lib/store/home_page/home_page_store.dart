@@ -26,9 +26,6 @@ abstract class _HomePageStore with Store {
   WalletData? selectedWallet;
 
   @observable
-  bool isGeneratingPrivateKey = false;
-
-  @observable
   bool enableButton = false;
 
   @observable

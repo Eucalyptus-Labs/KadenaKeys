@@ -25,23 +25,6 @@ mixin _$HomePageStore on _HomePageStore, Store {
     });
   }
 
-  late final _$isGeneratingPrivateKeyAtom =
-      Atom(name: '_HomePageStore.isGeneratingPrivateKey', context: context);
-
-  @override
-  bool get isGeneratingPrivateKey {
-    _$isGeneratingPrivateKeyAtom.reportRead();
-    return super.isGeneratingPrivateKey;
-  }
-
-  @override
-  set isGeneratingPrivateKey(bool value) {
-    _$isGeneratingPrivateKeyAtom
-        .reportWrite(value, super.isGeneratingPrivateKey, () {
-      super.isGeneratingPrivateKey = value;
-    });
-  }
-
   late final _$enableButtonAtom =
       Atom(name: '_HomePageStore.enableButton', context: context);
 
@@ -166,7 +149,6 @@ mixin _$HomePageStore on _HomePageStore, Store {
   String toString() {
     return '''
 selectedWallet: ${selectedWallet},
-isGeneratingPrivateKey: ${isGeneratingPrivateKey},
 enableButton: ${enableButton},
 deriveAccountsState: ${deriveAccountsState},
 deriveMoreState: ${deriveMoreState},
