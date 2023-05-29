@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import '../../../constants/enums/store_states.dart';
 import '../../../constants/values/values.dart';
 import '../../../store/home_page/home_page_store.dart';
 import '../../../utils/size_info.dart';
@@ -115,8 +116,10 @@ class DerivedAccounts extends StatelessWidget {
                           child: ListView.builder(
                             itemBuilder: (context, index) {
                               final item = homePageStore.keys[index];
+                              final deriveIndex =
+                                  homePageStore.deriveKeyIndex - 10 + index;
                               return DerivedAccountItem(
-                                index: index,
+                                index: deriveIndex,
                                 result: item,
                               );
                             },
@@ -128,10 +131,14 @@ class DerivedAccounts extends StatelessWidget {
                   if (homePageStore.keys.isNotEmpty)
                     Container(
                       margin: const EdgeInsets.only(top: 20),
-                      child: GenerateButton(
-                        title: Strings.deriveMore,
-                        onPressCallback: () {},
-                      ),
+                      child: Observer(builder: (context) {
+                        return GenerateButton(
+                          loading: homePageStore.deriveMoreState ==
+                              StoreStates.loading,
+                          title: Strings.deriveMore,
+                          onPressCallback: homePageStore.deriveMoreAsync,
+                        );
+                      }),
                     ),
                 ],
               );

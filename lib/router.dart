@@ -11,13 +11,13 @@ part 'router.gr.dart';
 class AppRouter extends _$AppRouter {
   @override
   final List<AutoRoute> routes = [
-    // AutoRoute(
-    //   page: HomeRoute.page,
-    //   path: '/',
-    // ),
     AutoRoute(
-      page: KeyDerivationRoute.page,
+      page: HomeRoute.page,
       path: '/',
     ),
+    // AutoRoute(
+    //   page: KeyDerivationRoute.page,
+    //   path: '/',
+    // ),
   ];
 }

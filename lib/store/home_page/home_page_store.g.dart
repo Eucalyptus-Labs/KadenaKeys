@@ -58,6 +58,38 @@ mixin _$HomePageStore on _HomePageStore, Store {
     });
   }
 
+  late final _$deriveAccountsStateAtom =
+      Atom(name: '_HomePageStore.deriveAccountsState', context: context);
+
+  @override
+  StoreStates get deriveAccountsState {
+    _$deriveAccountsStateAtom.reportRead();
+    return super.deriveAccountsState;
+  }
+
+  @override
+  set deriveAccountsState(StoreStates value) {
+    _$deriveAccountsStateAtom.reportWrite(value, super.deriveAccountsState, () {
+      super.deriveAccountsState = value;
+    });
+  }
+
+  late final _$deriveMoreStateAtom =
+      Atom(name: '_HomePageStore.deriveMoreState', context: context);
+
+  @override
+  StoreStates get deriveMoreState {
+    _$deriveMoreStateAtom.reportRead();
+    return super.deriveMoreState;
+  }
+
+  @override
+  set deriveMoreState(StoreStates value) {
+    _$deriveMoreStateAtom.reportWrite(value, super.deriveMoreState, () {
+      super.deriveMoreState = value;
+    });
+  }
+
   late final _$derivationMethodAtom =
       Atom(name: '_HomePageStore.derivationMethod', context: context);
 
@@ -136,6 +168,8 @@ mixin _$HomePageStore on _HomePageStore, Store {
 selectedWallet: ${selectedWallet},
 isGeneratingPrivateKey: ${isGeneratingPrivateKey},
 enableButton: ${enableButton},
+deriveAccountsState: ${deriveAccountsState},
+deriveMoreState: ${deriveMoreState},
 derivationMethod: ${derivationMethod},
 derivationPath: ${derivationPath},
 keys: ${keys}

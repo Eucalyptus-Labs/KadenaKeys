@@ -2,6 +2,7 @@ import 'package:async/async.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import '../../constants/enums/store_states.dart';
 import '../../constants/values/values.dart';
 import '../../models/key_derivation_result.dart';
 import '../../models/wallets.dart';
@@ -18,6 +19,8 @@ abstract class _HomePageStore with Store {
   final menmonicController = TextEditingController();
   OverlayEntry? overlayEntry;
   CancelableOperation<void>? cancelableOperation;
+  int deriveKeyIndex = 0;
+  int count = 10;
 
   @observable
   WalletData? selectedWallet;
@@ -27,6 +30,12 @@ abstract class _HomePageStore with Store {
 
   @observable
   bool enableButton = false;
+
+  @observable
+  StoreStates deriveAccountsState = StoreStates.initial;
+
+  @observable
+  StoreStates deriveMoreState = StoreStates.initial;
 
   @observable
   String? derivationMethod, derivationPath;
@@ -41,15 +50,37 @@ abstract class _HomePageStore with Store {
     _enableButton();
   }
 
-  Future<void> generateKeysAsync() async {
+  Future<void> deriveAccountsAsync() async {
     if (enableButton) {
-      isGeneratingPrivateKey = true;
+      deriveAccountsState = StoreStates.loading;
+      deriveKeyIndex = 0;
+      count = 10;
       keys.clear();
       var response = await selectedWallet!.deriver.deriveKeys(
+        startIndex: deriveKeyIndex,
+        count: count,
         mnemonic: menmonicController.text,
       );
       keys.addAll(response);
-      isGeneratingPrivateKey = false;
+      deriveKeyIndex += 10;
+      count += 10;
+      deriveAccountsState = StoreStates.success;
+    }
+  }
+
+  Future<void> deriveMoreAsync() async {
+    if (enableButton) {
+      deriveMoreState = StoreStates.loading;
+      keys.clear();
+      var response = await selectedWallet!.deriver.deriveKeys(
+        startIndex: deriveKeyIndex,
+        count: count,
+        mnemonic: menmonicController.text,
+      );
+      keys.addAll(response);
+      deriveKeyIndex += 10;
+      count += 10;
+      deriveMoreState = StoreStates.success;
     }
   }
 

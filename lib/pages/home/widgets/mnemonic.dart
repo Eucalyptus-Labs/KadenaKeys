@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import '../../../constants/enums/store_states.dart';
 import '../../../constants/values/values.dart';
 import '../../../store/home_page/home_page_store.dart';
 import '../../../utils/size_info.dart';
@@ -113,9 +114,10 @@ class Mnemonic extends StatelessWidget {
                   Observer(
                     builder: (context) {
                       return GenerateButton(
-                        loading: homePageStore.isGeneratingPrivateKey,
+                        loading: homePageStore.deriveAccountsState ==
+                            StoreStates.loading,
                         onPressCallback: homePageStore.enableButton
-                            ? homePageStore.generateKeysAsync
+                            ? homePageStore.deriveAccountsAsync
                             : null,
                       );
                     },
