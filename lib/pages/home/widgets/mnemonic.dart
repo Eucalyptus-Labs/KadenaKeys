@@ -19,6 +19,7 @@ class Mnemonic extends StatelessWidget {
     final isTablet = SizeInfo.screenWidth < Sizes.tabletWidth;
     final walletLabel = MnemonicLabel(
       text: Strings.selectWallet,
+      tooltipText: Strings.walletTooltip,
     );
     final dropDown = Observer(
       builder: (context) {
@@ -31,7 +32,7 @@ class Mnemonic extends StatelessWidget {
 
     final mnemonicLabel = MnemonicLabel(
       text: Strings.mnemonicPhrase,
-      showTooltip: true,
+      tooltipText: Strings.mnemonicTooltip,
     );
     final input = Observer(
       builder: (context) {
@@ -135,12 +136,11 @@ class Mnemonic extends StatelessWidget {
 class MnemonicLabel extends StatelessWidget {
   MnemonicLabel({
     required this.text,
-    this.showTooltip = false,
+    required this.tooltipText,
     super.key,
   });
 
-  final String text;
-  final bool showTooltip;
+  final String text, tooltipText;
   final homePageStore = GetIt.I<HomePageStore>();
 
   @override
@@ -157,25 +157,28 @@ class MnemonicLabel extends StatelessWidget {
               style: Styles.textStyleSubheading,
             ),
           ),
-          if (!showTooltip)
-            Icon(
-              Icons.info,
-              color: CustomColors.light24,
-            ),
-          if (showTooltip)
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              onEnter: (event) {
-                homePageStore.showTooltip(context, event.position);
-              },
-              onExit: (event) {
-                homePageStore.hideOverlay(context);
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            onEnter: (event) {
+              homePageStore.showTooltip(context, event.position, tooltipText);
+            },
+            onExit: (event) {
+              homePageStore.hideOverlay(context);
+            },
+            child: GestureDetector(
+              onTapDown: (details) {
+                homePageStore.showTooltip(
+                  context,
+                  details.globalPosition,
+                  tooltipText,
+                );
               },
               child: Icon(
                 Icons.info,
                 color: CustomColors.light24,
               ),
             ),
+          ),
         ],
       ),
     );

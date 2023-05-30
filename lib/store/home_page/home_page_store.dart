@@ -124,7 +124,7 @@ abstract class _HomePageStore with Store {
     derivationPath = selectedWallet!.derivationPath;
   }
 
-  void showTooltip(BuildContext context, Offset position) {
+  void showTooltip(BuildContext context, Offset position, String text) {
     overlayEntry?.remove();
     overlayEntry = null;
 
@@ -132,15 +132,15 @@ abstract class _HomePageStore with Store {
       builder: (context) => Positioned(
         left: position.dx + 20,
         top: position.dy - 40,
-        child: const SizedBox(
+        child: SizedBox(
           width: 200,
           child: Card(
             color: Colors.white,
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
               child: Text(
-                Strings.mnemonicTooltip,
-                style: TextStyle(
+                text,
+                style: const TextStyle(
                   color: Colors.black,
                 ),
               ),
