@@ -52,12 +52,12 @@ abstract class _HomePageStore with Store {
       deriveAccountsState = StoreStates.loading;
       deriveKeyIndex = 0;
       count = 10;
-      keys.clear();
       var response = await selectedWallet!.deriver.deriveKeys(
         startIndex: deriveKeyIndex,
         count: count,
         mnemonic: menmonicController.text,
       );
+      keys.clear();
       keys.addAll(response);
       deriveKeyIndex += 10;
       count += 10;
@@ -68,7 +68,6 @@ abstract class _HomePageStore with Store {
   Future<void> deriveMoreAsync() async {
     if (enableButton) {
       deriveMoreState = StoreStates.loading;
-      keys.clear();
       var response = await selectedWallet!.deriver.deriveKeys(
         startIndex: deriveKeyIndex,
         count: count,

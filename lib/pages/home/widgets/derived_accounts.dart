@@ -116,10 +116,8 @@ class DerivedAccounts extends StatelessWidget {
                           child: ListView.builder(
                             itemBuilder: (context, index) {
                               final item = homePageStore.keys[index];
-                              final deriveIndex =
-                                  homePageStore.deriveKeyIndex - 10 + index;
                               return DerivedAccountItem(
-                                index: deriveIndex,
+                                index: index,
                                 result: item,
                               );
                             },
