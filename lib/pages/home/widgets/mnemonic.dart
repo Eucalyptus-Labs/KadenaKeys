@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import '../../../constants/enums/store_states.dart';
 import '../../../constants/values/values.dart';
 import '../../../store/home_page/home_page_store.dart';
 import '../../../utils/size_info.dart';
@@ -18,6 +19,7 @@ class Mnemonic extends StatelessWidget {
     final isTablet = SizeInfo.screenWidth < Sizes.tabletWidth;
     final walletLabel = MnemonicLabel(
       text: Strings.selectWallet,
+      tooltipText: Strings.walletTooltip,
     );
     final dropDown = Observer(
       builder: (context) {
@@ -30,7 +32,7 @@ class Mnemonic extends StatelessWidget {
 
     final mnemonicLabel = MnemonicLabel(
       text: Strings.mnemonicPhrase,
-      showTooltip: true,
+      tooltipText: Strings.mnemonicTooltip,
     );
     final input = Observer(
       builder: (context) {
@@ -59,8 +61,8 @@ class Mnemonic extends StatelessWidget {
                 margin: const EdgeInsets.only(
                   bottom: 40,
                 ),
-                child: Row(
-                  children: const [
+                child: const Row(
+                  children: [
                     Text(
                       Strings.mnemonic,
                       style: Styles.textStyleHeader4,
@@ -113,9 +115,10 @@ class Mnemonic extends StatelessWidget {
                   Observer(
                     builder: (context) {
                       return GenerateButton(
-                        loading: homePageStore.isGeneratingPrivateKey,
+                        loading: homePageStore.deriveAccountsState ==
+                            StoreStates.loading,
                         onPressCallback: homePageStore.enableButton
-                            ? homePageStore.generateKeysAsync
+                            ? homePageStore.deriveAccountsAsync
                             : null,
                       );
                     },
@@ -133,12 +136,11 @@ class Mnemonic extends StatelessWidget {
 class MnemonicLabel extends StatelessWidget {
   MnemonicLabel({
     required this.text,
-    this.showTooltip = false,
+    required this.tooltipText,
     super.key,
   });
 
-  final String text;
-  final bool showTooltip;
+  final String text, tooltipText;
   final homePageStore = GetIt.I<HomePageStore>();
 
   @override
@@ -155,25 +157,28 @@ class MnemonicLabel extends StatelessWidget {
               style: Styles.textStyleSubheading,
             ),
           ),
-          if (!showTooltip)
-            Icon(
-              Icons.info,
-              color: CustomColors.light24,
-            ),
-          if (showTooltip)
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              onEnter: (event) {
-                homePageStore.showTooltip(context, event.position);
-              },
-              onExit: (event) {
-                homePageStore.hideOverlay(context);
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            onEnter: (event) {
+              homePageStore.showTooltip(context, event.position, tooltipText);
+            },
+            onExit: (event) {
+              homePageStore.hideOverlay(context);
+            },
+            child: GestureDetector(
+              onTapDown: (details) {
+                homePageStore.showTooltip(
+                  context,
+                  details.globalPosition,
+                  tooltipText,
+                );
               },
               child: Icon(
                 Icons.info,
                 color: CustomColors.light24,
               ),
             ),
+          ),
         ],
       ),
     );

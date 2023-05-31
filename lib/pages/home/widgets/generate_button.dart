@@ -5,7 +5,7 @@ import '../../../constants/values/values.dart';
 class GenerateButton extends StatelessWidget {
   const GenerateButton({
     required this.onPressCallback,
-    this.title = Strings.generate,
+    this.title = Strings.deriveAccounts,
     this.loading = false,
     super.key,
   });

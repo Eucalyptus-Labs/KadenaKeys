@@ -25,23 +25,6 @@ mixin _$HomePageStore on _HomePageStore, Store {
     });
   }
 
-  late final _$isGeneratingPrivateKeyAtom =
-      Atom(name: '_HomePageStore.isGeneratingPrivateKey', context: context);
-
-  @override
-  bool get isGeneratingPrivateKey {
-    _$isGeneratingPrivateKeyAtom.reportRead();
-    return super.isGeneratingPrivateKey;
-  }
-
-  @override
-  set isGeneratingPrivateKey(bool value) {
-    _$isGeneratingPrivateKeyAtom
-        .reportWrite(value, super.isGeneratingPrivateKey, () {
-      super.isGeneratingPrivateKey = value;
-    });
-  }
-
   late final _$enableButtonAtom =
       Atom(name: '_HomePageStore.enableButton', context: context);
 
@@ -55,6 +38,38 @@ mixin _$HomePageStore on _HomePageStore, Store {
   set enableButton(bool value) {
     _$enableButtonAtom.reportWrite(value, super.enableButton, () {
       super.enableButton = value;
+    });
+  }
+
+  late final _$deriveAccountsStateAtom =
+      Atom(name: '_HomePageStore.deriveAccountsState', context: context);
+
+  @override
+  StoreStates get deriveAccountsState {
+    _$deriveAccountsStateAtom.reportRead();
+    return super.deriveAccountsState;
+  }
+
+  @override
+  set deriveAccountsState(StoreStates value) {
+    _$deriveAccountsStateAtom.reportWrite(value, super.deriveAccountsState, () {
+      super.deriveAccountsState = value;
+    });
+  }
+
+  late final _$deriveMoreStateAtom =
+      Atom(name: '_HomePageStore.deriveMoreState', context: context);
+
+  @override
+  StoreStates get deriveMoreState {
+    _$deriveMoreStateAtom.reportRead();
+    return super.deriveMoreState;
+  }
+
+  @override
+  set deriveMoreState(StoreStates value) {
+    _$deriveMoreStateAtom.reportWrite(value, super.deriveMoreState, () {
+      super.deriveMoreState = value;
     });
   }
 
@@ -134,8 +149,9 @@ mixin _$HomePageStore on _HomePageStore, Store {
   String toString() {
     return '''
 selectedWallet: ${selectedWallet},
-isGeneratingPrivateKey: ${isGeneratingPrivateKey},
 enableButton: ${enableButton},
+deriveAccountsState: ${deriveAccountsState},
+deriveMoreState: ${deriveMoreState},
 derivationMethod: ${derivationMethod},
 derivationPath: ${derivationPath},
 keys: ${keys}

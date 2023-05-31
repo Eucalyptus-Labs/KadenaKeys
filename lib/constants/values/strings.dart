@@ -14,7 +14,9 @@ class Strings {
   static const String seedPhrase = 'Mnemonic/Recovery/Seed Phrase';
   static const String generateSeed = 'Generate Key Pair and Account';
   static const String generate = 'Generate';
+  static const String deriveAccounts = 'Derive Accounts';
   static const String generateMore = 'Generate more';
+  static const String deriveMore = 'Derive more';
   static const String keyPairsAndAccounts = 'Key Pairs and Accounts';
   static const String tapOnAnyPrivateKey =
       'Tap on any cell to copy its contents to your clipboard';
@@ -53,5 +55,7 @@ class Strings {
   static const String derived = 'Derived';
   static const String mnemonicTooltip =
       'This is your 12 or 24 words. Sometimes also called a "mnemonic phrase", "seed phrase" or "security" phrase';
+  static const String walletTooltip =
+      'Select the wallet application you used to create your Kadena wallet account.';
   // #endregion
 }

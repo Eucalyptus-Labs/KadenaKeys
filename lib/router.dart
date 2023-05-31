@@ -1,5 +1,6 @@
 // Package imports:
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'pages/home/home_page.dart';
 import 'pages/key_derivation_page.dart';
 

@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants/values/values.dart';
@@ -30,7 +31,7 @@ class RoundedWalletDropdown extends StatelessWidget {
               // hoverColor: Colors.transparent,
             ),
             child: DropdownButtonHideUnderline(
-              child: DropdownButton(
+              child: DropdownButton2(
                 // underline: const Nil(),
                 hint: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -54,7 +55,10 @@ class RoundedWalletDropdown extends StatelessWidget {
                 onChanged: onChanged,
                 isExpanded: true,
                 value: selectedWallet,
-                iconEnabledColor: CustomColors.accent100,
+                iconStyleData: const IconStyleData(
+                  iconEnabledColor: CustomColors.accent100,
+                ),
+                // iconEnabledColor: CustomColors.accent100,
               ),
             ),
           ),

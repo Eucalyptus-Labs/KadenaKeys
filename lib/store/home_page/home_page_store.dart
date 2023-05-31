@@ -1,8 +1,8 @@
 import 'package:async/async.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import '../../constants/enums/store_states.dart';
 import '../../constants/values/values.dart';
 import '../../models/key_derivation_result.dart';
 import '../../models/wallets.dart';
@@ -19,15 +19,20 @@ abstract class _HomePageStore with Store {
   final menmonicController = TextEditingController();
   OverlayEntry? overlayEntry;
   CancelableOperation<void>? cancelableOperation;
+  int deriveKeyIndex = 0;
+  int count = 10;
 
   @observable
   WalletData? selectedWallet;
 
   @observable
-  bool isGeneratingPrivateKey = false;
+  bool enableButton = false;
 
   @observable
-  bool enableButton = false;
+  StoreStates deriveAccountsState = StoreStates.initial;
+
+  @observable
+  StoreStates deriveMoreState = StoreStates.initial;
 
   @observable
   String? derivationMethod, derivationPath;
@@ -42,26 +47,37 @@ abstract class _HomePageStore with Store {
     _enableButton();
   }
 
-  Future<void> generateKeysAsync() async {
+  Future<void> deriveAccountsAsync() async {
     if (enableButton) {
-      isGeneratingPrivateKey = true;
-      await Future.delayed(const Duration(seconds: 2));
-      keys.clear();
-      var response = await compute<String, List<KeyDerivationResult>>(
-        generateKeyAsync,
-        menmonicController.text,
+      deriveAccountsState = StoreStates.loading;
+      deriveKeyIndex = 0;
+      count = 10;
+      var response = await selectedWallet!.deriver.deriveKeys(
+        startIndex: deriveKeyIndex,
+        count: count,
+        mnemonic: menmonicController.text,
       );
+      keys.clear();
       keys.addAll(response);
-      isGeneratingPrivateKey = false;
+      deriveKeyIndex += 10;
+      count += 10;
+      deriveAccountsState = StoreStates.success;
     }
   }
 
-  Future<List<KeyDerivationResult>> generateKeyAsync(
-    String menmonicText,
-  ) async {
-    return await selectedWallet!.deriver.deriveKeys(
-      mnemonic: menmonicText,
-    );
+  Future<void> deriveMoreAsync() async {
+    if (enableButton) {
+      deriveMoreState = StoreStates.loading;
+      var response = await selectedWallet!.deriver.deriveKeys(
+        startIndex: deriveKeyIndex,
+        count: count,
+        mnemonic: menmonicController.text,
+      );
+      keys.addAll(response);
+      deriveKeyIndex += 10;
+      count += 10;
+      deriveMoreState = StoreStates.success;
+    }
   }
 
   @action
@@ -108,7 +124,7 @@ abstract class _HomePageStore with Store {
     derivationPath = selectedWallet!.derivationPath;
   }
 
-  void showTooltip(BuildContext context, Offset position) {
+  void showTooltip(BuildContext context, Offset position, String text) {
     overlayEntry?.remove();
     overlayEntry = null;
 
@@ -116,15 +132,15 @@ abstract class _HomePageStore with Store {
       builder: (context) => Positioned(
         left: position.dx + 20,
         top: position.dy - 40,
-        child: const SizedBox(
+        child: SizedBox(
           width: 200,
           child: Card(
             color: Colors.white,
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
               child: Text(
-                Strings.mnemonicTooltip,
-                style: TextStyle(
+                text,
+                style: const TextStyle(
                   color: Colors.black,
                 ),
               ),
@@ -145,11 +161,11 @@ abstract class _HomePageStore with Store {
       builder: (context) => Positioned(
         top: 0,
         right: 0,
-        child: QrImage(
+        child: QrImageView(
           data: data,
           version: QrVersions.auto,
           backgroundColor: Colors.white,
-          size: 300,
+          size: 200,
         ),
       ),
     );

@@ -72,8 +72,8 @@ class DerivationContainer extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: const [
+              const Row(
+                children: [
                   Text(
                     Strings.derivation,
                     style: Styles.textStyleHeader4,

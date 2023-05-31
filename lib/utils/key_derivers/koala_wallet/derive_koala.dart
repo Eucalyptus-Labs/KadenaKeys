@@ -14,7 +14,8 @@ class DeriveKoala extends IKeyDeriver {
   @override
   bool validateMnemonic(String mnemonic) {
     final strippedMnemonic = mnemonic.trim();
-    return bip39.validateMnemonic(strippedMnemonic) && strippedMnemonic.split(' ').length == 24;
+    return bip39.validateMnemonic(strippedMnemonic) &&
+        strippedMnemonic.split(' ').length == 24;
   }
 
   @override
@@ -35,7 +36,7 @@ class DeriveKoala extends IKeyDeriver {
     }
 
     final results = <KeyDerivationResult>[];
-    for (var i = 0; i < count; i++) {
+    for (var i = startIndex; i < count; i++) {
       final keyData = ED25519_HD_KEY.derivePath(
         "m/44'/626'/$i'",
         seedBytes,
