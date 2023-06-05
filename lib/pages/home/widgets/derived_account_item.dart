@@ -35,9 +35,18 @@ class DerivedAccountItem extends StatelessWidget {
           },
           child: CustomToast(
             content: result.account,
-            child: Text(
-              result.account,
-              overflow: TextOverflow.ellipsis,
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    homePageStore.truncateString(result.account),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                Text(
+                  homePageStore.lastFourDigits(result.account),
+                ),
+              ],
             ),
           ),
         );
@@ -54,9 +63,18 @@ class DerivedAccountItem extends StatelessWidget {
           cursor: SystemMouseCursors.click,
           child: CustomToast(
             content: result.privateKey,
-            child: Text(
-              result.privateKey,
-              overflow: TextOverflow.ellipsis,
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    homePageStore.truncateString(result.privateKey),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                Text(
+                  homePageStore.lastFourDigits(result.privateKey),
+                ),
+              ],
             ),
           ),
         );

@@ -11,9 +11,9 @@ part 'home_page_store.g.dart';
 
 class HomePageStore extends _HomePageStore with _$HomePageStore {}
 
-List<int> parseTopStories(String jsonString) {
-  return [];
-}
+// List<int> parseTopStories(String jsonString) {
+//   return [];
+// }
 
 abstract class _HomePageStore with Store {
   final menmonicController = TextEditingController();
@@ -214,5 +214,15 @@ abstract class _HomePageStore with Store {
       overlayEntry?.remove();
       overlayEntry = null;
     });
+  }
+
+  String truncateString(String item) {
+    String stringWithoutLastFourDigits = item.substring(0, item.length - 4);
+
+    return stringWithoutLastFourDigits;
+  }
+
+  String lastFourDigits(String item) {
+    return item.substring(item.length - 4);
   }
 }
