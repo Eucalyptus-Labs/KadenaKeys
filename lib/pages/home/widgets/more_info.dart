@@ -33,8 +33,9 @@ class MoreInfo extends StatelessWidget {
                 color: CustomColors.light75,
               ),
             ),
-            Text(
-              Strings.here,
+            UrlText(
+              url: Url.readMe,
+              text: Strings.here,
               style: Styles.textStyleMediumParagraph.copyWith(
                 color: CustomColors.light75,
               ),

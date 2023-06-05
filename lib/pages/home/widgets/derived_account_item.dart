@@ -3,7 +3,6 @@ import 'package:get_it/get_it.dart';
 import '../../../constants/values/values.dart';
 import '../../../models/key_derivation_result.dart';
 import '../../../store/home_page/home_page_store.dart';
-import '../../../utils/size_info.dart';
 import 'custom_toast.dart';
 
 class DerivedAccountItem extends StatelessWidget {
@@ -81,7 +80,7 @@ class DerivedAccountItem extends StatelessWidget {
 
         return Container(
           width: double.infinity,
-          height: SizeInfo.isMobile ? 80 : 40,
+          height: 40,
           padding: const EdgeInsets.symmetric(horizontal: 16),
           margin: const EdgeInsets.only(
             bottom: 8,
@@ -90,49 +89,27 @@ class DerivedAccountItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(5),
             color: CustomColors.dark100,
           ),
-          child: SizeInfo.isMobile
-              ? Row(
-                  children: [
-                    Flexible(
-                      flex: 1,
-                      child: Container(
-                        margin: const EdgeInsets.only(right: 15),
-                        child: Text('$index'),
-                      ),
-                    ),
-                    Flexible(
-                      flex: 9,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          accountResult,
-                          privateKeyResult,
-                        ],
-                      ),
-                    ),
-                  ],
-                )
-              : Row(
-                  children: [
-                    Flexible(
-                      flex: 10,
-                      fit: FlexFit.tight,
-                      child: Text('$index'),
-                    ),
-                    const SizedBox(width: 10),
-                    Flexible(
-                      flex: 45,
-                      fit: FlexFit.tight,
-                      child: accountResult,
-                    ),
-                    const SizedBox(width: 10),
-                    Flexible(
-                      flex: 45,
-                      fit: FlexFit.tight,
-                      child: privateKeyResult,
-                    ),
-                  ],
-                ),
+          child: Row(
+            children: [
+              Flexible(
+                flex: 10,
+                fit: FlexFit.tight,
+                child: Text('$index'),
+              ),
+              const SizedBox(width: 10),
+              Flexible(
+                flex: 45,
+                fit: FlexFit.tight,
+                child: accountResult,
+              ),
+              const SizedBox(width: 10),
+              Flexible(
+                flex: 45,
+                fit: FlexFit.tight,
+                child: privateKeyResult,
+              ),
+            ],
+          ),
         );
       },
     );

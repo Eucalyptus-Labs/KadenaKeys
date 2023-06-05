@@ -25,51 +25,20 @@ mixin _$HomePageStore on _HomePageStore, Store {
     });
   }
 
-  late final _$enableButtonAtom =
-      Atom(name: '_HomePageStore.enableButton', context: context);
+  late final _$isGenerateButtonEnableAtom =
+      Atom(name: '_HomePageStore.isGenerateButtonEnable', context: context);
 
   @override
-  bool get enableButton {
-    _$enableButtonAtom.reportRead();
-    return super.enableButton;
+  bool get isGenerateButtonEnable {
+    _$isGenerateButtonEnableAtom.reportRead();
+    return super.isGenerateButtonEnable;
   }
 
   @override
-  set enableButton(bool value) {
-    _$enableButtonAtom.reportWrite(value, super.enableButton, () {
-      super.enableButton = value;
-    });
-  }
-
-  late final _$deriveAccountsStateAtom =
-      Atom(name: '_HomePageStore.deriveAccountsState', context: context);
-
-  @override
-  StoreStates get deriveAccountsState {
-    _$deriveAccountsStateAtom.reportRead();
-    return super.deriveAccountsState;
-  }
-
-  @override
-  set deriveAccountsState(StoreStates value) {
-    _$deriveAccountsStateAtom.reportWrite(value, super.deriveAccountsState, () {
-      super.deriveAccountsState = value;
-    });
-  }
-
-  late final _$deriveMoreStateAtom =
-      Atom(name: '_HomePageStore.deriveMoreState', context: context);
-
-  @override
-  StoreStates get deriveMoreState {
-    _$deriveMoreStateAtom.reportRead();
-    return super.deriveMoreState;
-  }
-
-  @override
-  set deriveMoreState(StoreStates value) {
-    _$deriveMoreStateAtom.reportWrite(value, super.deriveMoreState, () {
-      super.deriveMoreState = value;
+  set isGenerateButtonEnable(bool value) {
+    _$isGenerateButtonEnableAtom
+        .reportWrite(value, super.isGenerateButtonEnable, () {
+      super.isGenerateButtonEnable = value;
     });
   }
 
@@ -149,9 +118,7 @@ mixin _$HomePageStore on _HomePageStore, Store {
   String toString() {
     return '''
 selectedWallet: ${selectedWallet},
-enableButton: ${enableButton},
-deriveAccountsState: ${deriveAccountsState},
-deriveMoreState: ${deriveMoreState},
+isGenerateButtonEnable: ${isGenerateButtonEnable},
 derivationMethod: ${derivationMethod},
 derivationPath: ${derivationPath},
 keys: ${keys}
