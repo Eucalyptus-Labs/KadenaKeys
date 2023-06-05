@@ -115,7 +115,7 @@ class Mnemonic extends StatelessWidget {
                       return GenerateButton(
                         loading: homePageStore.deriveAccountsState.isLoading,
                         onPressCallback: homePageStore.isGenerateButtonEnable
-                            ? homePageStore.deriveAccountsAsync
+                            ? homePageStore.deriveAccounts
                             : null,
                       );
                     },

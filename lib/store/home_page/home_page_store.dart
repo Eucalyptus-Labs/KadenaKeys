@@ -45,7 +45,7 @@ abstract class _HomePageStore with Store {
     _enableButton();
   }
 
-  Future<void> deriveAccountsAsync() async {
+  Future<void> deriveAccounts() async {
     if (isGenerateButtonEnable) {
       deriveAccountsState.changeState(StoreStates.loading);
       deriveKeyIndex = 0;
@@ -63,7 +63,7 @@ abstract class _HomePageStore with Store {
     }
   }
 
-  Future<void> deriveMoreAsync() async {
+  Future<void> deriveMore() async {
     if (isGenerateButtonEnable) {
       deriveMoreState.changeState(StoreStates.loading);
       var response = await selectedWallet!.deriver.deriveKeys(

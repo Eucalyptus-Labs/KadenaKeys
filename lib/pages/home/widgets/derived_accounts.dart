@@ -135,7 +135,7 @@ class DerivedAccounts extends StatelessWidget {
                           return GenerateButton(
                             loading: homePageStore.deriveMoreState.isLoading,
                             title: Strings.deriveMore,
-                            onPressCallback: homePageStore.deriveMoreAsync,
+                            onPressCallback: homePageStore.deriveMore,
                           );
                         },
                       ),
