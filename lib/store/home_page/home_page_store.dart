@@ -6,17 +6,21 @@ import '../../constants/enums/store_states.dart';
 import '../../constants/values/values.dart';
 import '../../models/key_derivation_result.dart';
 import '../../models/wallets.dart';
+import '../loading_state/loading_state.dart';
 
 part 'home_page_store.g.dart';
 
 class HomePageStore extends _HomePageStore with _$HomePageStore {}
 
-List<int> parseTopStories(String jsonString) {
-  return [];
-}
+// List<int> parseTopStories(String jsonString) {
+//   return [];
+// }
 
 abstract class _HomePageStore with Store {
   final menmonicController = TextEditingController();
+  final deriveAccountsState = LoadingState();
+  final deriveMoreState = LoadingState();
+
   OverlayEntry? overlayEntry;
   CancelableOperation<void>? cancelableOperation;
   int deriveKeyIndex = 0;
@@ -26,13 +30,7 @@ abstract class _HomePageStore with Store {
   WalletData? selectedWallet;
 
   @observable
-  bool enableButton = false;
-
-  @observable
-  StoreStates deriveAccountsState = StoreStates.initial;
-
-  @observable
-  StoreStates deriveMoreState = StoreStates.initial;
+  bool isGenerateButtonEnable = false;
 
   @observable
   String? derivationMethod, derivationPath;
@@ -47,9 +45,9 @@ abstract class _HomePageStore with Store {
     _enableButton();
   }
 
-  Future<void> deriveAccountsAsync() async {
-    if (enableButton) {
-      deriveAccountsState = StoreStates.loading;
+  Future<void> deriveAccounts() async {
+    if (isGenerateButtonEnable) {
+      deriveAccountsState.changeState(StoreStates.loading);
       deriveKeyIndex = 0;
       count = 10;
       var response = await selectedWallet!.deriver.deriveKeys(
@@ -61,13 +59,13 @@ abstract class _HomePageStore with Store {
       keys.addAll(response);
       deriveKeyIndex += 10;
       count += 10;
-      deriveAccountsState = StoreStates.success;
+      deriveAccountsState.changeState(StoreStates.success);
     }
   }
 
-  Future<void> deriveMoreAsync() async {
-    if (enableButton) {
-      deriveMoreState = StoreStates.loading;
+  Future<void> deriveMore() async {
+    if (isGenerateButtonEnable) {
+      deriveMoreState.changeState(StoreStates.loading);
       var response = await selectedWallet!.deriver.deriveKeys(
         startIndex: deriveKeyIndex,
         count: count,
@@ -76,7 +74,7 @@ abstract class _HomePageStore with Store {
       keys.addAll(response);
       deriveKeyIndex += 10;
       count += 10;
-      deriveMoreState = StoreStates.success;
+      deriveMoreState.changeState(StoreStates.success);
     }
   }
 
@@ -94,7 +92,7 @@ abstract class _HomePageStore with Store {
       return null;
     }
 
-    if (enableButton) {
+    if (isGenerateButtonEnable) {
       return null;
     }
 
@@ -109,14 +107,14 @@ abstract class _HomePageStore with Store {
     if (selectedWallet != null) {
       _setMethodAndPath();
       if (menmonicController.text.isNotEmpty) {
-        enableButton = selectedWallet!.deriver.validateMnemonic(
+        isGenerateButtonEnable = selectedWallet!.deriver.validateMnemonic(
           menmonicController.text,
         );
 
         return;
       }
     }
-    enableButton = false;
+    isGenerateButtonEnable = false;
   }
 
   void _setMethodAndPath() {
@@ -154,9 +152,6 @@ abstract class _HomePageStore with Store {
   }
 
   void showQrCode(BuildContext context, String data) {
-    overlayEntry?.remove();
-    overlayEntry = null;
-
     overlayEntry = OverlayEntry(
       builder: (context) => Positioned(
         top: 0,
@@ -214,5 +209,15 @@ abstract class _HomePageStore with Store {
       overlayEntry?.remove();
       overlayEntry = null;
     });
+  }
+
+  String truncateString(String item) {
+    String stringWithoutLastFourDigits = item.substring(0, item.length - 4);
+
+    return stringWithoutLastFourDigits;
+  }
+
+  String lastFourDigits(String item) {
+    return item.substring(item.length - 4);
   }
 }

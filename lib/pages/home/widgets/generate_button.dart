@@ -17,7 +17,7 @@ class GenerateButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => SizedBox(
         height: 48,
-        width: 385.w,
+        width: 415.w,
         child: ElevatedButton(
           onPressed: loading ? null : onPressCallback,
           style: ButtonStyle(

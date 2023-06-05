@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/link.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../constants/values/values.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../utils/size_info.dart';
@@ -22,100 +24,141 @@ class Footer extends StatelessWidget {
               vertical: 29,
               horizontal: 118.w,
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Column(
-                      children: [
-                        Row(
-                          children: [
-                            Text(
-                              Strings.copyRight,
-                              style: Styles.textStyleSubheading.copyWith(
-                                color: CustomColors.light65,
-                              ),
-                            ),
-                            Text(
-                              '${DateTime.now().year} ',
-                              style: Styles.textStyleSubheading.copyWith(
-                                color: CustomColors.light65,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Text(
-                          Strings.eucalyptusLabs,
-                          style: Styles.textStyleSubheading.copyWith(
-                            color: CustomColors.light65,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                SizeInfo.isMobile
-                    ? Column(
-                        children: [
-                          Text(
-                            Strings.poweredBy,
-                            style: Styles.textStyleSubheading.copyWith(
-                              color: CustomColors.light65,
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                margin: const EdgeInsets.only(
-                                  left: 8.5,
-                                  right: 6.5,
-                                ),
-                                child: SvgPicture.asset(ImagePath.leaves),
-                              ),
-                              Text(
-                                Strings.eucalyptusLabs,
-                                style: Styles.textStyleSubheading.copyWith(
-                                  color: CustomColors.light100,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      )
-                    : Row(
-                        children: [
-                          Text(
-                            Strings.poweredBy,
-                            style: Styles.textStyleSubheading.copyWith(
-                              color: CustomColors.light65,
-                            ),
-                          ),
-                          Container(
-                            margin: const EdgeInsets.only(
-                              left: 8.5,
-                              right: 6.5,
-                            ),
-                            child: SvgPicture.asset(ImagePath.leaves),
-                          ),
-                          Text(
-                            Strings.eucalyptusLabs,
-                            style: Styles.textStyleSubheading.copyWith(
-                              color: CustomColors.light100,
-                            ),
-                          ),
-                        ],
+            child: SizeInfo.isTablet || SizeInfo.isMobile
+                ? const Column(
+                    children: [
+                      CopyRight(),
+                      SizedBox(height: 10),
+                      PoweredBy(),
+                      SizedBox(height: 10),
+                      PrivacyPolicy(),
+                    ],
+                  )
+                : const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        fit: FlexFit.tight,
+                        child: CopyRight(),
                       ),
-                UrlText(
-                  url: Url.privacyPolicy,
-                  text: Strings.privacyPolicy,
+                      Flexible(
+                        fit: FlexFit.tight,
+                        child: PoweredBy(),
+                      ),
+                      Flexible(
+                        fit: FlexFit.tight,
+                        child: PrivacyPolicy(),
+                      ),
+                    ],
+                  ),
+          ),
+        ],
+      );
+}
+
+class PrivacyPolicy extends StatelessWidget {
+  const PrivacyPolicy({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        UrlText(
+          url: Url.privacyPolicy,
+          text: Strings.privacyPolicy,
+          style: Styles.textStyleSubheading.copyWith(
+            color: CustomColors.light100,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class PoweredBy extends StatelessWidget {
+  const PoweredBy({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () async {
+          final uri = Uri.parse(Url.eucalyptuslabs);
+          if (!await launchUrl(uri)) {
+            throw Exception('Could not launch ${Url.eucalyptuslabs} ');
+          }
+        },
+        child: Link(
+          uri: Uri.parse(Url.eucalyptuslabs),
+          builder: (context, onLlink) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  Strings.poweredBy,
+                  style: Styles.textStyleSubheading.copyWith(
+                    color: CustomColors.light65,
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(
+                    left: 8.5,
+                    right: 6.5,
+                  ),
+                  child: SvgPicture.asset(ImagePath.leaves),
+                ),
+                Text(
+                  Strings.eucalyptusLabs,
                   style: Styles.textStyleSubheading.copyWith(
                     color: CustomColors.light100,
                   ),
                 ),
               ],
-            ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class CopyRight extends StatelessWidget {
+  const CopyRight({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          Strings.copyRight,
+          style: Styles.textStyleSubheading.copyWith(
+            color: CustomColors.light65,
           ),
-        ],
-      );
+        ),
+        Text(
+          '${DateTime.now().year} ',
+          style: Styles.textStyleSubheading.copyWith(
+            color: CustomColors.light65,
+          ),
+        ),
+        Text(
+          Strings.eucalyptusLabs,
+          style: Styles.textStyleSubheading.copyWith(
+            color: CustomColors.light65,
+          ),
+        ),
+      ],
+    );
+  }
 }

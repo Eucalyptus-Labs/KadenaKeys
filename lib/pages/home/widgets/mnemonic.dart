@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import '../../../constants/enums/store_states.dart';
 import '../../../constants/values/values.dart';
 import '../../../store/home_page/home_page_store.dart';
 import '../../../utils/size_info.dart';
@@ -16,7 +15,6 @@ class Mnemonic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isTablet = SizeInfo.screenWidth < Sizes.tabletWidth;
     final walletLabel = MnemonicLabel(
       text: Strings.selectWallet,
       tooltipText: Strings.walletTooltip,
@@ -74,7 +72,7 @@ class Mnemonic extends StatelessWidget {
                 children: [
                   Container(
                     margin: const EdgeInsets.only(bottom: 24),
-                    child: isTablet
+                    child: SizeInfo.isTablet
                         ? Wrap(
                             children: [walletLabel, dropDown],
                           )
@@ -93,7 +91,7 @@ class Mnemonic extends StatelessWidget {
                   ),
                   Container(
                     margin: const EdgeInsets.only(bottom: 24),
-                    child: isTablet
+                    child: SizeInfo.isTablet
                         ? Wrap(
                             children: [mnemonicLabel, input],
                           )
@@ -115,10 +113,9 @@ class Mnemonic extends StatelessWidget {
                   Observer(
                     builder: (context) {
                       return GenerateButton(
-                        loading: homePageStore.deriveAccountsState ==
-                            StoreStates.loading,
-                        onPressCallback: homePageStore.enableButton
-                            ? homePageStore.deriveAccountsAsync
+                        loading: homePageStore.deriveAccountsState.isLoading,
+                        onPressCallback: homePageStore.isGenerateButtonEnable
+                            ? homePageStore.deriveAccounts
                             : null,
                       );
                     },
