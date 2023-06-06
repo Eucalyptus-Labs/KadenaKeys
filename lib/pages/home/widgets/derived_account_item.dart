@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import '../../../constants/values/values.dart';
@@ -34,18 +35,24 @@ class DerivedAccountItem extends StatelessWidget {
           },
           child: CustomToast(
             content: result.account,
-            child: Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    homePageStore.truncateString(result.account),
-                    overflow: TextOverflow.ellipsis,
+            child: AutoSizeText(
+              result.account,
+              maxFontSize: 14,
+              minFontSize: 14,
+              maxLines: 1,
+              overflowReplacement: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      homePageStore.truncateString(result.account),
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                ),
-                Text(
-                  homePageStore.lastFourDigits(result.account),
-                ),
-              ],
+                  Text(
+                    homePageStore.lastFourDigits(result.account),
+                  ),
+                ],
+              ),
             ),
           ),
         );
@@ -91,21 +98,18 @@ class DerivedAccountItem extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Flexible(
+              Expanded(
                 flex: 10,
-                fit: FlexFit.tight,
                 child: Text('$index'),
               ),
               const SizedBox(width: 10),
-              Flexible(
+              Expanded(
                 flex: 45,
-                fit: FlexFit.tight,
                 child: accountResult,
               ),
               const SizedBox(width: 10),
-              Flexible(
+              Expanded(
                 flex: 45,
-                fit: FlexFit.tight,
                 child: privateKeyResult,
               ),
             ],

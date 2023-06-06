@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import '../../store/home_page/home_page_store.dart';
 import '../../utils/size_info.dart';
-import '../../widgets/footer.dart';
+import '../../widgets/footer/footer.dart';
 import 'widgets/derivation_container.dart';
 import 'widgets/derived_accounts.dart';
 import 'widgets/home_title.dart';

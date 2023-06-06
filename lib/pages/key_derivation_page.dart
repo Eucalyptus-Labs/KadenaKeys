@@ -1,7 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:auto_route/annotations.dart';
-import 'package:fl_toast/fl_toast.dart';
+// import 'package:fl_toast/fl_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../constants/enums/kadena_wallets.dart';
@@ -194,12 +194,12 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
                           await Clipboard.setData(
                             ClipboardData(text: accountData.privateKey),
                           );
-                          await showPlatformToast(
-                            child: const Text(
-                              Strings.copiedToClipboard,
-                            ),
-                            context: context,
-                          );
+                          // await showPlatformToast(
+                          //   child: const Text(
+                          //     Strings.copiedToClipboard,
+                          //   ),
+                          //   context: context,
+                          // );
                         },
                       )),
                       DataCell(InkWell(
@@ -208,12 +208,12 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
                           await Clipboard.setData(
                             ClipboardData(text: accountData.publicKey),
                           );
-                          await showPlatformToast(
-                            child: const Text(
-                              Strings.copiedToClipboard,
-                            ),
-                            context: context,
-                          );
+                          // await showPlatformToast(
+                          //   child: const Text(
+                          //     Strings.copiedToClipboard,
+                          //   ),
+                          //   context: context,
+                          // );
                         },
                       )),
                       DataCell(InkWell(
@@ -222,12 +222,12 @@ class KeyDerivationPageState extends State<KeyDerivationPage> {
                           await Clipboard.setData(
                             ClipboardData(text: accountData.account),
                           );
-                          await showPlatformToast(
-                            child: const Text(
-                              Strings.copiedToClipboard,
-                            ),
-                            context: context,
-                          );
+                          // await showPlatformToast(
+                          //   child: const Text(
+                          //     Strings.copiedToClipboard,
+                          //   ),
+                          //   context: context,
+                          // );
                         },
                       )),
                     ],
