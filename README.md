@@ -53,7 +53,7 @@ To run all unit tests:
 **Expected Account:** k:3cae1ab99513cdbbe9c361f9629d35abcd5f535748fc76d45f72b4fcdaf7f4e4  
 
 # Commands
-flutter packages pub run build_runner build --delete-conflicting-outputs
+dart run build_runner build --delete-conflicting-outputs
 
 ## Squadron build js for web release
 ### Build the js
