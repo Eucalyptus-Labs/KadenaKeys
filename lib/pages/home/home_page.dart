@@ -12,10 +12,27 @@ import 'widgets/mnemonic.dart';
 import 'widgets/more_info.dart';
 
 @RoutePage()
-class HomePage extends StatelessWidget {
-  HomePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final homePageStore = GetIt.I<HomePageStore>();
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      homePageStore.pageController.position.isScrollingNotifier.addListener(() {
+        if (homePageStore.pageController.position.isScrollingNotifier.value) {
+          homePageStore.hideOverlay(context);
+        }
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -24,6 +41,7 @@ class HomePage extends StatelessWidget {
             homePageStore.hideOverlay(context);
           },
           child: SingleChildScrollView(
+            controller: homePageStore.pageController,
             child: SizedBox(
               width: double.infinity,
               child: Column(

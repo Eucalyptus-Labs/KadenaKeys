@@ -20,6 +20,7 @@ abstract class _HomePageStore with Store {
   final menmonicController = TextEditingController();
   final deriveAccountsState = LoadingState();
   final deriveMoreState = LoadingState();
+  final pageController = PageController();
 
   OverlayEntry? overlayEntry;
   CancelableOperation<void>? cancelableOperation;
