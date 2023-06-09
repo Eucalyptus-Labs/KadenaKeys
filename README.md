@@ -54,8 +54,10 @@ To run all unit tests:
 
 # Commands
 dart run build_runner build --delete-conflicting-outputs
+dart run flutter_native_splash:create --path=flutter_native_splash.yaml
 
 ## Squadron build js for web release
+
 ### Build the js
 `dart compile js ./lib/utils/key_derivers/derive_seed/browser/derive_seed_worker.dart -o ./web/js/derive_seed_worker.dart.js -m -O2`
 ### Build js debug non minified
