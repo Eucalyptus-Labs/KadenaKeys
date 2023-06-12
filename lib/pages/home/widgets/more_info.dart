@@ -34,10 +34,11 @@ class MoreInfo extends StatelessWidget {
               ),
             ),
             UrlText(
-              url: Url.readMe,
+              url: Url.license,
               text: Strings.here,
               style: Styles.textStyleMediumParagraph.copyWith(
                 color: CustomColors.light75,
+                decoration: TextDecoration.underline,
               ),
             ),
           ],

@@ -111,9 +111,7 @@ class DerivedAccounts extends StatelessWidget {
                       ),
                       if (homePageStore.keys.isNotEmpty)
                         SizedBox(
-                          height: SizeInfo.isMobile
-                              ? 480 * (homePageStore.keys.length / 10)
-                              : 480,
+                          height: 480 * (homePageStore.keys.length / 10),
                           child: ListView.builder(
                             itemBuilder: (context, index) {
                               final item = homePageStore.keys[index];

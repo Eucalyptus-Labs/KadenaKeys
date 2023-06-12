@@ -69,18 +69,24 @@ class DerivedAccountItem extends StatelessWidget {
           cursor: SystemMouseCursors.click,
           child: CustomToast(
             content: result.privateKey,
-            child: Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    homePageStore.truncateString(result.privateKey),
-                    overflow: TextOverflow.ellipsis,
+            child: AutoSizeText(
+              result.privateKey,
+              maxFontSize: 14,
+              minFontSize: 14,
+              maxLines: 1,
+              overflowReplacement: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      homePageStore.truncateString(result.privateKey),
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                ),
-                Text(
-                  homePageStore.lastFourDigits(result.privateKey),
-                ),
-              ],
+                  Text(
+                    homePageStore.lastFourDigits(result.privateKey),
+                  ),
+                ],
+              ),
             ),
           ),
         );

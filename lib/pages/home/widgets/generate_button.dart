@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kadena_keys/utils/size_info.dart';
 import '../../../constants/values/values.dart';
 
 class GenerateButton extends StatelessWidget {
@@ -17,7 +18,7 @@ class GenerateButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => SizedBox(
         height: 48,
-        width: 415.w,
+        width: SizeInfo.isMobile ? 700.w : 415.w,
         child: ElevatedButton(
           onPressed: loading ? null : onPressCallback,
           style: ButtonStyle(
