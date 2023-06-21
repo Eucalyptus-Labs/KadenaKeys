@@ -56,13 +56,13 @@ dependencies:
   squadron: 5.1.1
   url_launcher: ^6.1.11
   x25519: ^0.1.1
-  js: ^0.6.7
-  flutter_native_splash: ^2.3.1
+  js: ^0.6.7  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   auto_route_generator: ^7.1.1
+  flutter_native_splash: ^2.3.1
   build_runner: ^2.4.5
   flutter_lints: ^2.0.1
   flutter_lorem: ^2.0.0
