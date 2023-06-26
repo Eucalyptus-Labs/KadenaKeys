@@ -42,7 +42,7 @@ class HomeTitle extends StatelessWidget {
                 ),
               ),
               UrlText(
-                url: Url.license,
+                url: Url.readme,
                 text: Strings.here,
                 style: Styles.textStyleLargeParagraph.copyWith(
                   color: CustomColors.light75,
