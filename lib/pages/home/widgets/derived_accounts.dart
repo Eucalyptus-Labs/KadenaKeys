@@ -112,16 +112,29 @@ class DerivedAccounts extends StatelessWidget {
                       if (homePageStore.keys.isNotEmpty)
                         SizedBox(
                           height: 480 * (homePageStore.keys.length / 10),
-                          child: ListView.builder(
-                            itemBuilder: (context, index) {
-                              final item = homePageStore.keys[index];
-                              return DerivedAccountItem(
-                                index: index,
-                                result: item,
-                              );
-                            },
-                            itemCount: homePageStore.keys.length,
-                          ),
+                          child: SizeInfo.isMobile
+                              ? Column(
+                                  children: homePageStore.keys
+                                      .map(
+                                        (element) => DerivedAccountItem(
+                                          index: homePageStore.keys.indexOf(
+                                            element,
+                                          ),
+                                          result: element,
+                                        ),
+                                      )
+                                      .toList(),
+                                )
+                              : ListView.builder(
+                                  itemBuilder: (context, index) {
+                                    final item = homePageStore.keys[index];
+                                    return DerivedAccountItem(
+                                      index: index,
+                                      result: item,
+                                    );
+                                  },
+                                  itemCount: homePageStore.keys.length,
+                                ),
                         ),
                     ],
                   ),

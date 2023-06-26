@@ -181,8 +181,8 @@ abstract class _HomePageStore with Store {
 
     overlayEntry = OverlayEntry(
       builder: (context) => Positioned(
-        left: position.dx + 30,
-        top: position.dy + 30,
+        left: position.dx - 60,
+        top: position.dy + 20,
         child: Material(
           color: Colors.transparent,
           child: Container(
