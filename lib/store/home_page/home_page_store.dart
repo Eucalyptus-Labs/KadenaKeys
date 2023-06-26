@@ -129,8 +129,8 @@ abstract class _HomePageStore with Store {
 
     overlayEntry = OverlayEntry(
       builder: (context) => Positioned(
-        left: position.dx + 20,
-        top: position.dy - 40,
+        left: position.dx - 40,
+        top: position.dy + 20,
         child: SizedBox(
           width: 200,
           child: Card(
