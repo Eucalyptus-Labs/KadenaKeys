@@ -16,9 +16,12 @@ Web app opens automatically in Chrome.
 ```
 flutter clean
 flutter pub get
-npm install -g http-server
 flutter build web
 npm install -g http-server
+```
+Change directory to /build/web and run the server on localhost with:
+```
+npx http-server
 ```
 
 Web app runs on localhost and URL will be given in terminal.
