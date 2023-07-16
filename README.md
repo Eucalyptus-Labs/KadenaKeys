@@ -2,29 +2,43 @@
 
 Used to derive the private key from a passphrase for multiple wallets in the Kadena ecosystem.
 
-# To Run
+# To Run Locally from Flutter
 
-`flutter run`
-
-Then choose the platform you wish to run on by following the instructions in the terminal.
-Generally you will want to run it on Chrome.
+```
+flutter clean
+flutter pub get
 flutter run -d chrome --web-renderer html
+```
+Web app opens automatically in Chrome.
 
-# To Build
+# To run Locally in Node
 
-1. Install kadena crypto (cardano-crypto.js), requires nodejs 14
+```
+flutter clean
+flutter pub get
+npm install -g http-server
+flutter build web
+npm install -g http-server
+```
 
-`nvm install 14`
-`nvm use 14`
-`npm install`
+Web app runs on localhost and URL will be given in terminal.
 
-2. Build the webpack bundle, requires
+# To Build for Remote Server
 
-`npx webpack`
+/// TODO
+(Install kadena crypto (cardano-crypto.js), requires nodejs 14)
 
-3. Build the flutter app
-
-`flutter build web`
+```
+flutter clean
+flutter pub get
+npm install -g http-server
+flutter build web
+npm install -g http-server
+nvm install 14
+nvm use 14
+npm install
+npx webpack
+```
 
 The `build/web/` directory will contain the compiled web app.
 
@@ -34,6 +48,7 @@ To run all unit tests:
 `flutter test`
 
 # Specific Wallet Phrases and Expected Private Keys
+
 **Koala Wallet**
 **Passphrase:** plug utility enable phone tip scale left blind clown someone knife oval drink road want erase salt jewel move whisper picnic history avocado symbol  
 **Expected Private Key:** fffd5e65d1ae2786ff1246f77ae367ec52393eaab92352974ea6b62ac19df740  
