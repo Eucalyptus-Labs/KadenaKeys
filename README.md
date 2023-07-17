@@ -95,3 +95,9 @@ To run all unit tests:
 ### Build js debug non minified for Squadron
 
 `dart compile js ./lib/utils/key_derivers/derive_seed/browser/derive_seed_worker.dart -o ./web/js/derive_seed_worker.dart.js -O2`
+
+# Change Log
+
+### 1.0.0 (1)
+
+* initial release
