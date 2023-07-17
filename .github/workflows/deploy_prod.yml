@@ -1,21 +1,20 @@
 
-name: deploy-to-dev
+name: deploy-to-prod
 
 on:
   push:
-    branches: [ "develop" ]
-  workflow_dispatch:
+    branches: [ "production" ]
 
 jobs:
   deploy:
-    name: Deploy to dev environment
+    name: Deploy to prod environment
     runs-on: ubuntu-latest
     env:
       SERVER_USER: github
-      SERVER_ADDRESS: 172.104.155.144
+      SERVER_ADDRESS: 194.233.165.234
       SERVER_PORT: 6000
       PROJECT_NAME: KadenaKeys
-      SERVICE_ENV: develop
+      SERVICE_ENV: production
       SERVER_KEY_PATH: /home/runner/work/id_rsa
     steps:
       - name: Setup SSH key
