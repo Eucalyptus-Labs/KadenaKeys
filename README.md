@@ -81,8 +81,11 @@ To run all unit tests:
 **Expected Account:** k:3cae1ab99513cdbbe9c361f9629d35abcd5f535748fc76d45f72b4fcdaf7f4e4  
 
 # Commands
+
+```
 dart run build_runner build --delete-conflicting-outputs
 dart run flutter_native_splash:create --path=flutter_native_splash.yaml
+```
 
 ## Squadron build js for web release
 
