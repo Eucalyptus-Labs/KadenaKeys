@@ -16,7 +16,7 @@ Web app opens automatically in Chrome.
 ```
 flutter clean
 flutter pub get
-flutter build web
+flutter build web --web-renderer html --csp --no-web-resources-cdn
 npm install -g http-server
 ```
 Change directory to /build/web and run the server on localhost with:
@@ -28,22 +28,32 @@ Web app runs on localhost and URL will be given in terminal.
 
 # To Build for Remote Server
 
-/// TODO
-(Install kadena crypto (cardano-crypto.js), requires nodejs 14)
+```
+nvm install 14
+npm cache clean --force
+npm install
+npx webpack
+
+flutter clean
+flutter pub get
+flutter build web --web-renderer html --csp --no-web-resources-cdn
+```
+
+The `build/web/` directory will contain the compiled web app. Can be served with pm2 or other server
+
+```
+pm2 serve build/web 6000 --name develop.kadenakeys.io
+```
+
+# To build for release tagging/offline use
 
 ```
 flutter clean
 flutter pub get
-npm install -g http-server
-flutter build web
-npm install -g http-server
-nvm install 14
-nvm use 14
-npm install
-npx webpack
+flutter build web --web-renderer html --csp --no-web-resources-cdn
 ```
 
-The `build/web/` directory will contain the compiled web app.
+Create an archive/zip file from the resulting build/web directory and upload to github
 
 # To Test
 
