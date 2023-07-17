@@ -1,5 +1,5 @@
 name: kadena_keys
-description: A Kadena Key Deriver, lets you derive keys from a recovery phrase
+description: A Kadena Key-Pair Deriver, lets you derive keys from a recovery phrase
   for wallets in the ecosystem.
 
 # The following line prevents the package from being accidentally published to
