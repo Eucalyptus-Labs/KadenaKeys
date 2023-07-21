@@ -21,7 +21,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.0.5 <4.0.0"
+  sdk: ">=3.0.1 <4.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -64,6 +64,7 @@ dev_dependencies:
   json_serializable: ^6.7.1
   mobx_codegen: ^2.3.0
   pinenacl: ^0.5.1
+  kadena_dart_sdk: ^2.3.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

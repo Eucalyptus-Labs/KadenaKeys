@@ -81,6 +81,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
+  blake2b:
+    dependency: transitive
+    description:
+      name: blake2b
+      sha256: bad1ae2c0b2935c61993dfbeb27115ac556afa22410737874061eed998b734f3
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.2"
   boolean_selector:
     dependency: transitive
     description:
@@ -376,6 +384,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.0"
+  http:
+    dependency: transitive
+    description:
+      name: http
+      sha256: "5895291c13fa8a3bd82e76d5627f69e0d85ca6a30dcac95c4ea19a5d555879c2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.13.6"
   http_multi_server:
     dependency: transitive
     description:
@@ -424,6 +440,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.7.1"
+  kadena_dart_sdk:
+    dependency: "direct dev"
+    description:
+      name: kadena_dart_sdk
+      sha256: e22431dac1d9fc7656581a20f43d86c21673829d612804f611aa9a4e583108a4
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.0"
   lints:
     dependency: transitive
     description:
@@ -862,5 +886,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.0.5 <4.0.0"
+  dart: ">=3.0.1 <4.0.0"
   flutter: ">=3.10.0"
