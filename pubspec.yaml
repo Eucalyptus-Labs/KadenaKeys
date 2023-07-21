@@ -65,6 +65,7 @@ dev_dependencies:
   mobx_codegen: ^2.3.0
   pinenacl: ^0.5.1
   kadena_dart_sdk: ^2.3.0
+  hex: ^0.2.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

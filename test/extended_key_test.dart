@@ -10,6 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 // ignore: depend_on_referenced_packages
 import 'package:convert/convert.dart';
+import 'package:hex/hex.dart';
 import 'package:kadena_dart_sdk/kadena_dart_sdk.dart';
 import 'package:pinenacl/ed25519.dart';
 import 'package:pinenacl/tweetnacl.dart';
@@ -90,8 +91,19 @@ void main() {
       );
 
       final pk = privKeyStr.substring(128, 192);
+      expect(
+        hex.encode(signingKey.publicKey),
+        pk,
+      );
+
       final Map<String, dynamic> signingRequest1 = {
-        "code": '"Hello"',
+        "code": '"Hello, World"',
+        "data": {
+          "ks": {
+            "keys": [pk],
+            "pred": "keys-all",
+          },
+        },
         "sender": "k:$pk",
         "networkId": "testnet04",
         "chainId": "1",
@@ -115,26 +127,39 @@ void main() {
       );
       final String cmd = jsonEncode(pcp);
       final Uint8List hash = CryptoLib.blakeHashToBinary(cmd);
-      final String hashStr = CryptoLib.base64UrlBinHash(hash);
       final SignedMessage signedHash = signingKey.sign(hash);
-      final String sig = hex.encode(signedHash.signature);
+      expect(
+        HEX.encode(signedHash.signature),
+        hex.encode(signedHash.signature),
+      );
+      expect(
+        signingKey.verifyKey.verify(
+          signature: signedHash.signature,
+          message: hash,
+        ),
+        true,
+      );
 
       await pactApi.setNodeUrl(nodeUrl: 'https://api.testnet.chainweb.com');
 
+      final PactCommand command = PactCommand(
+        cmd: cmd,
+        hash: CryptoLib.base64UrlBinHash(hash),
+        sigs: [
+          Signer(
+            sig: hex.encode(signedHash.signature),
+          ),
+        ],
+      );
+      // print(command.toJson());
       final PactResponse result = await pactApi.local(
-        command: PactCommand(
-          cmd: cmd,
-          hash: hashStr,
-          sigs: [
-            Signer(
-              sig: sig,
-            ),
-          ],
-        ),
+        command: command,
         chainId: '1',
         preflight: false,
+        // signatureValidation: false,
       );
       expect(result.result.status, 'success');
+      expect(result.result.data, "Hello, World");
     });
 
     test('seed', () {
