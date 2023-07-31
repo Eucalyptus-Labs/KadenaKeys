@@ -43,8 +43,7 @@ class HomeTitle extends StatelessWidget {
                 ),
               ),
               UrlText(
-                // TODO: Change this to youtube video
-                url: Url.readme,
+                url: Url.youtubeTutorial,
                 text: Strings.here,
                 style: Styles.textStyleLargeParagraph.copyWith(
                   color: CustomColors.light75,
