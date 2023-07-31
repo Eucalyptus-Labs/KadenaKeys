@@ -31,8 +31,8 @@ class Strings {
   static const String learnMore = 'You can learn more ';
   static const String here = 'here.';
   static const String descriptionHome =
-      'Use this tool to convert your wallet generated mnemonic phrase to Kadena private keys.\n'
-      'We recommend saving this page as an HTML file and running this tool OFFLINE for maximum security.';
+      'Use this tool to convert your wallet-generated recovery phrase to Kadena private keys.\n'
+      'We recommend running this tool OFFLINE for maximum security.';
   static const String mnemonic = 'Mnemonic';
   static const String mnemonicPhrase = 'Mnemonic phrase';
   static const String derivation = 'Derivation';

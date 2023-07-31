@@ -23,16 +23,17 @@ git clone git@github.com:Eucalyptus-Labs/KadenaKeys.git $ts
 cd $ts
 source ~/.nvm/nvm.sh
 
-rm package-lock.json
+#rm package-lock.json
 nvm install 14
 npm cache clean --force
 npm install
 npx webpack
 
-rm pubspec.lock
+#rm pubspec.lock
+#/snap/bin/flutter upgrade --force
 /snap/bin/flutter clean
 /snap/bin/flutter pub get
-/snap/bin/flutter build web
+/snap/bin/flutter build web --web-renderer html --csp --no-web-resources-cdn
 
 # re-link current
 cd ..
