@@ -41,6 +41,12 @@ class MoreInfo extends StatelessWidget {
                 decoration: TextDecoration.underline,
               ),
             ),
+            Text(
+              Strings.period,
+              style: Styles.textStyleMediumParagraph.copyWith(
+                color: CustomColors.light75,
+              ),
+            ),
           ],
         ),
       ],
