@@ -3,7 +3,7 @@ name: deploy-to-prod
 
 on:
   push:
-    branches: [ "production" ]
+    branches: [ "main" ]
 
 jobs:
   deploy:
