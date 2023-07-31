@@ -18,8 +18,7 @@ class Strings {
   static const String generateMore = 'Generate more';
   static const String deriveMore = 'Derive more';
   static const String keyPairsAndAccounts = 'Key Pairs and Accounts';
-  static const String tapOnAnyPrivateKey =
-      'Tap on any cell to copy its contents to your clipboard';
+  static const String tapOnAnyPrivateKey = 'Tap on any cell to copy its contents to your clipboard';
 
   static const String privateKey = 'Private Key:';
   static const String publicKey = 'Public Key:';
@@ -32,7 +31,8 @@ class Strings {
   static const String learnMore = 'You can learn more ';
   static const String here = 'here.';
   static const String descriptionHome =
-      'Use this tool to convert your wallet-generated recovery phrase to Kadena private keys. We recommend running this tool OFFLINE for maximum security.';
+      'Use this tool to convert your wallet-generated recovery phrase to Kadena private keys.\n'
+      'We recommend running this tool OFFLINE for maximum security.';
   static const String mnemonic = 'Mnemonic';
   static const String mnemonicPhrase = 'Mnemonic phrase';
   static const String derivation = 'Derivation';
@@ -43,7 +43,7 @@ class Strings {
   static const String licence = 'License';
   static const String otherProducts = 'Our other products';
   static const String productKoala = 'Koala Wallet';
-  static const String productExplorer = 'Explorer';
+  static const String productExplorer = 'Kadena Explorer';
   static const String productKadena = 'Kadena Ecosystem';
   static const String copyRight = 'Copyright © ';
   static const String poweredBy = 'Powered by';
@@ -55,7 +55,6 @@ class Strings {
   static const String derived = 'Derived';
   static const String mnemonicTooltip =
       'This is your 12 or 24 word phrase. Often this is called a “recovery phrase”, “seed phrase”, or “security phrase”.';
-  static const String walletTooltip =
-      'Select the wallet application you used to create your Kadena wallet account.';
-  // #endregion
+  static const String walletTooltip = 'Select the wallet application you used to create your Kadena wallet account.';
+// #endregion
 }
