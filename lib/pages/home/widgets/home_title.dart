@@ -50,6 +50,37 @@ class HomeTitle extends StatelessWidget {
                   decoration: TextDecoration.underline,
                 ),
               ),
+              Text(
+                Strings.period,
+                style: Styles.textStyleLargeParagraph.copyWith(
+                  color: CustomColors.light75,
+                ),
+              ),
+            ],
+          ),
+          Wrap(
+            alignment: WrapAlignment.center,
+            children: [
+              Text(
+                Strings.sourceCode,
+                style: Styles.textStyleLargeParagraph.copyWith(
+                  color: CustomColors.light75,
+                ),
+              ),
+              UrlText(
+                url: Url.youtubeTutorial,
+                text: Strings.here,
+                style: Styles.textStyleLargeParagraph.copyWith(
+                  color: CustomColors.light75,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+              Text(
+                Strings.period,
+                style: Styles.textStyleLargeParagraph.copyWith(
+                  color: CustomColors.light75,
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 55),

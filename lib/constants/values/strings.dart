@@ -29,7 +29,9 @@ class Strings {
   // #region Home page
   static const String homeTile = 'KadenaKeys';
   static const String learnMore = 'You can learn more ';
-  static const String here = 'here.';
+  static const String sourceCode = 'Source code available ';
+  static const String here = 'here';
+  static const String period = '.';
   static const String descriptionHome =
       'Use this tool to convert your wallet-generated recovery phrase to Kadena private keys.\n'
       'We recommend running this tool OFFLINE for maximum security.';
