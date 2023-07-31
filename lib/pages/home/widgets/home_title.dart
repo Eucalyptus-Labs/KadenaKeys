@@ -1,8 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../constants/values/values.dart';
-import '../../../widgets/url_text.dart';
 
 class HomeTitle extends StatelessWidget {
   const HomeTitle({
@@ -33,55 +34,43 @@ class HomeTitle extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 24),
-          Wrap(
-            alignment: WrapAlignment.center,
-            children: [
-              Text(
-                Strings.learnMore,
-                style: Styles.textStyleLargeParagraph.copyWith(
-                  color: CustomColors.light75,
+          RichText(
+            text: TextSpan(
+              children: [
+                const TextSpan(text: Strings.learnMore),
+                TextSpan(
+                  text: Strings.here,
+                  recognizer: TapGestureRecognizer()..onTap = () => launchUrl(Uri.parse(Url.youtubeTutorial)),
+                  style: Styles.textStyleLargeParagraph.copyWith(
+                    color: CustomColors.light75,
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
+                const TextSpan(text: Strings.period),
+              ],
+              style: Styles.textStyleLargeParagraph.copyWith(
+                color: CustomColors.light75,
               ),
-              UrlText(
-                url: Url.youtubeTutorial,
-                text: Strings.here,
-                style: Styles.textStyleLargeParagraph.copyWith(
-                  color: CustomColors.light75,
-                  decoration: TextDecoration.underline,
-                ),
-              ),
-              Text(
-                Strings.period,
-                style: Styles.textStyleLargeParagraph.copyWith(
-                  color: CustomColors.light75,
-                ),
-              ),
-            ],
+            ),
           ),
-          Wrap(
-            alignment: WrapAlignment.center,
-            children: [
-              Text(
-                Strings.sourceCode,
-                style: Styles.textStyleLargeParagraph.copyWith(
-                  color: CustomColors.light75,
+          RichText(
+            text: TextSpan(
+              children: [
+                const TextSpan(text: Strings.sourceCode),
+                TextSpan(
+                  text: Strings.here,
+                  recognizer: TapGestureRecognizer()..onTap = () => launchUrl(Uri.parse(Url.youtubeTutorial)),
+                  style: Styles.textStyleLargeParagraph.copyWith(
+                    color: CustomColors.light75,
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
+                const TextSpan(text: Strings.period),
+              ],
+              style: Styles.textStyleLargeParagraph.copyWith(
+                color: CustomColors.light75,
               ),
-              UrlText(
-                url: Url.youtubeTutorial,
-                text: Strings.here,
-                style: Styles.textStyleLargeParagraph.copyWith(
-                  color: CustomColors.light75,
-                  decoration: TextDecoration.underline,
-                ),
-              ),
-              Text(
-                Strings.period,
-                style: Styles.textStyleLargeParagraph.copyWith(
-                  color: CustomColors.light75,
-                ),
-              ),
-            ],
+            ),
           ),
           const SizedBox(height: 55),
         ],

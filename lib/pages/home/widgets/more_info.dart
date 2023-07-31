@@ -1,5 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../constants/values/values.dart';
 import '../../../utils/size_info.dart';
 import '../../../widgets/rounded_container.dart';
@@ -25,29 +27,24 @@ class MoreInfo extends StatelessWidget {
             color: CustomColors.light75,
           ),
         ),
-        Row(
-          children: [
-            Text(
-              Strings.licenceTwo,
-              style: Styles.textStyleMediumParagraph.copyWith(
-                color: CustomColors.light75,
+        RichText(
+          text: TextSpan(
+            children: [
+              const TextSpan(text: Strings.licenceTwo),
+              TextSpan(
+                text: Strings.here,
+                recognizer: TapGestureRecognizer()..onTap = () => launchUrl(Uri.parse(Url.license)),
+                style: Styles.textStyleMediumParagraph.copyWith(
+                  color: CustomColors.light75,
+                  decoration: TextDecoration.underline,
+                ),
               ),
+              const TextSpan(text: Strings.period),
+            ],
+            style: Styles.textStyleMediumParagraph.copyWith(
+              color: CustomColors.light75,
             ),
-            UrlText(
-              url: Url.license,
-              text: Strings.here,
-              style: Styles.textStyleMediumParagraph.copyWith(
-                color: CustomColors.light75,
-                decoration: TextDecoration.underline,
-              ),
-            ),
-            Text(
-              Strings.period,
-              style: Styles.textStyleMediumParagraph.copyWith(
-                color: CustomColors.light75,
-              ),
-            ),
-          ],
+          ),
         ),
       ],
     );
