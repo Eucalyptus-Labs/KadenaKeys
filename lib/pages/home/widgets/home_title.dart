@@ -50,6 +50,12 @@ class HomeTitle extends StatelessWidget {
                   decoration: TextDecoration.underline,
                 ),
               ),
+              Text(
+                Strings.period,
+                style: Styles.textStyleLargeParagraph.copyWith(
+                  color: CustomColors.light75,
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 24),
@@ -68,6 +74,12 @@ class HomeTitle extends StatelessWidget {
                 style: Styles.textStyleLargeParagraph.copyWith(
                   color: CustomColors.light75,
                   decoration: TextDecoration.underline,
+                ),
+              ),
+              Text(
+                Strings.period,
+                style: Styles.textStyleLargeParagraph.copyWith(
+                  color: CustomColors.light75,
                 ),
               ),
             ],
