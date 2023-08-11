@@ -64,7 +64,7 @@ class HomeTitle extends StatelessWidget {
               ),
               UrlText(
                 url: Url.githubLink,
-                text: Url.githubLink,
+                text: Strings.here,
                 style: Styles.textStyleLargeParagraph.copyWith(
                   color: CustomColors.light75,
                   decoration: TextDecoration.underline,
