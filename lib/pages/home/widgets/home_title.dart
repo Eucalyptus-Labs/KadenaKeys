@@ -52,6 +52,26 @@ class HomeTitle extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 24),
+          Wrap(
+            alignment: WrapAlignment.center,
+            children: [
+              Text(
+                Strings.sourceCode,
+                style: Styles.textStyleLargeParagraph.copyWith(
+                  color: CustomColors.light75,
+                ),
+              ),
+              UrlText(
+                url: Url.githubLink,
+                text: Url.githubLink,
+                style: Styles.textStyleLargeParagraph.copyWith(
+                  color: CustomColors.light75,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+            ],
+          ),
           const SizedBox(height: 55),
         ],
       );
