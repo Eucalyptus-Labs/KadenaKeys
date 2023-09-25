@@ -117,3 +117,6 @@ Create an archive/zip file from the resulting build/web directory and upload to 
 
 To run all unit tests:
 `flutter test`
+
+# Hosted on
+vercel.com
