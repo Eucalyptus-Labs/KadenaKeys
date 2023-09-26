@@ -33,12 +33,12 @@ dependencies:
   flutter:
     sdk: flutter
   async: ^2.11.0
-  auto_route: ^7.7.0
+  auto_route: ^7.7.1
   auto_size_text: ^3.0.0
   bip32: ^2.0.0
   bip39: ^1.0.6
   cupertino_icons: ^1.0.5
-  dropdown_button2: ^2.3.5
+  dropdown_button2: ^2.3.7
   ed25519_edwards: ^0.3.1  
   flutter_mobx: ^2.0.6+5
   flutter_screenutil: ^5.8.4

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../../constants/values/values.dart';
 import '../../../widgets/url_text.dart';
 
@@ -11,9 +12,9 @@ class HomeTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Column(
         children: [
-          const Text(
-            Strings.homeTile,
-            style: Styles.textStyleHeader4,
+          SvgPicture.asset(
+            ImagePath.fullLogo,
+            height: 64,
           ),
           const SizedBox(height: 24),
           Padding(
@@ -42,11 +43,43 @@ class HomeTitle extends StatelessWidget {
                 ),
               ),
               UrlText(
-                url: Url.readme,
+                url: Url.youtubeTutorial,
                 text: Strings.here,
                 style: Styles.textStyleLargeParagraph.copyWith(
                   color: CustomColors.light75,
                   decoration: TextDecoration.underline,
+                ),
+              ),
+              Text(
+                Strings.period,
+                style: Styles.textStyleLargeParagraph.copyWith(
+                  color: CustomColors.light75,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 24),
+          Wrap(
+            alignment: WrapAlignment.center,
+            children: [
+              Text(
+                Strings.sourceCode,
+                style: Styles.textStyleLargeParagraph.copyWith(
+                  color: CustomColors.light75,
+                ),
+              ),
+              UrlText(
+                url: Url.githubLink,
+                text: Strings.here,
+                style: Styles.textStyleLargeParagraph.copyWith(
+                  color: CustomColors.light75,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+              Text(
+                Strings.period,
+                style: Styles.textStyleLargeParagraph.copyWith(
+                  color: CustomColors.light75,
                 ),
               ),
             ],
