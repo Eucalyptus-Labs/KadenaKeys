@@ -11,6 +11,7 @@
 
 # call: restart.sh <environment> <branch_name> 
 # /var/www/KadenaKeys$ ./restart.sh develop master
+# !!! script has errors
 
 pwd
 
