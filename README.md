@@ -1,6 +1,6 @@
 # KadenaKeys
 
-Used to derive the private key from a passphrase for multiple wallets in the Kadena ecosystem.
+Used to derive the private key from a passphrase for multiple wallets in the Kadena ecosystem. 
 
 # To Run Locally from Flutter
 
